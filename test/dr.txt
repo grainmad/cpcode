@@ -1,0 +1,458 @@
+###############current status#################
+80921
+  D . .
+D . . . R
+  D . .
+
+dog will move,following after moving status:
+----------------------------------
+id:0
+  D . .
+. D . . R
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:1
+  . . .
+D D . . R
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  . D .
+D . . . R
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:3
+  . . .
+D . D . R
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:4
+  D . .
+D D . . R
+  . . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:5
+  D . .
+D . D . R
+  . . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:6
+  D . .
+D . . . R
+  . D .
+
+rabbit result in this status:2
+----------------------------------
+choose next status id:
+>>0
+###############current status#################
+28433
+  D . .
+. D . . R
+  D . .
+
+rabbit will move,following after moving status:
+----------------------------------
+id:0
+  D . R
+. D . . .
+  D . .
+
+dog result in this status:2
+----------------------------------
+----------------------------------
+id:1
+  D . .
+. D . R .
+  D . .
+
+dog result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  D . .
+. D . . .
+  D . R
+
+dog result in this status:2
+----------------------------------
+choose next status id:
+>>0
+###############current status#################
+28485
+  D . R
+. D . . .
+  D . .
+
+dog will move,following after moving status:
+----------------------------------
+id:0
+  . D R
+. D . . .
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:1
+  . . R
+. D D . .
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  D . R
+. . D . .
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:3
+  D . R
+. D D . .
+  . . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:4
+  D . R
+. D . . .
+  . D .
+
+rabbit result in this status:2
+----------------------------------
+choose next status id:
+>>3
+###############current status#################
+26541
+  D . R
+. D D . .
+  . . .
+
+rabbit will move,following after moving status:
+----------------------------------
+id:0
+  D R .
+. D D . .
+  . . .
+
+dog result in this status:2
+----------------------------------
+----------------------------------
+id:1
+  D . .
+. D D R .
+  . . .
+
+dog result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  D . .
+. D D . R
+  . . .
+
+dog result in this status:2
+----------------------------------
+choose next status id:
+>>1
+###############current status#################
+26505
+  D . .
+. D D R .
+  . . .
+
+dog will move,following after moving status:
+----------------------------------
+id:0
+  . D .
+. D D R .
+  . . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:1
+  D . .
+. . D R .
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  D D .
+. D . R .
+  . . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:3
+  D . .
+. D . R .
+  . D .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:4
+  D . D
+. D . R .
+  . . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:5
+  D . .
+. D . R .
+  . . D
+
+rabbit result in this status:2
+----------------------------------
+choose next status id:
+>>1
+###############current status#################
+22131
+  D . .
+. . D R .
+  D . .
+
+rabbit will move,following after moving status:
+----------------------------------
+id:0
+  D . R
+. . D . .
+  D . .
+
+dog result in this status:2
+----------------------------------
+----------------------------------
+id:1
+  D . .
+. . D . .
+  D . R
+
+dog result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  D . .
+. . D . R
+  D . .
+
+dog result in this status:2
+----------------------------------
+choose next status id:
+>>0
+###############current status#################
+22167
+  D . R
+. . D . .
+  D . .
+
+dog will move,following after moving status:
+----------------------------------
+id:0
+  . . R
+. D D . .
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:1
+  . D R
+. . D . .
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  D . R
+. D D . .
+  . . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:3
+  D . R
+. . D . .
+  . D .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:4
+  D D R
+. . . . .
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:5
+  D . R
+. . . . .
+  D D .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:6
+  D . R
+. . . D .
+  D . .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:7
+  D . R
+. . . . .
+  D . D
+
+rabbit result in this status:2
+----------------------------------
+choose next status id:
+>>3
+###############current status#################
+20061
+  D . R
+. . D . .
+  . D .
+
+rabbit will move,following after moving status:
+----------------------------------
+id:0
+  D R .
+. . D . .
+  . D .
+
+dog result in this status:1
+----------------------------------
+----------------------------------
+id:1
+  D . .
+. . D R .
+  . D .
+
+dog result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  D . .
+. . D . R
+  . D .
+
+dog result in this status:2
+----------------------------------
+choose next status id:
+>>1
+###############current status#################
+20025
+  D . .
+. . D R .
+  . D .
+
+dog will move,following after moving status:
+----------------------------------
+id:0
+  . . .
+. D D R .
+  . D .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:1
+  . D .
+. . D R .
+  . D .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:2
+  D D .
+. . . R .
+  . D .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:3
+  D . D
+. . . R .
+  . D .
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:4
+  D . .
+. . . R .
+  . D D
+
+rabbit result in this status:2
+----------------------------------
+----------------------------------
+id:5
+  D . .
+. . D R .
+  . . D
+
+rabbit result in this status:2
+----------------------------------
+choose next status id:
+>>5
+###############current status#################
+19947
+  D . .
+. . D R .
+  . . D
+
+rabbit will move,following after moving status:
+----------------------------------
+id:0
+  D . R
+. . D . .
+  . . D
+
+dog result in this status:1
+----------------------------------
+----------------------------------
+id:1
+  D . .
+. . D . R
+  . . D
+
+dog result in this status:1
+----------------------------------
+choose next status id:
+>>
