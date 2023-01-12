@@ -1,0 +1,535 @@
+[Complete problemset](https://codeforces.com/contest/1746/problems)
+
+# A. Maxmina
+
+## 题意
+
+给出长度为n的01数组a，和整数k，给出两种操作：
+
+- 选择连续的两个数，然后替换成二者中最小值。
+- 选择连续的k个数，然后替换成k者中最大值。
+
+问经过任意次数操作后能否变为1.
+
+## 思路
+
+如果数组含1，我们可以对连续的0用操作1，然后变为单个0，当没有连续0的时候让0和1用操作1，最后变为长度为k的数组用操作2即可，所以只要含有1答案即使YES
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+//#define SINGLE_INPUT
+#define ll long long
+#define N 500005
+using namespace std;
+
+void sol() {
+	int n, k;
+	cin >> n >> k;
+	int ok = 0;
+	for (int i=0; i<n; i++) {
+		int x; cin >> x;
+		if (x) ok = 1;
+	}
+	cout << (ok?"YES\n":"NO\n");
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# B. Rebellion
+
+## 题意
+
+给出长度为n的01数组a，每次操作可以选择两个不同的索引i，j。让a[i] += a[j], 然后移除a[j]
+
+问最少需要多少次可以让a变为非降序数组。
+
+## 思路
+
+双指针，从左向右找1，从右向左找0，然后交换并记录次数。
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+//#define SINGLE_INPUT
+#define ll long long
+#define N 500005
+using namespace std;
+
+int a[N];
+
+void sol() {
+	int n;
+	cin >> n;
+	for (int i=0; i<n; i++) {
+		cin >> a[i];
+	}
+	int l = 0, r = n-1, cnt = 0;
+	while (l<r) {
+		while (l<r && a[r] == 1) r--;
+		while (l<r && a[l] == 0) l++;
+		if (l != r) {
+			swap(a[l], a[r]);
+			cnt++;
+		}
+	}
+	cout << cnt << "\n";
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# C. Permutation Operations
+
+## 题意
+
+给你一个长度为n的排列a，并执行n次操作，第i次操作可以指定任意后缀让每个值都增长i。每次操作指定哪些后缀可以让最后的a逆序数最小。
+
+## 思路
+
+我们一次操作如果是指定了下标i那么只能消除a[i-1]和a[i]之间的差距，后缀相邻元素的差距都是同步增长的，所以一次操作只能修改一对相邻元素，所以我们可以先统计a[i-1]-a[i]>0的数量cnt然后对其增序排序，对于前n-cnt次操作任意指定位置，然后后cnt次让排序后小的先执行。这样可以尽可能消除更多逆序对。
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+//#define SINGLE_INPUT
+#define ll long long
+#define N 500005
+using namespace std;
+
+int a[N];
+
+void sol() {
+	int n;
+	cin >> n;
+	std::vector<vector<int>> v(n+1);
+	for (int i=1; i<=n; i++) {
+		cin >> a[i];
+	}
+	int inv = 0;
+	for (int i=2; i<=n; i++) {
+		if (a[i-1]>a[i]) {
+			v[a[i-1]-a[i]].push_back(i);
+			inv++;
+		}
+	}
+	for (int i=0; i<n-inv; i++) {
+		cout << "1 ";
+	}
+	for (auto& i:v) {
+		for (int j:i) {
+			cout << j << " ";
+		}
+	}
+	cout << "\n";
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# D. Paths on the Tree
+
+## 题意
+
+给出一颗n个节点的树，并且每个节点都有权值，现在需要选择k条从根出发的路径，使得每条所选路径上节点权值之和最大。要求是每个节点选择的次数与其他所有兄弟节点被选次数相差不超过1.
+
+## 思路
+
+树上动态规划。只是状态的索引并不是连续的，我们可以将它存在哈希表中。
+
+定义`dp[i][j]`为以i号节点为根出发j条路径的最大权值和。状态转移取决于子节点。设i的子节点数量为$sz_i$，由于兄弟节点选择次数相差不超过1，所以我们需要尽可能地将j平分给$sz_i$个节点，每个节点至少分配$\lfloor \frac{j}{sz_i} \rfloor$条路径。对于剩余的j%$sz_i$条改分给谁，应该选择各个子节点分配$\lfloor \frac{j}{sz_i}\rfloor + 1$条路径的贡献最大的j%$sz_i$条。
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+//#define SINGLE_INPUT
+#define ll long long
+#define N 200005
+using namespace std;
+
+vector<int> g[N];
+vector<pair<int,ll>> ans[N];
+ll s[N];
+
+ll dfs(int x, int k) { 
+	// if (k == 0) return 0;
+	for (auto [i,j]:ans[x]) {
+		if (i == k) return j;
+	}
+	ll res = k*s[x];
+	int sz = g[x].size();
+	if (sz == 0) {
+		ans[x].emplace_back(k, res);
+		return res;
+	}
+	if (k%sz == 0) {
+		for (int i:g[x]) {
+			res += dfs(i, k/sz);		
+		}
+	} else {
+		ll dp1[sz], dp2[sz], dif[sz];
+		for (int i=0; i<sz; i++) {
+			dp1[i] = dfs(g[x][i], k/sz);
+			dp2[i] = dfs(g[x][i], k/sz+1);
+			dif[i] = dp2[i]-dp1[i];
+		}
+		sort(dif, dif+sz, greater<ll>());
+		for (int i=0; i<sz; i++) {
+			res += dp1[i];
+			if (i<k%sz) res += dif[i];
+		}
+	}
+	ans[x].emplace_back(k, res);
+	return res;
+}
+
+void sol() {
+	int n, k;
+	cin >> n >> k;
+	for (int i=0; i<=n; i++) g[i].clear(), ans[i].clear();
+	for (int i=2; i<=n; i++) {
+		int x; cin >> x;
+		g[x].push_back(i);
+	}
+	for (int i=1; i<=n; i++) cin >> s[i];
+	cout << dfs(1, k) << "\n";
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# E1. Joking (Easy Version)
+
+## 题意
+
+你需要从1到n中猜出x，最多询问82次，每次询问可以问x是否存在一个集合中，但是回答可能会说谎，不过保证连续两次询问不会说谎。另外你可以做多两次确认x。
+
+## 思路
+
+我们把集合分为三组a,bc,可以在最多三次操作后排除一个集合，也就是说三次操作可以减少1/3规模
+
+将剩余数字分为a0, a1, a2三部分，
+最多三次查询可以减少1/3规模
+最后剩余两个可以直接猜。
+100000 * (2/3)^x = 2
+math.log(2/100000, 2/3) = 26.684856644986407
+
+27*3 = 81
+最多81次
+
+a0=y a1=y 时
+
+两者不可能同时为真，也不可能同时为假
+a0=y为假则a1=y为真，必在a1
+a0=y为真则a1=y为假，必在a0
+必在a0+a1
+
+a0=y a1=n 时
+不可能同时为假
+a0=y真且a1=n假不可能存在
+a0=y真且a1=n真，必在a0
+a0=y假且a1=n真，必在a2
+必在a0+a2
+
+a0=n a0=n 时
+不可能同时为假，也不可能一真一假，只可能都为真，必定不在a0
+必在a1+a2
+
+a0=0 a1=y 时
+回到第一二两种情况
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+#define SINGLE_INPUT
+#define ll long long
+#define N 500005
+using namespace std;
+
+/*
+
+将剩余数字分为a0, a1, a2三部分，
+最多三次查询可以减少1/3规模
+最后剩余两个可以直接猜。
+100000 * (2/3)^x = 2
+math.log(2/100000, 2/3) = 26.684856644986407
+
+27*3 = 81
+最多81次
+
+a0 a1
+y  y     
+
+两者不可能同时为真，也不可能同时为假
+a0=y为假则a1=y为真，必在a1
+a0=y为真则a1=y为假，必在a0
+必在a0+a1
+
+a0 a1
+y  n     
+不可能同时为假
+a0=y真且a1=n假不可能存在
+a0=y真且a1=n真，必在a0
+a0=y假且a1=n真，必在a2
+必在a0+a2
+
+a0 a0
+n  n
+不可能同时为假，也不可能一真一假，只可能都为真,不在a0
+必在a1+a2
+
+a0 a1
+n  y
+回到第一二两种情况
+*/
+
+bool ask(vector<int>& v) {
+	cout << "? " << v.size();
+	for (int i:v) {
+		cout << " " << i;
+	}
+	cout << endl;
+	string s;
+	cin >> s;
+	return s=="YES";
+}
+
+void merge(vector<int>& a, vector<int>& b, vector<int>& to) {
+	to.clear();
+	for (int i:a) to.push_back(i);
+	for (int i:b) to.push_back(i);
+}
+
+void sol() {
+	int n; cin >> n;
+	std::vector<int> v(n);
+	for (int i=0; i<n; i++) v[i] = i+1;
+	while (true) {
+		vector<int> a[3];
+		for (int i=0; i<v.size(); i++) {
+			a[i%3].push_back(v[i]);
+		}
+		if (ask(a[0])) {
+			if (ask(a[1])) {
+				merge(a[0], a[1], v);
+			} else {
+				merge(a[0], a[2], v);
+			}
+		} else {
+			if (ask(a[0])) {
+				if (ask(a[1])) {
+					merge(a[0], a[1], v);
+				} else {
+					merge(a[0], a[2], v);
+				}
+			} else {
+				merge(a[1], a[2], v);
+			}
+		}
+		if (v.size()<=2) {
+			cout << "! " << v[0] << endl;
+			string s;
+			cin >> s;
+			if (s == ":(") {
+				cout << "! " << v[1] << endl;
+				cin >> s;
+			}
+			break;
+		}
+	}
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# F. Kazaee
+
+## 题意
+
+给出一个长度为n的数组a, 执行q次如下操作之一：
+
+- 将a[i] 赋值为x
+- 查询a[l…r]中每个数出现的次数是否是k的倍数。
+
+## 思路
+
+如果l到r中的每个数出现的次数都是k的倍数，那么任意选一部分也是将k的倍数，所以我们可以多次随机选取一些数检测，如果出现不是k的倍数那么就一定不是，如果都是k的倍数说明极大概率是。
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+#define SINGLE_INPUT
+#define ll long long
+#define N 600005
+#define T 32
+using namespace std;
+
+struct BIT {
+	ll BIT[N];
+	// ll xBIT[N];
+
+	void bit_add(int x, ll val) {
+	    for (int i=x; i<N; i+=i&-i) {
+	        BIT[i] += val;       
+	        // xBIT[i] += x*val;
+	        // 区间查询时 BIT[i] += val; xBIT[i] += x*val;
+	    }
+	}
+
+	ll bit_ps(int x) {
+	    ll rt = 0;
+	    for (int i=x; i>0; i-=i&-i) {
+	        rt += BIT[i];
+	        // rt += x*BIT[i]-xBIT[i];
+	        // 区间查询时 rt += (x+1)*BIT[i]-xBIT[i];
+	    }
+	    return rt;
+	}
+} bit[T];
+
+int a[N];
+int sl[T][N];
+
+map<int,int> mp;
+int cnt;
+int id(int x) {
+	if (mp.count(x)) return mp[x];
+	return mp[x] = ++cnt;
+}
+
+void sol() {
+	random_device rd;
+	mt19937 mt(rd());
+	int n, q;
+	cin >> n >> q;
+	for (int i=0; i<T; i++) {
+		for (int j=1; j<=n+q; j++) {
+			sl[i][j] = mt()%2;
+		}
+	}
+	for (int i=1; i<=n; i++) {
+		cin >> a[i];
+		int x = id(a[i]);
+		for (int j=0; j<T; j++) {
+			if (sl[j][x]) bit[j].bit_add(i,1);
+		}
+	}
+	for (int j=0; j<q; j++) {
+		int opt; cin >> opt;
+		if (opt==1) {
+			int i, x; cin >> i >> x;
+			int prex = id(a[i]);
+			a[i] = x;
+			x = id(x);
+			for (int c=0; c<T; c++) {
+				if (sl[c][prex]) bit[c].bit_add(i,-1);
+				if (sl[c][x]) bit[c].bit_add(i,1);
+			}
+		} else {
+			int l, r, k;
+			cin >> l >> r >> k;
+			int ok = 1;
+			for (int i=0; i<T; i++) {
+				if ((bit[i].bit_ps(r)-bit[i].bit_ps(l-1))%k) {
+					ok = 0;
+					break;
+				}
+			}
+			cout << (ok?"YES\n":"NO\n");
+		}
+	}
+}	
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```

@@ -1,0 +1,277 @@
+[Complete problemset](https://codeforces.com/contest/1740/problems)
+
+# A. Factorise N+M
+
+## 题意
+
+给出一个素数n，求一个数m使得n+m不是素数
+
+## 思路
+
+n+n不是素数
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+//#define SINGLE_INPUT
+#define ll long long
+#define N 500005
+using namespace std;
+
+void sol() {
+	int n;
+	cin >> n;
+	cout << n << endl;
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# B. Jumbo Extra Cheese 2
+
+## 题意
+
+给出n个矩形求排成一行的最小周长
+
+## 思路
+
+对于每个矩形两条较短的边要算两次，剩余的长的边可以被更长的边包含，所以答案是2倍所有短边之和+2倍最长长边
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+//#define SINGLE_INPUT
+#define ll long long
+#define N 500005
+using namespace std;
+
+void sol() {
+	int n;
+	cin >> n;
+	std::vector<ll> a(n), b(n);
+	for (int i=0; i<n; i++) {
+		int x, y;
+		cin >> x >> y;
+		if (x > y) swap(x, y);
+		a[i] = x;
+		b[i] = y;
+	}
+	cout << 2*(accumulate(a.begin(), a.end(), 0LL)+*max_element(b.begin(), b.end())) << endl;
+
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# C. Bricks and Bags
+
+## 题意
+
+现在有n块砖头（n>3），每块砖头的权重是$a_i$，现在需要将它们放到三个背包里，每个背包最少放一块，然后分别从三个包里拿出1块，假设从第i个包里拿出的砖权重为$w_i$，令总价值为$|w_1-w_2|+|w_2-w_3|$，问如何分配n块转使得从包里拿出三块转的最小总价值最大。
+
+## 思路
+
+对n块砖排序，考虑两种情况的最大值
+
+- 背包1 $a_1$，背包2 $a_{2\dots i}$，背包3 $a_{i+1 \dots n}$
+- 背包1 $a_{1 \dots i-1}$，背包2 $a_{i\dots n-1}$，背包3 $a_{n}$
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+//#define SINGLE_INPUT
+#define ll long long
+#define N 200005
+using namespace std;
+
+ll a[N];
+
+void sol() {
+	int n;
+	cin >> n;
+	set<ll> st;
+	for (int i=0; i<n; i++) {
+		ll x;
+		cin >> x;
+		st.insert(x);
+	}
+	std::vector<ll> v(st.begin(), st.end());
+	int sz = v.size();
+	if (sz == 1) cout << 0 << endl;
+	else if (sz == 2) cout << 2*(v[1]-v[0]) << endl;
+	else {
+		ll ans = 0;
+		for (int i=2; i<sz; i++) {
+			ans = max(ans, v[i]-v[0]+v[i]-v[i-1]);
+		}
+		for (int i=sz-3; i>=0; i--) {
+			ans = max(ans, v[i+1]-v[i]+v[sz-1]-v[i]);
+		}
+		cout << ans << endl;
+	}
+	
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# D. Knowledge Cards
+
+## 题意
+
+给出一个n行m列的棋盘，现在有一堆从1到k的卡牌放在(0,0)位置，每次可以将(0,0)位置的牌放到任意位置，也可以将非(n,m)位置的牌放到非(0,0)的位置，只有(0,0), (n,m)可以堆叠，问最后能否在(n,m)形成升序的排列
+
+## 思路
+
+如果当前(n,m)位置需要卡牌c，然而除了(0,0)和(n,m)其他n*m-2个位置都已经满了，那么将无法形成升序，但凡存在一个空位卡牌c都能移动到(n,m)，所以可以用一个大根堆模拟，若堆内元素等于n*m-2则无法形成。
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+//#define SINGLE_INPUT
+#define ll long long
+#define N 500005
+using namespace std;
+
+void sol() {
+	int n, m, k;
+	cin >> n >> m >> k;
+	std::vector<int> v(k);
+	for (int i=0; i<k; i++) cin >> v[i];
+	priority_queue<int> que;
+	int c = k;
+	for (int i=0; i<k; i++) {
+		que.push(v[i]);
+		if (que.size() == m*n-2) {
+			cout << "TIDAK\n";
+			return ;
+		}
+		while (que.size() && que.top() == c) {
+			que.pop();
+			c--;
+		}
+	}
+	cout <<"YA\n";
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
+
+# E. Hanging Hearts
+
+## 题意
+
+给出一棵n个节点的树，用任意1到n的排列给每个节点赋权值。每次可以删除叶子节点然后将叶子节点的值加入到一个序列中，如果叶子节点的父节点权值大于它，那么父节点的值赋值为叶子节点的值。问最后形成的序列的最长非降序子序列是多长
+
+## 思路
+
+在删除x节点时，x的值一定是以x为根的子树中的最小值。我么可以安排x子树的最小值在最深的叶子上，这样以x结尾的最长非降序序列就是x子树的深度，令$len[i]$是i的深度，$len[i] = \max \{len[son_i]\}+1$，$dp[i]$是以i为根的子树形成的最长非降序序列，$dp[i] = \max \{len[son_i], \sum dp[son_i]\}$
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+#define SINGLE_INPUT
+#define ll long long
+#define N 100005
+using namespace std;
+
+int len[N], dp[N];
+vector<int> g[N];
+
+void dfs(int x) {
+	for (int i:g[x]) {
+		dfs(i);
+		dp[x] += dp[i];
+		len[x] = max(len[x], len[i]);
+	}
+	len[x]++;
+	dp[x] = max(dp[x], len[x]);
+}
+
+void sol() {
+	int n; cin >> n;
+	for (int i=2; i<=n; i++) {
+		int x; cin >> x;
+		g[x].push_back(i);
+	}
+	dfs(1);
+	cout << dp[1] << endl;
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+#ifndef SINGLE_INPUT
+	int t;
+	cin >> t;
+	while (t--) {
+		sol();
+	}
+#else
+	sol();
+#endif
+	return 0;
+}
+```
