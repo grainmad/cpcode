@@ -4,26 +4,30 @@
 #define N 500005
 using namespace std;
 
-
-void sol() {
-	int n;
-	cin >> n;
-	if (n == 1) cout << "-1" << endl;
-	else cout << n << " " << n+1 << " " << n*(n+1) << endl;
+void sol()
+{
+    int n;
+    cin >> n;
+    if (n == 1)
+        cout << "-1" << endl;
+    else
+        cout << n << " " << n + 1 << " " << n * (n + 1) << endl;
 }
 
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 #ifndef SINGLE_INPUT
-	int t;
-	cin >> t;
-	while (t--) {
-		sol();
-	}
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        sol();
+    }
 #else
-	sol();
+    sol();
 #endif
-	return 0;
+    return 0;
 }
