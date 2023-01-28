@@ -12,19 +12,20 @@ void sol() {
         cout << "-1\n";
         return;
     }
-    ll a = 0, b = 0;
+    // ll a = 0, b = 0;
     for (int i = 1; i < 33; i++) {
         if (x >> i & 1) {
             if (x >> (i - 1) & 1) {
                 cout << "-1\n";
                 return;
             }
-            a |= 1 << (i - 1);
-            a |= 1 << i;
-            b |= 1 << (i - 1);
+            // a |= 1 << (i - 1);
+            // a |= 1 << i;
+            // b |= 1 << (i - 1);
         }
     }
-    cout << a << " " << b << "\n";
+    // cout << a << " " << b << "\n";
+    cout << (x >> 1 | x) << " " << (x >> 1) << "\n";
 }
 int main() {
     ios::sync_with_stdio(false);
