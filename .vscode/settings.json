@@ -5,5 +5,9 @@
             "strings": "on",
             "other": "on"
         }
+    },
+    "files.associations": {
+        "ostream": "cpp",
+        "iostream": "cpp"
     }
 }
