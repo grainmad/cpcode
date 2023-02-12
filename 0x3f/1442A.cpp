@@ -10,21 +10,15 @@ ll a[N];
 void sol() {
     int n;
     cin >> n;
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-    ll mx = -1e9 - 7, p = 0;
     for (int i = 0; i < n; i++) {
-        mx = max(mx, a[i]);
-        p += a[i];
-        if (mx < p) {
-            cout << "NO\n";
-            return;
-        }
-        if (p < 0) {
-            mx = -1e9 - 7, p = 0;
-        }
+        cin >> a[i];
     }
-    cout << "YES\n";
+    int cnt = 0;
+    for (int i = 1; i < n; i++) {
+        if (a[i] < a[i - 1])
+            cnt += a[i - 1] - a[i];
+    }
+    cout << (a[0] >= cnt ? "YES\n" : "NO\n");
 }
 int main() {
     ios::sync_with_stdio(false);
