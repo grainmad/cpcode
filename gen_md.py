@@ -47,7 +47,7 @@ def create_md(path, info):
 
 
 def md_info(md_file):
-    with open("./data/cfca.json", "r", encoding="utf8") as f:
+    with open("./data/all.json", "r", encoding="utf8") as f:
         data = json.load(f)
         problems, problemStatistics = data["problems"], data["problemStatistics"]
         lst = {"{}{}".format(problems[i]["contestId"], problems[i]["index"]): {
