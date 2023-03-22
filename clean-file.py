@@ -1,6 +1,12 @@
 
 import os
 
+suffix = [
+    'exe',
+    # 'txt'
+]
+
+
 def dfs(path):
     dir = os.listdir(path)
     for i in dir:
@@ -10,7 +16,9 @@ def dfs(path):
             dfs(cur)
         if os.path.isfile(cur):
             # print(cur, "isfile")
-            if cur[-4:] == ".exe":
-                os.remove(cur) 
+            # print(cur.split('.')[-1])
+            if cur.split('.')[-1] in suffix:
+                os.remove(cur)
+
 
 dfs(".")
