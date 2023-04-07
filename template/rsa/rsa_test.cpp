@@ -14,7 +14,7 @@ ll gcd(ll a, ll b) {
     return gcd(b, a % b);
 }
 
-// extend eculid
+// extend eculid , d = gcd(a,b) = ax+by
 void ex_gcd(ll a, ll b, ll* d, ll* x, ll* y) {
     if (b == 0) {
         *d = a;
@@ -31,27 +31,38 @@ void ex_gcd(ll a, ll b, ll* d, ll* x, ll* y) {
 // a^b%n
 ////a<n a*n < MAX  n*n < MAX
 ll modular_exponentiation(ll a, ll b, ll n) {
-    ll c = 0, d = 1, t = b, k = 0;
-    while (t != 0)
-        t >>= 1, k++;
-    for (int i = k; i >= 0; i--) {
-        c *= 2;
-        d = (d * d) % n;
-        if (b & (1LL << i)) {
-            c += 1;
-            d = (d * a) % n;
-        }
+    // ll c = 0, d = 1, t = b, k = 0;
+    // while (t != 0)
+    //     t >>= 1, k++;
+    // for (int i = k; i >= 0; i--) {
+    //     c *= 2;
+    //     d = (d * d) % n;
+    //     if (b & (1LL << i)) {
+    //         c += 1;
+    //         d = (d * a) % n;
+    //     }
+    // }
+    // return d;
+    ll rt = 1;
+    while (b) {
+        if (b & 1)
+            rt = rt * a % n;
+        a = a * a % n;
+        b >>= 1;
     }
-    return d;
+    return rt;
 }
 
 // is a^(n-1) = 1 (mod n)
 bool witness(ll a, ll n) {
-    ll u = n - 1;
-    int t = 0;
+    ll u = n - 1, t = 0;
     while (u & 1 == 0)
         u >>= 1, t++;
+    // n - 1 = 2^t * u
+
     ll x = modular_exponentiation(a, u, n);
+    // 二次探测定理
+    // 如果一个数p是质数，对于一个x∈(0,p)且x∈Z，方程x^2≡1(modp)的解有且只有两个：x=1或x=p−1。
     for (int i = 0; i < t; i++) {
         int xp = x;
         x = x * x % n;
@@ -84,7 +95,8 @@ ll rand_prime(ll rd) {
     return prime;
 }
 
-// rsa private key
+// e*d = 1 (mod phi_n)  => e*d +k*phi_n = 1
+//  rsa private key
 ll private_key(ll e, ll phi_n) {
     ll d, x, y;
     ex_gcd(e, phi_n, &d, &x, &y);
@@ -124,6 +136,13 @@ void test() {
     ll decode_msg = modular_exponentiation(code_msg, d, n);
     print("code_msg", code_msg);
     print("decode_msg", decode_msg);
+
+    /*
+        e*d = 1 (mod phi_n)
+        m^e = c
+        c^d = m
+        m^{e*d} = m (mod n)
+    */
 }
 
 ll pow_mod(ll a, ll b, ll n) {
