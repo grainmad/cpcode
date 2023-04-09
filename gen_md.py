@@ -38,7 +38,7 @@ def create_md(path, info):
         f.write("\n\n\n\n")
         f.write("## 题解")
         f.write("\n\n\n\n")
-        f.write("## 代码\n")
+        f.write("## 代码\n\n")
         f.write("``` cpp\n")
         with open(path+".cpp", "r", encoding="utf8") as g:
             f.write(g.read())
