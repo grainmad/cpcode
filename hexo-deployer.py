@@ -6,7 +6,7 @@ from git.repo import Repo
 # Mount directory as hexo blog
 repo_path = "D:/code/project/blog/grainmad"
 blog_path = repo_path+"/source/_posts"
-mount_dirs = ["leetcode", "cf"]
+mount_dirs = ["leetcode"]
 
 if __name__ == "__main__":
     blog_list = os.listdir(blog_path)
