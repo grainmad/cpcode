@@ -1,7 +1,7 @@
 
 from random import shuffle
 
-n, m, b = 40, 40, 0
+n, m, b = 20, 40, 0
 
 x = ['.' for i in range(n*m)]
 
