@@ -9,6 +9,34 @@ import time
 
 
 cwd = "./cf/a-problem-everyday/"  # 当前脚本相对项目工作目录位置
+cpp_template = '''
+#include <bits/stdc++.h>
+// #define SINGLE_INPUT
+#define ll long long
+#define N 500005
+#define MOD 998244353
+using namespace std;
+
+
+void sol() {
+
+}
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+#ifndef SINGLE_INPUT
+    int t;
+    cin >> t;
+    while (t--) {
+        sol();
+    }
+#else
+    sol();
+#endif
+    return 0;
+}
+'''
 
 
 def init_log(logfile):
@@ -85,7 +113,8 @@ def random_problem(all_problems):
     condition = {
         "rating-lest": 1600,
         "rating-most": 2100,
-        "include-tags": ["constructive algorithms", "greedy"]  # [] 空则选取所有标签
+        # [] 空则选取所有标签
+        "include-tags": ["constructive algorithms", "greedy", "math"]
 
     }
     filtered_problems = problems_filter(condition, all_problems)
@@ -102,7 +131,8 @@ def random_problem(all_problems):
 
 
 def create_file(path, info):
-    open(path+".cpp", 'w', encoding="utf8").close()
+    with open(path+".cpp", 'w', encoding="utf8") as f:
+        f.write(cpp_template)
     with open(path+".md", 'w', encoding="utf8") as f:
         f.write("# ")
         f.write(info['题目'])
