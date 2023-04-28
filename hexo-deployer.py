@@ -1,14 +1,17 @@
 
 import datetime
 import os
+import json
 from git.repo import Repo
 
-# Mount directory as hexo blog
-repo_path = "D:/code/project/blog/grainmad"
-blog_path = repo_path+"/source/_posts"
-mount_dirs = ["leetcode"]
 
 if __name__ == "__main__":
+	# Mount directory as hexo blog
+    with open('hexo-deployer-setting.json', 'r', encoding='utf8') as f :
+        setting = json.load(f)
+    repo_path = setting["repo_path"]
+    blog_path = repo_path+"/source/_posts"
+    mount_dirs = ["leetcode"]
     blog_list = os.listdir(blog_path)
     # print(blog_list)
 
