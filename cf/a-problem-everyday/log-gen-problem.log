@@ -2,3 +2,5 @@
 [2023-04-27 14:02:19,746][INFO][- ./cf/a-problem-everyday/2023/04/27/442B.md generate success]
 [2023-04-28 11:56:29,200][INFO][- {'编号': '785C', '题目': 'Anton and Fairy Tale', '分数': 1600, '标签': 'binary search, math', '解决人数': 6728, '链接': 'https://codeforces.com/problemset/problem/785/C'}]
 [2023-04-28 11:56:29,202][INFO][- ./cf/a-problem-everyday/2023/04/28/785C.md generate success]
+[2023-04-29 13:27:26,810][INFO][- {'编号': '464A', '题目': 'No to Palindromes!', '分数': 1700, '标签': 'greedy, strings', '解决人数': 5567, '链接': 'https://codeforces.com/problemset/problem/464/A'}]
+[2023-04-29 13:27:26,810][INFO][- ./cf/a-problem-everyday/2023/04/29/464A.md generate success]

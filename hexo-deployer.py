@@ -6,12 +6,16 @@ from git.repo import Repo
 
 
 if __name__ == "__main__":
-	# Mount directory as hexo blog
-    with open('hexo-deployer-setting.json', 'r', encoding='utf8') as f :
+    # Mount directory as hexo blog
+    with open('hexo-deployer-setting.json', 'r', encoding='utf8') as f:
         setting = json.load(f)
     repo_path = setting["repo_path"]
     blog_path = repo_path+"/source/_posts"
     mount_dirs = ["leetcode"]
+
+    repo = Repo(repo_path)
+    repo.git.pull("--rebase")
+
     blog_list = os.listdir(blog_path)
     # print(blog_list)
 
@@ -95,7 +99,6 @@ if __name__ == "__main__":
     for mount_dir in mount_dirs:
         dfs(mount_dir)
 
-    repo = Repo(repo_path)
     repo.git.add("--all")
     repo.git.commit("-m auto update by hexo-deployer")
     repo.git.push()
