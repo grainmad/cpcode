@@ -4,3 +4,5 @@
 [2023-04-28 11:56:29,202][INFO][- ./cf/a-problem-everyday/2023/04/28/785C.md generate success]
 [2023-04-29 13:27:26,810][INFO][- {'编号': '464A', '题目': 'No to Palindromes!', '分数': 1700, '标签': 'greedy, strings', '解决人数': 5567, '链接': 'https://codeforces.com/problemset/problem/464/A'}]
 [2023-04-29 13:27:26,810][INFO][- ./cf/a-problem-everyday/2023/04/29/464A.md generate success]
+[2023-04-30 02:23:46,119][INFO][- {'编号': '696C', '题目': 'PLEASE', '分数': 2000, '标签': 'combinatorics, dp, implementation, math, matrices', '解决人数': 1934, '链接': 'https://codeforces.com/problemset/problem/696/C'}]
+[2023-04-30 02:23:46,120][INFO][- ./cf/a-problem-everyday/2023/04/30/696C.md generate success]
