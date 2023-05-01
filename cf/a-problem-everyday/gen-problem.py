@@ -159,10 +159,8 @@ def gen_related_file(problem, all_problems):
     dirs = cwd+datetime.date.today().strftime('%Y/%m/%d/')
     if not os.path.exists(dirs):
         os.makedirs(dirs)
-        logger.info(all_problems[problem])
-        create_file(dirs+problem, all_problems[problem])
-    else:
-        logger.info("existed today problem file")
+    logger.info(all_problems[problem])
+    create_file(dirs+problem, all_problems[problem])
 
 
 if __name__ == "__main__":
