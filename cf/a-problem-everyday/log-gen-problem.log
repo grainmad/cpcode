@@ -8,3 +8,5 @@
 [2023-04-30 02:23:46,120][INFO][- ./cf/a-problem-everyday/2023/04/30/696C.md generate success]
 [2023-05-01 13:17:21,387][INFO][- {'编号': '1660F1', '题目': 'Promising String (easy version)', '分数': 1700, '标签': 'brute force, implementation, math, strings', '解决人数': 6153, '链接': 'https://codeforces.com/problemset/problem/1660/F1'}]
 [2023-05-01 13:17:21,388][INFO][- ./cf/a-problem-everyday/2023/05/01/1660F1.md generate success]
+[2023-05-02 01:22:09,898][INFO][- {'编号': '1395C', '题目': 'Boboniu and Bit Operations', '分数': 1600, '标签': 'bitmasks, brute force, dp, greedy', '解决人数': 12194, '链接': 'https://codeforces.com/problemset/problem/1395/C'}]
+[2023-05-02 01:22:09,899][INFO][- ./cf/a-problem-everyday/2023/05/02/1395C.md generate success]
