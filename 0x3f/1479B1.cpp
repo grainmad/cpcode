@@ -25,11 +25,9 @@ void sol() {
             int x = n, y = n;
             if (nxt[a0.back()].size()) {
                 x = nxt[a0.back()].back();
-                nxt[a0.back()].pop_back();
             }
             if (nxt[a1.back()].size()) {
                 y = nxt[a1.back()].back();
-                nxt[a1.back()].pop_back();
             }
             if (x < y) {
                 a0.push_back(a[i]);
@@ -37,6 +35,7 @@ void sol() {
                 a1.push_back(a[i]);
             }
         }
+        nxt[a[i]].pop_back();
     }
     int ans = 0;
     for (int i = 0, p = 0; i < a0.size(); i++) {
