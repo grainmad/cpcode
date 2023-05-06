@@ -16,3 +16,5 @@
 [2023-05-04 00:56:54,345][INFO][- ./cf/a-problem-everyday/2023/05/04/51C.md generate success]
 [2023-05-05 13:38:57,398][INFO][- {'编号': '1392D', '题目': 'Omkar and Bed Wars', '分数': 1700, '标签': 'dp, greedy', '解决人数': 7797, '链接': 'https://codeforces.com/problemset/problem/1392/D'}]
 [2023-05-05 13:38:57,400][INFO][- ./cf/a-problem-everyday/2023/05/05/1392D.md generate success]
+[2023-05-06 10:16:40,845][INFO][- {'编号': '1292B', '题目': "Aroma's Search", '分数': 1700, '标签': 'brute force, constructive algorithms, geometry, greedy, implementation', '解决人数': 5531, '链接': 'https://codeforces.com/problemset/problem/1292/B'}]
+[2023-05-06 10:16:40,848][INFO][- ./cf/a-problem-everyday/2023/05/06/1292B.md generate success]
