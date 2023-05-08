@@ -3,3 +3,4 @@ in.txt
 out.txt
 .vscode/
 hexo-deployer-setting.json
+tmp/
