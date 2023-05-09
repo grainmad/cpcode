@@ -22,3 +22,5 @@
 [2023-05-07 11:46:36,119][INFO][- ./cf/a-problem-everyday/2023/05/07/424C.md generate success]
 [2023-05-08 00:14:52,774][INFO][- {'编号': '359C', '题目': 'Prime Number', '分数': 1900, '标签': 'math, number theory', '解决人数': 2772, '链接': 'https://codeforces.com/problemset/problem/359/C'}]
 [2023-05-08 00:14:52,776][INFO][- ./cf/a-problem-everyday/2023/05/08/359C.md generate success]
+[2023-05-09 10:44:46,353][INFO][- {'编号': '451C', '题目': 'Predict Outcome of the Game', '分数': 1700, '标签': 'brute force, implementation, math', '解决人数': 3167, '链接': 'https://codeforces.com/problemset/problem/451/C'}]
+[2023-05-09 10:44:46,355][INFO][- ./cf/a-problem-everyday/2023/05/09/451C.md generate success]
