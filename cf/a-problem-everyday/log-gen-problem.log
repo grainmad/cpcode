@@ -24,3 +24,7 @@
 [2023-05-08 00:14:52,776][INFO][- ./cf/a-problem-everyday/2023/05/08/359C.md generate success]
 [2023-05-09 10:44:46,353][INFO][- {'编号': '451C', '题目': 'Predict Outcome of the Game', '分数': 1700, '标签': 'brute force, implementation, math', '解决人数': 3167, '链接': 'https://codeforces.com/problemset/problem/451/C'}]
 [2023-05-09 10:44:46,355][INFO][- ./cf/a-problem-everyday/2023/05/09/451C.md generate success]
+[2023-05-10 00:02:34,969][INFO][- {'编号': '746C', '题目': 'Tram', '分数': 1600, '标签': 'constructive algorithms, implementation, math', '解决人数': 3549, '链接': 'https://codeforces.com/problemset/problem/746/C'}]
+[2023-05-10 00:02:34,970][INFO][- ./cf/a-problem-everyday/2023/05/10/746C.md generate success]
+[2023-05-10 00:09:29,682][INFO][- {'编号': '900C', '题目': 'Remove Extra One', '分数': 1700, '标签': 'brute force, data structures, math', '解决人数': 4146, '链接': 'https://codeforces.com/problemset/problem/900/C'}]
+[2023-05-10 00:09:29,684][INFO][- ./cf/a-problem-everyday/2023/05/10/900C.md generate success]
