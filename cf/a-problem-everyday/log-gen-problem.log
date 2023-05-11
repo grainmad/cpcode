@@ -28,3 +28,5 @@
 [2023-05-10 00:02:34,970][INFO][- ./cf/a-problem-everyday/2023/05/10/746C.md generate success]
 [2023-05-10 00:09:29,682][INFO][- {'编号': '900C', '题目': 'Remove Extra One', '分数': 1700, '标签': 'brute force, data structures, math', '解决人数': 4146, '链接': 'https://codeforces.com/problemset/problem/900/C'}]
 [2023-05-10 00:09:29,684][INFO][- ./cf/a-problem-everyday/2023/05/10/900C.md generate success]
+[2023-05-11 10:54:58,311][INFO][- {'编号': '1366D', '题目': 'Two Divisors', '分数': 2000, '标签': 'constructive algorithms, math, number theory', '解决人数': 8684, '链接': 'https://codeforces.com/problemset/problem/1366/D'}]
+[2023-05-11 10:54:58,313][INFO][- ./cf/a-problem-everyday/2023/05/11/1366D.md generate success]
