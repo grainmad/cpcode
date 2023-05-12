@@ -111,7 +111,7 @@ def get_existed_promblems(dir):
 
 def random_problem(all_problems):
     condition = {
-        "rating-lest": 1600,
+        "rating-lest": 1700,
         "rating-most": 2000,
         # [] 空则选取所有标签
         "include-tags": ["constructive algorithms", "greedy", "math"]

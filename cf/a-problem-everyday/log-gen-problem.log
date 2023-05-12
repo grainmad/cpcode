@@ -30,3 +30,5 @@
 [2023-05-10 00:09:29,684][INFO][- ./cf/a-problem-everyday/2023/05/10/900C.md generate success]
 [2023-05-11 10:54:58,311][INFO][- {'编号': '1366D', '题目': 'Two Divisors', '分数': 2000, '标签': 'constructive algorithms, math, number theory', '解决人数': 8684, '链接': 'https://codeforces.com/problemset/problem/1366/D'}]
 [2023-05-11 10:54:58,313][INFO][- ./cf/a-problem-everyday/2023/05/11/1366D.md generate success]
+[2023-05-12 13:03:52,388][INFO][- {'编号': '1562D1', '题目': 'Two Hundred Twenty One (easy version)', '分数': 1700, '标签': 'data structures, dp, math', '解决人数': 5757, '链接': 'https://codeforces.com/problemset/problem/1562/D1'}]
+[2023-05-12 13:03:52,389][INFO][- ./cf/a-problem-everyday/2023/05/12/1562D1.md generate success]
