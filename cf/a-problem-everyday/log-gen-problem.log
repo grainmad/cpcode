@@ -32,3 +32,5 @@
 [2023-05-11 10:54:58,313][INFO][- ./cf/a-problem-everyday/2023/05/11/1366D.md generate success]
 [2023-05-12 13:03:52,388][INFO][- {'编号': '1562D1', '题目': 'Two Hundred Twenty One (easy version)', '分数': 1700, '标签': 'data structures, dp, math', '解决人数': 5757, '链接': 'https://codeforces.com/problemset/problem/1562/D1'}]
 [2023-05-12 13:03:52,389][INFO][- ./cf/a-problem-everyday/2023/05/12/1562D1.md generate success]
+[2023-05-13 13:22:48,377][INFO][- {'编号': '1156C', '题目': 'Match Points', '分数': 2000, '标签': 'binary search, greedy, sortings, ternary search, two pointers', '解决人数': 5010, '链接': 'https://codeforces.com/problemset/problem/1156/C'}]
+[2023-05-13 13:22:48,378][INFO][- ./cf/a-problem-everyday/2023/05/13/1156C.md generate success]
