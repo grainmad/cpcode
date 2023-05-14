@@ -36,3 +36,5 @@
 [2023-05-13 13:22:48,378][INFO][- ./cf/a-problem-everyday/2023/05/13/1156C.md generate success]
 [2023-05-14 16:39:09,590][INFO][- {'编号': '633D', '题目': 'Fibonacci-ish', '分数': 2000, '标签': 'brute force, dp, hashing, implementation, math', '解决人数': 2395, '链接': 'https://codeforces.com/problemset/problem/633/D'}]
 [2023-05-14 16:39:09,594][INFO][- ./cf/a-problem-everyday/2023/05/14/633D.md generate success]
+[2023-05-15 00:17:58,036][INFO][- {'编号': '1725C', '题目': 'Circular Mirror', '分数': 2000, '标签': 'binary search, combinatorics, geometry, math, two pointers', '解决人数': 1198, '链接': 'https://codeforces.com/problemset/problem/1725/C'}]
+[2023-05-15 00:17:58,038][INFO][- ./cf/a-problem-everyday/2023/05/15/1725C.md generate success]

@@ -11,44 +11,38 @@ void sol() {
     vector<ll> a(n);
     for (ll& i : a)
         cin >> i;
-    sort(a.rbegin(), a.rend());
-    auto check = [&](ll m, ll k) {
-        // cout << "m: " << m << endl;
-        ll nd = 0;
-        for (int i = 0; i < n; i++) {
-            if (a[i] < m)
-                nd++;
-        }
-        if (nd > k)
-            return false;
-        ll c = 1;
-        for (int i = 0; i < n; i++) {
-            if (a[i] >= m) {
-                c = min(c + 2 * (a[i] - m), k - nd + 1);
-            } else {
-                ll u = max(0LL, 2 * (m - a[i] - c));
-                if (c + u / 2 > k)
-                    return false;
-                c = c + u + 1;
-            }
-            // cout << c << " -- ";
-        }
-        // cout << "\n";
-        return true;
-    };
+    sort(a.begin(), a.end());
+
     while (q--) {
         int k;
         cin >> k;
-        ll l = 0, r = 1e9 + 7;
-        while (l < r) {
-            ll m = l + r >> 1;
-            if (check(m, k)) {
-                l = m + 1;
-            } else {
-                r = m;
+        if (k <= n) {
+            ll mn = 1e10 + 7;
+            for (int i = 0; i < n; i++) {
+                if (i < k)
+                    mn = min(mn, a[i] + k - i);
+                else
+                    mn = min(mn, a[i]);
             }
+            cout << mn << " ";
+        } else {
+            vector<ll> b(a.begin(), a.end());
+            for (int i = 0; i < n - 1; i++) {
+                b[i] += k--;
+            }
+            if (k % 2) {
+                b[n - 1] += k--;
+            }
+            ll mn = *min_element(b.begin(), b.end());
+            ll m = 0;
+            for (ll i : b) {
+                m += i - mn;
+            }
+            if (m < k / 2) {
+                mn -= (k / 2 - m + n - 1) / n;
+            }
+            cout << mn << " ";
         }
-        cout << r - 1 << " ";
     }
     cout << "\n";
 }
