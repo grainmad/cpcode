@@ -11,8 +11,10 @@ import time
 cwd = "./cf/a-problem-everyday/"  # 当前脚本相对项目工作目录位置
 cpp_template = '''
 #include <bits/stdc++.h>
+#define LOCAL
 // #define SINGLE_INPUT
 #define ll long long
+#define ull unsigned long long
 #define N 500005
 #define MOD 998244353
 using namespace std;
@@ -23,6 +25,11 @@ void sol() {
 }
 
 int main() {
+#ifdef LOCAL
+    auto start_time = clock();
+    cerr << setprecision(3) << fixed;
+#endif
+    cout << setprecision(15) << fixed;
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
@@ -34,6 +41,10 @@ int main() {
     }
 #else
     sol();
+#endif
+#ifdef LOCAL
+    auto end_time = clock();
+    cerr << "Execution time: " << (end_time - start_time) * (int)1e3 / CLOCKS_PER_SEC << " ms\n";
 #endif
     return 0;
 }
