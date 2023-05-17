@@ -11,7 +11,7 @@ if __name__ == "__main__":
         setting = json.load(f)
     repo_path = setting["repo_path"]
     blog_path = repo_path+"/source/_posts"
-    mount_dirs = ["leetcode"]
+    mount_dirs = ["leetcode", "cf/a-problem-everyday"]
 
     repo = Repo(repo_path)
     repo.git.pull("--rebase")

@@ -40,3 +40,7 @@
 [2023-05-15 00:17:58,038][INFO][- ./cf/a-problem-everyday/2023/05/15/1725C.md generate success]
 [2023-05-16 08:33:58,085][INFO][- {'编号': '1195D2', '题目': 'Submarine in the Rybinsk Sea (hard edition)', '分数': 1800, '标签': 'combinatorics, math, number theory', '解决人数': 4231, '链接': 'https://codeforces.com/problemset/problem/1195/D2'}]
 [2023-05-16 08:33:58,087][INFO][- ./cf/a-problem-everyday/2023/05/16/1195D2.md generate success]
+[2023-05-17 09:09:21,907][INFO][- {'编号': '1470B', '题目': 'Strange Definition', '分数': 1900, '标签': 'bitmasks, graphs, hashing, math, number theory', '解决人数': 5728, '链接': 'https://codeforces.com/problemset/problem/1470/B'}]
+[2023-05-17 09:09:21,908][INFO][- ./cf/a-problem-everyday/2023/05/17/1470B.md generate success]
+[2023-05-17 09:11:45,925][INFO][- {'编号': '1268A', '题目': 'Long Beautiful Integer', '分数': 1700, '标签': 'constructive algorithms, greedy, implementation, strings', '解决人数': 7923, '链接': 'https://codeforces.com/problemset/problem/1268/A'}]
+[2023-05-17 09:11:45,927][INFO][- ./cf/a-problem-everyday/2023/05/17/1268A.md generate success]
