@@ -44,3 +44,5 @@
 [2023-05-17 09:09:21,908][INFO][- ./cf/a-problem-everyday/2023/05/17/1470B.md generate success]
 [2023-05-17 09:11:45,925][INFO][- {'编号': '1268A', '题目': 'Long Beautiful Integer', '分数': 1700, '标签': 'constructive algorithms, greedy, implementation, strings', '解决人数': 7923, '链接': 'https://codeforces.com/problemset/problem/1268/A'}]
 [2023-05-17 09:11:45,927][INFO][- ./cf/a-problem-everyday/2023/05/17/1268A.md generate success]
+[2023-05-18 00:00:39,077][INFO][- {'编号': '1355C', '题目': 'Count Triangles', '分数': 1800, '标签': 'binary search, implementation, math, two pointers', '解决人数': 9509, '链接': 'https://codeforces.com/problemset/problem/1355/C'}]
+[2023-05-18 00:00:39,078][INFO][- ./cf/a-problem-everyday/2023/05/18/1355C.md generate success]
