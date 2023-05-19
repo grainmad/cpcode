@@ -50,3 +50,5 @@
 [2023-05-19 00:02:17,317][INFO][- ./cf/a-problem-everyday/2023/05/19/1593D2.md generate success]
 [2023-05-19 15:13:38,444][INFO][- {'编号': '1237C2', '题目': 'Balanced Removals (Harder)', '分数': 1900, '标签': 'binary search, constructive algorithms, divide and conquer, greedy, implementation, sortings', '解决人数': 3918, '链接': 'https://codeforces.com/problemset/problem/1237/C2'}]
 [2023-05-19 15:13:38,444][INFO][- ./cf/a-problem-everyday/2023/05/19/1237C2.md generate success]
+[2023-05-19 19:14:39,882][INFO][- {'编号': '1799D1', '题目': 'Hot Start Up (easy version)', '分数': 1900, '标签': 'dp', '解决人数': 2904, '链接': 'https://codeforces.com/problemset/problem/1799/D1'}]
+[2023-05-19 19:14:39,884][INFO][- ./cf/a-problem-everyday/2023/05/19/1799D1.md generate success]
