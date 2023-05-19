@@ -46,3 +46,7 @@
 [2023-05-17 09:11:45,927][INFO][- ./cf/a-problem-everyday/2023/05/17/1268A.md generate success]
 [2023-05-18 00:00:39,077][INFO][- {'编号': '1355C', '题目': 'Count Triangles', '分数': 1800, '标签': 'binary search, implementation, math, two pointers', '解决人数': 9509, '链接': 'https://codeforces.com/problemset/problem/1355/C'}]
 [2023-05-18 00:00:39,078][INFO][- ./cf/a-problem-everyday/2023/05/18/1355C.md generate success]
+[2023-05-19 00:02:17,313][INFO][- {'编号': '1593D2', '题目': 'Half of Same', '分数': 1900, '标签': 'brute force, math, number theory', '解决人数': 4278, '链接': 'https://codeforces.com/problemset/problem/1593/D2'}]
+[2023-05-19 00:02:17,317][INFO][- ./cf/a-problem-everyday/2023/05/19/1593D2.md generate success]
+[2023-05-19 15:13:38,444][INFO][- {'编号': '1237C2', '题目': 'Balanced Removals (Harder)', '分数': 1900, '标签': 'binary search, constructive algorithms, divide and conquer, greedy, implementation, sortings', '解决人数': 3918, '链接': 'https://codeforces.com/problemset/problem/1237/C2'}]
+[2023-05-19 15:13:38,444][INFO][- ./cf/a-problem-everyday/2023/05/19/1237C2.md generate success]
