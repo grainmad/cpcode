@@ -52,3 +52,5 @@
 [2023-05-19 15:13:38,444][INFO][- ./cf/a-problem-everyday/2023/05/19/1237C2.md generate success]
 [2023-05-19 19:14:39,882][INFO][- {'编号': '1799D1', '题目': 'Hot Start Up (easy version)', '分数': 1900, '标签': 'dp', '解决人数': 2904, '链接': 'https://codeforces.com/problemset/problem/1799/D1'}]
 [2023-05-19 19:14:39,884][INFO][- ./cf/a-problem-everyday/2023/05/19/1799D1.md generate success]
+[2023-05-20 19:50:44,687][INFO][- {'编号': '24C', '题目': 'Sequence of points', '分数': 1800, '标签': 'geometry, implementation, math', '解决人数': 1124, '链接': 'https://codeforces.com/problemset/problem/24/C'}]
+[2023-05-20 19:50:44,688][INFO][- ./cf/a-problem-everyday/2023/05/20/24C.md generate success]
