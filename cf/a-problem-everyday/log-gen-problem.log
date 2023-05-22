@@ -54,3 +54,7 @@
 [2023-05-19 19:14:39,884][INFO][- ./cf/a-problem-everyday/2023/05/19/1799D1.md generate success]
 [2023-05-20 19:50:44,687][INFO][- {'编号': '24C', '题目': 'Sequence of points', '分数': 1800, '标签': 'geometry, implementation, math', '解决人数': 1124, '链接': 'https://codeforces.com/problemset/problem/24/C'}]
 [2023-05-20 19:50:44,688][INFO][- ./cf/a-problem-everyday/2023/05/20/24C.md generate success]
+[2023-05-21 23:20:53,796][INFO][- {'编号': '1120A', '题目': 'Diana and Liana', '分数': 1900, '标签': 'greedy, implementation, two pointers', '解决人数': 1555, '链接': 'https://codeforces.com/problemset/problem/1120/A'}]
+[2023-05-21 23:20:53,796][INFO][- ./cf/a-problem-everyday/2023/05/21/1120A.md generate success]
+[2023-05-23 00:20:54,012][INFO][- {'编号': '975D', '题目': 'Ghosts', '分数': 2000, '标签': 'geometry, math', '解决人数': 1797, '链接': 'https://codeforces.com/problemset/problem/975/D'}]
+[2023-05-23 00:20:54,013][INFO][- ./cf/a-problem-everyday/2023/05/23/975D.md generate success]
