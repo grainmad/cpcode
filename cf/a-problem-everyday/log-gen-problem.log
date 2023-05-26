@@ -58,3 +58,7 @@
 [2023-05-21 23:20:53,796][INFO][- ./cf/a-problem-everyday/2023/05/21/1120A.md generate success]
 [2023-05-23 00:20:54,012][INFO][- {'编号': '975D', '题目': 'Ghosts', '分数': 2000, '标签': 'geometry, math', '解决人数': 1797, '链接': 'https://codeforces.com/problemset/problem/975/D'}]
 [2023-05-23 00:20:54,013][INFO][- ./cf/a-problem-everyday/2023/05/23/975D.md generate success]
+[2023-05-24 15:36:27,468][INFO][- {'编号': '149D', '题目': 'Coloring Brackets', '分数': 1900, '标签': 'dp', '解决人数': 2918, '链接': 'https://codeforces.com/problemset/problem/149/D'}]
+[2023-05-24 15:36:27,468][INFO][- ./cf/a-problem-everyday/2023/05/24/149D.md generate success]
+[2023-05-25 00:38:03,349][INFO][- {'编号': '1475G', '题目': 'Strange Beauty', '分数': 1900, '标签': 'dp, math, number theory, sortings', '解决人数': 5499, '链接': 'https://codeforces.com/problemset/problem/1475/G'}]
+[2023-05-25 00:38:03,351][INFO][- ./cf/a-problem-everyday/2023/05/25/1475G.md generate success]
