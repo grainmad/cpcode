@@ -68,3 +68,5 @@
 [2023-05-29 08:51:31,956][INFO][- ./cf/a-problem-everyday/2023/05/29/1815B.md generate success]
 [2023-05-30 09:23:32,915][INFO][- {'编号': '1061C', '题目': 'Multiplicity', '分数': 1700, '标签': 'data structures, dp, implementation, math, number theory', '解决人数': 7099, '链接': 'https://codeforces.com/problemset/problem/1061/C'}]
 [2023-05-30 09:23:32,916][INFO][- ./cf/a-problem-everyday/2023/05/30/1061C.md generate success]
+[2023-05-31 19:16:05,388][INFO][- {'编号': '1082E', '题目': 'Increasing Frequency', '分数': 2000, '标签': 'binary search, dp, greedy', '解决人数': 3166, '链接': 'https://codeforces.com/problemset/problem/1082/E'}]
+[2023-05-31 19:16:05,390][INFO][- ./cf/a-problem-everyday/2023/05/31/1082E.md generate success]
