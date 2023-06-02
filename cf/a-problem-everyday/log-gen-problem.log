@@ -72,3 +72,5 @@
 [2023-05-31 19:16:05,390][INFO][- ./cf/a-problem-everyday/2023/05/31/1082E.md generate success]
 [2023-06-01 15:19:42,417][INFO][- {'编号': '899D', '题目': 'Shovel Sale', '分数': 1800, '标签': 'constructive algorithms, math', '解决人数': 2305, '链接': 'https://codeforces.com/problemset/problem/899/D'}]
 [2023-06-01 15:19:42,418][INFO][- ./cf/a-problem-everyday/2023/06/01/899D.md generate success]
+[2023-06-02 10:11:40,448][INFO][- {'编号': '1792D', '题目': 'Fixed Prefix Permutations', '分数': 1700, '标签': 'binary search, bitmasks, data structures, hashing, math, sortings', '解决人数': 4753, '链接': 'https://codeforces.com/problemset/problem/1792/D'}]
+[2023-06-02 10:11:40,449][INFO][- ./cf/a-problem-everyday/2023/06/02/1792D.md generate success]
