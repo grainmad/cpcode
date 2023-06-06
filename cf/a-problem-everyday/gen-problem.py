@@ -168,6 +168,6 @@ def gen_related_file(problem, all_problems):
 
 if __name__ == "__main__":
     logger = init_log(cwd+"log-gen-problem.log")
-    all_problems = load_data("./data/all.json")
+    all_problems = load_data("./data/cf/cf-all.json")
     problem = random_problem(all_problems)
     gen_related_file(problem, all_problems)
