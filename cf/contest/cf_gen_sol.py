@@ -69,8 +69,8 @@ def get_contest_info(id):
 
 
 def run():
-    id = '1840'
-    # id = input("Please enter contets id: ")
+    # id = '1840'
+    id = input("Please enter contets id: ")
     info = get_contest_info(id)
 
     if info["status"] != "ok":
