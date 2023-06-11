@@ -55,8 +55,8 @@ if __name__ == "__main__":
     mount_dirs = ["leetcode", "cf/a-problem-everyday",
                   "cf/contest", 'atcode/contest']
 
-    # repo = Repo(repo_path)
-    # repo.git.pull("--rebase")
+    repo = Repo(repo_path)
+    repo.git.pull("--rebase")
 
     blog_list = os.listdir(blog_path)
     # print(blog_list)
@@ -207,6 +207,6 @@ if __name__ == "__main__":
     for id, mount_dir in enumerate(mount_dirs):
         dfs(id, mount_dir)
 
-    # repo.git.add("--all")
-    # repo.git.commit("-m auto update by hexo-deployer")
-    # repo.git.push()
+    repo.git.add("--all")
+    repo.git.commit("-m auto update by hexo-deployer")
+    repo.git.push()
