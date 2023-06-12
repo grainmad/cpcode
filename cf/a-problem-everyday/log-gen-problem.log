@@ -84,3 +84,5 @@
 [2023-06-06 00:42:06,617][INFO][- ./cf/a-problem-everyday/2023/06/06/1340B.md generate success]
 [2023-06-07 11:57:03,863][INFO][- {'编号': '659F', '题目': 'Polycarp and Hay', '分数': 2000, '标签': 'dfs and similar, dsu, graphs, greedy, sortings', '解决人数': 1648, '链接': 'https://codeforces.com/problemset/problem/659/F'}]
 [2023-06-07 11:57:03,864][INFO][- ./cf/a-problem-everyday/2023/06/07/659F.md generate success]
+[2023-06-12 14:33:31,634][INFO][- {'编号': '1644E', '题目': 'Expand the Path', '分数': 1900, '标签': 'brute force, combinatorics, data structures, implementation, math', '解决人数': 2666, '链接': 'https://codeforces.com/problemset/problem/1644/E'}]
+[2023-06-12 14:33:31,635][INFO][- ./cf/a-problem-everyday/2023/06/12/1644E.md generate success]
