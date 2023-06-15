@@ -7,20 +7,21 @@
 #define MOD 998244353
 using namespace std;
 
-
 void sol() {
     ll n, k;
     cin >> n >> k;
     k--;
-    vector<ll> a(n);    
-    map<ll,int> mp;
-    for (ll& i:a) cin >> i, mp[i]++;
+    vector<ll> a(n);
+    map<ll, int> mp;
+    for (ll& i : a)
+        cin >> i, mp[i]++;
     sort(a.begin(), a.end());
-	ll s = k/n, e = s;
-    while (s!=-1 && a[s] == a[e]) s--;
-    ll m = k-(s+1)*n+1;
+    ll s = k / n, e = s;
+    while (s != -1 && a[s] == a[e])
+        s--;
+    ll m = k - (s + 1) * n;
     // cout << m << " " << mp[a[e]] << "\n";
-    cout << a[k/n] << " " << a[(m+mp[a[e]]-1)/mp[a[e]]-1] << "\n";
+    cout << a[k / n] << " " << a[m / mp[a[e]]] << "\n";
 }
 
 int main() {
