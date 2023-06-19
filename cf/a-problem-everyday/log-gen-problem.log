@@ -94,3 +94,7 @@
 [2023-06-15 11:01:08,604][INFO][- ./cf/a-problem-everyday/2023/06/15/160C.md generate success]
 [2023-06-16 11:36:36,572][INFO][- {'编号': '1335E2', '题目': 'Three Blocks Palindrome (hard version)', '分数': 1800, '标签': 'brute force, data structures, dp, two pointers', '解决人数': 7399, '链接': 'https://codeforces.com/problemset/problem/1335/E2'}]
 [2023-06-16 11:36:36,573][INFO][- ./cf/a-problem-everyday/2023/06/16/1335E2.md generate success]
+[2023-06-17 09:40:36,591][INFO][- {'编号': '132C', '题目': 'Logo Turtle', '分数': 1800, '标签': 'dp', '解决人数': 2125, '链接': 'https://codeforces.com/problemset/problem/132/C'}]
+[2023-06-17 09:40:36,595][INFO][- ./cf/a-problem-everyday/2023/06/17/132C.md generate success]
+[2023-06-18 00:13:47,736][INFO][- {'编号': '1451E1', '题目': 'Bitwise Queries (Easy Version)', '分数': 2000, '标签': 'bitmasks, constructive algorithms, interactive, math', '解决人数': 3848, '链接': 'https://codeforces.com/problemset/problem/1451/E1'}]
+[2023-06-18 00:13:47,739][INFO][- ./cf/a-problem-everyday/2023/06/18/1451E1.md generate success]
