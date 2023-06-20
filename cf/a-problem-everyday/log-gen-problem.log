@@ -98,3 +98,5 @@
 [2023-06-17 09:40:36,595][INFO][- ./cf/a-problem-everyday/2023/06/17/132C.md generate success]
 [2023-06-18 00:13:47,736][INFO][- {'编号': '1451E1', '题目': 'Bitwise Queries (Easy Version)', '分数': 2000, '标签': 'bitmasks, constructive algorithms, interactive, math', '解决人数': 3848, '链接': 'https://codeforces.com/problemset/problem/1451/E1'}]
 [2023-06-18 00:13:47,739][INFO][- ./cf/a-problem-everyday/2023/06/18/1451E1.md generate success]
+[2023-06-20 08:46:07,324][INFO][- {'编号': '535D', '题目': 'Tavas and Malekas', '分数': 1900, '标签': 'greedy, hashing, string suffix structures, strings', '解决人数': 3523, '链接': 'https://codeforces.com/problemset/problem/535/D'}]
+[2023-06-20 08:46:07,327][INFO][- ./cf/a-problem-everyday/2023/06/20/535D.md generate success]
