@@ -100,3 +100,5 @@
 [2023-06-18 00:13:47,739][INFO][- ./cf/a-problem-everyday/2023/06/18/1451E1.md generate success]
 [2023-06-20 08:46:07,324][INFO][- {'编号': '535D', '题目': 'Tavas and Malekas', '分数': 1900, '标签': 'greedy, hashing, string suffix structures, strings', '解决人数': 3523, '链接': 'https://codeforces.com/problemset/problem/535/D'}]
 [2023-06-20 08:46:07,327][INFO][- ./cf/a-problem-everyday/2023/06/20/535D.md generate success]
+[2023-06-21 17:35:37,876][INFO][- {'编号': '1696E', '题目': 'Placing Jinas', '分数': 2000, '标签': 'combinatorics, math', '解决人数': 3359, '链接': 'https://codeforces.com/problemset/problem/1696/E'}]
+[2023-06-21 17:35:37,880][INFO][- ./cf/a-problem-everyday/2023/06/21/1696E.md generate success]
