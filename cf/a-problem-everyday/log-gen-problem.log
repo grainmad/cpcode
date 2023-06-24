@@ -102,3 +102,7 @@
 [2023-06-20 08:46:07,327][INFO][- ./cf/a-problem-everyday/2023/06/20/535D.md generate success]
 [2023-06-21 17:35:37,876][INFO][- {'编号': '1696E', '题目': 'Placing Jinas', '分数': 2000, '标签': 'combinatorics, math', '解决人数': 3359, '链接': 'https://codeforces.com/problemset/problem/1696/E'}]
 [2023-06-21 17:35:37,880][INFO][- ./cf/a-problem-everyday/2023/06/21/1696E.md generate success]
+[2023-06-23 23:22:28,046][INFO][- {'编号': '1043E', '题目': 'Train Hard, Win Easy', '分数': 1900, '标签': 'constructive algorithms, greedy, math, sortings', '解决人数': 2589, '链接': 'https://codeforces.com/problemset/problem/1043/E'}]
+[2023-06-23 23:22:28,047][INFO][- ./cf/a-problem-everyday/2023/06/23/1043E.md generate success]
+[2023-06-24 10:59:39,903][INFO][- {'编号': '1689D', '题目': 'Lena and Matrix', '分数': 1900, '标签': 'data structures, dp, geometry, shortest paths', '解决人数': 3576, '链接': 'https://codeforces.com/problemset/problem/1689/D'}]
+[2023-06-24 10:59:39,905][INFO][- ./cf/a-problem-everyday/2023/06/24/1689D.md generate success]
