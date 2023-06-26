@@ -108,3 +108,5 @@
 [2023-06-24 10:59:39,905][INFO][- ./cf/a-problem-everyday/2023/06/24/1689D.md generate success]
 [2023-06-25 23:29:49,165][INFO][- {'编号': '798C', '题目': 'Mike and gcd problem', '分数': 1700, '标签': 'dp, greedy, number theory', '解决人数': 5302, '链接': 'https://codeforces.com/problemset/problem/798/C'}]
 [2023-06-25 23:29:49,167][INFO][- ./cf/a-problem-everyday/2023/06/25/798C.md generate success]
+[2023-06-26 09:05:09,927][INFO][- {'编号': '222C', '题目': 'Reducing Fractions', '分数': 1800, '标签': 'implementation, math, number theory, sortings', '解决人数': 1916, '链接': 'https://codeforces.com/problemset/problem/222/C'}]
+[2023-06-26 09:05:09,928][INFO][- ./cf/a-problem-everyday/2023/06/26/222C.md generate success]
