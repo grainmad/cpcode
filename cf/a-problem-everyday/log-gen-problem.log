@@ -110,3 +110,5 @@
 [2023-06-25 23:29:49,167][INFO][- ./cf/a-problem-everyday/2023/06/25/798C.md generate success]
 [2023-06-26 09:05:09,927][INFO][- {'编号': '222C', '题目': 'Reducing Fractions', '分数': 1800, '标签': 'implementation, math, number theory, sortings', '解决人数': 1916, '链接': 'https://codeforces.com/problemset/problem/222/C'}]
 [2023-06-26 09:05:09,928][INFO][- ./cf/a-problem-everyday/2023/06/26/222C.md generate success]
+[2023-06-27 00:03:55,290][INFO][- {'编号': '359D', '题目': 'Pair of Numbers', '分数': 2000, '标签': 'binary search, brute force, data structures, math, two pointers', '解决人数': 4385, '链接': 'https://codeforces.com/problemset/problem/359/D'}]
+[2023-06-27 00:03:55,290][INFO][- ./cf/a-problem-everyday/2023/06/27/359D.md generate success]
