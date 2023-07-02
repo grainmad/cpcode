@@ -118,3 +118,5 @@
 [2023-06-29 00:11:28,510][INFO][- ./cf/a-problem-everyday/2023/06/29/621E.md generate success]
 [2023-06-30 14:57:14,313][INFO][- {'编号': '1220D', '题目': 'Alex and Julian', '分数': 1900, '标签': 'bitmasks, math, number theory', '解决人数': 3471, '链接': 'https://codeforces.com/problemset/problem/1220/D'}]
 [2023-06-30 14:57:14,314][INFO][- ./cf/a-problem-everyday/2023/06/30/1220D.md generate success]
+[2023-07-02 09:42:07,562][INFO][- {'编号': '1267J', '题目': 'Just Arrange the Icons', '分数': 1800, '标签': 'greedy, implementation, math', '解决人数': 2346, '链接': 'https://codeforces.com/problemset/problem/1267/J'}]
+[2023-07-02 09:42:07,564][INFO][- ./cf/a-problem-everyday/2023/07/02/1267J.md generate success]
