@@ -120,3 +120,5 @@
 [2023-06-30 14:57:14,314][INFO][- ./cf/a-problem-everyday/2023/06/30/1220D.md generate success]
 [2023-07-02 09:42:07,562][INFO][- {'编号': '1267J', '题目': 'Just Arrange the Icons', '分数': 1800, '标签': 'greedy, implementation, math', '解决人数': 2346, '链接': 'https://codeforces.com/problemset/problem/1267/J'}]
 [2023-07-02 09:42:07,564][INFO][- ./cf/a-problem-everyday/2023/07/02/1267J.md generate success]
+[2023-07-03 00:11:56,231][INFO][- {'编号': '1383A', '题目': 'String Transformation 1', '分数': 1700, '标签': 'dsu, graphs, greedy, sortings, strings, trees, two pointers', '解决人数': 9792, '链接': 'https://codeforces.com/problemset/problem/1383/A'}]
+[2023-07-03 00:11:56,232][INFO][- ./cf/a-problem-everyday/2023/07/03/1383A.md generate success]
