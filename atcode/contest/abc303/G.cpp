@@ -6,47 +6,63 @@
 #define MOD 998244353
 using namespace std;
 
-ll n, a, b, c, d;
-ll x[N];
-ll p[N];
-ll f[2][N][N];
+struct ST {
+    ll st[N][15];  // st[i][j] 代表区间[i, i+2^j)最大值
+    void init(const vector<ll>& a) {
+        int n = a.size();
+        for (int i = 1; i <= n; i++)
+            st[i][0] = a[i - 1];
+        for (int j = 1; (1 << j) <= n; j++) {              // 区间大小
+            for (int i = 1; i + (1 << j) - 1 <= n; i++) {  // 区间下限
+                st[i][j] = min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
+            }
+        }
+    }
+    ll ask(int l, int r) {
+        int k = 0;
+        while ((1 << (k + 1)) <= r - l + 1)
+            k++;
+        return min(st[l][k], st[r - (1 << k) + 1][k]);
+    }
+} s[N];
 
-ll rs(ll l, ll r) {
-    return p[r] - p[l];
-}
+ll f[N][N];
 
-ll dfs(int o, ll l, ll r) {
-    if (f[o][l][r] != -1)
-        return f[o][l][r];
-    if (l == r)
-        return f[o][l][r] = 0;
-    return f[o][l][r] =
-               max({rs(l, min(l + b, r)) - a - dfs(1 - o, min(l + b, r), r),
-                    rs(max(l, r - b), r) - a - dfs(1 - o, l, max(l, r - b)),
-                    rs(l, min(l + d, r)) - c - dfs(1 - o, min(l + d, r), r),
-                    rs(max(l, r - d), r) - c - dfs(1 - o, l, max(l, r - d)),
-                    rs(r - 1, r) - dfs(1 - o, l, r - 1),
-                    rs(l, l + 1) - dfs(1 - o, l + 1, r)});
+ll x[N], p[N];
+
+// sum [l,r]
+ll S(int l, int r) {
+    return p[r] - p[l - 1];
 }
 
 void sol() {
-    memset(f, -1, sizeof(f));
-    cin >> n >> a >> b >> c >> d;
-    for (int i = 0; i < n; i++) {
+    ll n, A, B, C, D;
+    cin >> n >> A >> B >> C >> D;
+    for (int i = 1; i <= n; i++) {
         cin >> x[i];
     }
     for (int i = 1; i <= n; i++) {
-        p[i] = p[i - 1] + x[i - 1];
+        p[i] += p[i - 1] + x[i];
     }
-    cout << dfs(0, 0, n) << "\n";
-    // for (int _ = 0; _ < 2; _++) {
-    //     for (int i = 0; i <= n; i++) {
-    //         for (int j = 0; j <= n; j++) {
-    //             cout << _ << ", " << i << ", " << j << ", " << f[_][i][j]
-    //                  << endl;
-    //         }
-    //     }
-    // }
+    for (int len = 1; len <= n; len++) {
+        vector<ll> a;
+        for (int i = 1, j = len; j <= n; i++, j++) {
+            f[i][j] = max(x[j] - f[i][j - 1], x[i] - f[i + 1][j]);
+            if (len <= B) {
+                f[i][j] = max(f[i][j], S(i, j) - A);
+            } else {
+                f[i][j] = max(f[i][j], S(i, j) - A - s[len - B].ask(i, i + B));
+            }
+            if (len <= D) {
+                f[i][j] = max(f[i][j], S(i, j) - C);
+            } else {
+                f[i][j] = max(f[i][j], S(i, j) - C - s[len - D].ask(i, i + D));
+            }
+            a.push_back(S(i, j) + f[i][j]);
+        }
+        s[len].init(a);
+    }
+    cout << f[1][n] << "\n";
 }
 
 int main() {
