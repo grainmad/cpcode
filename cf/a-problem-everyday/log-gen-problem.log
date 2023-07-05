@@ -124,3 +124,5 @@
 [2023-07-03 00:11:56,232][INFO][- ./cf/a-problem-everyday/2023/07/03/1383A.md generate success]
 [2023-07-04 00:02:37,980][INFO][- {'编号': '363D', '题目': 'Renting Bikes', '分数': 1800, '标签': 'binary search, greedy', '解决人数': 3490, '链接': 'https://codeforces.com/problemset/problem/363/D'}]
 [2023-07-04 00:02:37,984][INFO][- ./cf/a-problem-everyday/2023/07/04/363D.md generate success]
+[2023-07-05 09:29:54,543][INFO][- {'编号': '1207E', '题目': 'XOR Guessing', '分数': 1900, '标签': 'bitmasks, interactive, math', '解决人数': 5136, '链接': 'https://codeforces.com/problemset/problem/1207/E'}]
+[2023-07-05 09:29:54,545][INFO][- ./cf/a-problem-everyday/2023/07/05/1207E.md generate success]
