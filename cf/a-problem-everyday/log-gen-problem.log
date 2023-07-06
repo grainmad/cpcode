@@ -128,3 +128,5 @@
 [2023-07-05 09:29:54,545][INFO][- ./cf/a-problem-everyday/2023/07/05/1207E.md generate success]
 [2023-07-05 21:50:50,291][INFO][- {'编号': '14C', '题目': 'Four Segments', '分数': 1700, '标签': 'brute force, constructive algorithms, geometry, implementation, math', '解决人数': 2796, '链接': 'https://codeforces.com/problemset/problem/14/C'}]
 [2023-07-05 21:50:50,291][INFO][- ./cf/a-problem-everyday/2023/07/05/14C.md generate success]
+[2023-07-06 14:29:50,193][INFO][- {'编号': '123B', '题目': 'Squares', '分数': 1800, '标签': 'math', '解决人数': 1003, '链接': 'https://codeforces.com/problemset/problem/123/B'}]
+[2023-07-06 14:29:50,194][INFO][- ./cf/a-problem-everyday/2023/07/06/123B.md generate success]
