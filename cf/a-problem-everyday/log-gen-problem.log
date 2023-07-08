@@ -132,3 +132,5 @@
 [2023-07-06 14:29:50,194][INFO][- ./cf/a-problem-everyday/2023/07/06/123B.md generate success]
 [2023-07-07 08:55:46,923][INFO][- {'编号': '678D', '题目': 'Iterated Linear Function', '分数': 1700, '标签': 'math, number theory', '解决人数': 3803, '链接': 'https://codeforces.com/problemset/problem/678/D'}]
 [2023-07-07 08:55:46,925][INFO][- ./cf/a-problem-everyday/2023/07/07/678D.md generate success]
+[2023-07-08 08:43:10,385][INFO][- {'编号': '1310A', '题目': 'Recommendations', '分数': 1700, '标签': 'data structures, greedy, sortings', '解决人数': 4723, '链接': 'https://codeforces.com/problemset/problem/1310/A'}]
+[2023-07-08 08:43:10,389][INFO][- ./cf/a-problem-everyday/2023/07/08/1310A.md generate success]
