@@ -130,3 +130,5 @@
 [2023-07-05 21:50:50,291][INFO][- ./cf/a-problem-everyday/2023/07/05/14C.md generate success]
 [2023-07-06 14:29:50,193][INFO][- {'编号': '123B', '题目': 'Squares', '分数': 1800, '标签': 'math', '解决人数': 1003, '链接': 'https://codeforces.com/problemset/problem/123/B'}]
 [2023-07-06 14:29:50,194][INFO][- ./cf/a-problem-everyday/2023/07/06/123B.md generate success]
+[2023-07-07 08:55:46,923][INFO][- {'编号': '678D', '题目': 'Iterated Linear Function', '分数': 1700, '标签': 'math, number theory', '解决人数': 3803, '链接': 'https://codeforces.com/problemset/problem/678/D'}]
+[2023-07-07 08:55:46,925][INFO][- ./cf/a-problem-everyday/2023/07/07/678D.md generate success]
