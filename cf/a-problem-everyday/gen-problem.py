@@ -71,6 +71,7 @@ def load_data(path):
         data = json.load(f)
         problems, problemStatistics = data["problems"], data["problemStatistics"]
         all_problems = {"{}{}".format(problems[i]["contestId"], problems[i]["index"]): {
+            "contestId":problems[i]["contestId"],
             "编号": "{}{}".format(problems[i]["contestId"], problems[i]["index"]),
             "题目": problems[i]["name"],
             "分数": problems[i]["rating"] if "rating" in problems[i] else 0,
@@ -85,7 +86,9 @@ def load_data(path):
 def problems_filter(condition, all_problems):
     return set(k for k, v in all_problems.items()
                if condition["rating-lest"] <= v['分数'] <= condition["rating-most"]
-               and (not condition['include-tags'] or set(v['标签'].split(", ")) & set(condition['include-tags'])))
+               and (not condition['include-tags'] or set(v['标签'].split(", ")) & set(condition['include-tags']))
+               and condition["contestId-lest"] <= v['contestId']
+               )
 
 
 def get_existed_promblems(dir):
@@ -114,6 +117,7 @@ def get_existed_promblems(dir):
 
 def random_problem(all_problems):
     condition = {
+        "contestId-lest": 1000,
         "rating-lest": 1700,
         "rating-most": 2000,
         # [] 空则选取所有标签

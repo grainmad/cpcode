@@ -134,3 +134,5 @@
 [2023-07-07 08:55:46,925][INFO][- ./cf/a-problem-everyday/2023/07/07/678D.md generate success]
 [2023-07-08 08:43:10,385][INFO][- {'编号': '1310A', '题目': 'Recommendations', '分数': 1700, '标签': 'data structures, greedy, sortings', '解决人数': 4723, '链接': 'https://codeforces.com/problemset/problem/1310/A'}]
 [2023-07-08 08:43:10,389][INFO][- ./cf/a-problem-everyday/2023/07/08/1310A.md generate success]
+[2023-07-09 14:12:21,908][INFO][- {'contestId': 1285, '编号': '1285D', '题目': 'Dr. Evil Underscores', '分数': 1900, '标签': 'bitmasks, brute force, dfs and similar, divide and conquer, dp, greedy, strings, trees', '解决人数': 6687, '链接': 'https://codeforces.com/problemset/problem/1285/D'}]
+[2023-07-09 14:12:21,910][INFO][- ./cf/a-problem-everyday/2023/07/09/1285D.md generate success]
