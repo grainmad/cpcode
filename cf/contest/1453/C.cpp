@@ -1,56 +1,56 @@
 #include <bits/stdc++.h>
+// #define SINGLE_INPUT
+#define ull unsigned long long
 #define ll long long
-#define N 2005
+#define N 500005
+#define MOD 998244353
 using namespace std;
 
-
-ll u[10], d[10], l[10], r[10];
-ll ans[10];
-string g[N];
-
 void sol() {
-	for (int i=0; i<10; i++) {
-		u[i] = d[i] = l[i] = r[i] = -1;
-		ans[i] = 0;
-	}
-	int n;
-	cin >> n;
-	for (int i=0; i<n; i++) {
-		cin >> g[i];
-	}
-	for (int i=0; i<n; i++) {
-		for (int j=0; j<n; j++) {
-			int x = g[i][j]-'0';
-			if (u[x] == -1 || i<u[x]) u[x] = i;
-			if (d[x] == -1 || i>d[x]) d[x] = i;
-			if (l[x] == -1 || j<l[x]) l[x] = j;
-			if (r[x] == -1 || j>r[x]) r[x] = j;
-		}
-	}
-	// for (int i=0; i<10; i++) {
-	// 	cout << i << " u:" << u[i] << " d:" << d[i] << " l:" << l[i] << " r:" << r[i] << endl;
-	// }
-	for (int i=0; i<n; i++) {
-		for (int j=0; j<n; j++) {
-			int x = g[i][j]-'0';
-			ans[x] = max(ans[x], max(n-i-1, i)*max(j-l[x], r[x]-j));
-			ans[x] = max(ans[x], max(n-j-1, j)*max(i-u[x], d[x]-i));
-		}
-	}
-	for (int i=0; i<10; i++) {
-		cout << ans[i] << " ";
-	}
-	cout << endl;
+    ll n;
+    cin >> n;
+    vector<string> g(n);
+    for (auto& i : g) {
+        cin >> i;
+    }
+    vector<ll> ans(10), mxr(10, -1), mnr(10, 2005), mxc(10, -1), mnc(10, 2005);
+    for (ll i = 0; i < n; i++) {
+        for (ll j = 0; j < n; j++) {
+            int num = g[i][j] - '0';
+            mxr[num] = max(mxr[num], i);
+            mnr[num] = min(mnr[num], i);
+            mxc[num] = max(mxc[num], j);
+            mnc[num] = min(mnc[num], j);
+        }
+    }
+    for (ll i = 0; i < n; i++) {
+        for (ll j = 0; j < n; j++) {
+            int num = g[i][j] - '0';
+            ll r = max(n - i - 1, i);
+            ll c = max(n - j - 1, j);
+            ans[num] = max(ans[num], r * max(mxc[num] - j, j - mnc[num]));
+            ans[num] = max(ans[num], c * max(mxr[num] - i, i - mnr[num]));
+        }
+    }
+    for (ll i : ans) {
+        cout << i << " ";
+    }
+    cout << "\n";
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
-	int t;
-	cin >> t;
-	while (t--) {
-		sol();
-	}
-	return 0;
+    cout << setprecision(15) << fixed;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+#ifndef SINGLE_INPUT
+    int t;
+    cin >> t;
+    while (t--) {
+        sol();
+    }
+#else
+    sol();
+#endif
+    return 0;
 }

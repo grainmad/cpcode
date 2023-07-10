@@ -1,37 +1,41 @@
 #include <bits/stdc++.h>
+// #define SINGLE_INPUT
+#define ull unsigned long long
 #define ll long long
-#define N 105
+#define N 500005
+#define MOD 998244353
 using namespace std;
 
-int a[N];
-
 void sol() {
-	memset(a, 0, sizeof(a));
-	int n, m;
-	cin >> n >> m;
-	for (int i=0; i<n; i++) {
-		int x; cin >> x;
-		a[x]++;
-	}
-	for (int i=0; i<m; i++) {
-		int x; cin >> x;
-		a[x]++;
-	}
-	int ans = 0;
-	for (int i=1; i<=100; i++) {
-		if (a[i] == 2) ans++;
-	}
-	cout << ans << endl;
+    int n, m;
+    cin >> n >> m;
+    vector<int> a(101);
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        a[x]++;
+    }
+    for (int i = 0; i < m; i++) {
+        int x;
+        cin >> x;
+        a[x]++;
+    }
+    cout << count(a.begin(), a.end(), 2) << "\n";
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
-	int t;
-	cin >> t;
-	while (t--) {
-		sol();
-	}
-	return 0;
+    cout << setprecision(15) << fixed;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+#ifndef SINGLE_INPUT
+    int t;
+    cin >> t;
+    while (t--) {
+        sol();
+    }
+#else
+    sol();
+#endif
+    return 0;
 }

@@ -9,18 +9,24 @@ using namespace std;
 void sol() {
     ll n;
     cin >> n;
-    vector<ll> a(n);
-    for (auto& i : a)
-        cin >> i;
-    ll sum = 0;
-    for (int i = 1; i < n; i++)
-        sum += abs(a[i] - a[i - 1]);
-    ll ans = sum - max(abs(a[0] - a[1]), abs(a[n - 1] - a[n - 2]));
-    for (int i = 1; i < n - 1; i++) {
-        ans = min(ans, sum - abs(a[i + 1] - a[i]) - abs(a[i] - a[i - 1]) +
-                           abs(a[i + 1] - a[i - 1]));
+    if (n % 2) {
+        cout << "-1\n";
+    } else {
+        string ans;
+        for (int i = 1; i < 63; i++) {
+            if (n >> i & 1) {
+                string s(i, '0');
+                s[0] = '1';
+                s.back() = '1';
+                ans += s;
+            }
+        }
+        cout << ans.size() << "\n";
+        for (char i : ans) {
+            cout << i << " ";
+        }
+        cout << "\n";
     }
-    cout << ans << "\n";
 }
 
 int main() {
