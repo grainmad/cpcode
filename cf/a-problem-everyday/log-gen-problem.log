@@ -144,3 +144,5 @@
 [2023-07-11 09:23:31,094][INFO][- ./cf/a-problem-everyday/2023/07/11/1089E.md generate success]
 [2023-07-11 09:24:14,426][INFO][- {'contestId': 1749, '编号': '1749D', '题目': 'Counting Arrays', '分数': 1900, '标签': 'combinatorics, dp, math, number theory', '解决人数': 4549, '链接': 'https://codeforces.com/problemset/problem/1749/D'}]
 [2023-07-11 09:24:14,427][INFO][- ./cf/a-problem-everyday/2023/07/11/1749D.md generate success]
+[2023-07-12 10:34:34,760][INFO][- {'contestId': 1695, '编号': '1695C', '题目': 'Zero Path', '分数': 1700, '标签': 'brute force, data structures, dp, graphs, greedy, shortest paths', '解决人数': 8979, '链接': 'https://codeforces.com/problemset/problem/1695/C'}]
+[2023-07-12 10:34:34,762][INFO][- ./cf/a-problem-everyday/2023/07/12/1695C.md generate success]
