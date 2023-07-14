@@ -148,3 +148,5 @@
 [2023-07-12 10:34:34,762][INFO][- ./cf/a-problem-everyday/2023/07/12/1695C.md generate success]
 [2023-07-13 09:06:37,708][INFO][- {'contestId': 1283, '编号': '1283D', '题目': 'Christmas Trees', '分数': 1800, '标签': 'graphs, greedy, shortest paths', '解决人数': 6806, '链接': 'https://codeforces.com/problemset/problem/1283/D'}]
 [2023-07-13 09:06:37,709][INFO][- ./cf/a-problem-everyday/2023/07/13/1283D.md generate success]
+[2023-07-14 09:18:10,068][INFO][- {'contestId': 1250, '编号': '1250J', '题目': 'The Parade', '分数': 1800, '标签': 'binary search, greedy', '解决人数': 2623, '链接': 'https://codeforces.com/problemset/problem/1250/J'}]
+[2023-07-14 09:18:10,069][INFO][- ./cf/a-problem-everyday/2023/07/14/1250J.md generate success]
