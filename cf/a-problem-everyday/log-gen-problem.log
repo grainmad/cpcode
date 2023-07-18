@@ -156,3 +156,5 @@
 [2023-07-16 00:12:18,162][INFO][- ./cf/a-problem-everyday/2023/07/16/1600E.md generate success]
 [2023-07-17 00:22:47,759][INFO][- {'contestId': 1632, '编号': '1632D', '题目': 'New Year Concert', '分数': 2000, '标签': 'binary search, data structures, greedy, math, number theory, two pointers', '解决人数': 3950, '链接': 'https://codeforces.com/problemset/problem/1632/D'}]
 [2023-07-17 00:22:47,761][INFO][- ./cf/a-problem-everyday/2023/07/17/1632D.md generate success]
+[2023-07-18 10:04:41,323][INFO][- {'contestId': 1514, '编号': '1514D', '题目': 'Cut and Stick', '分数': 2000, '标签': 'binary search, data structures, greedy, implementation, sortings', '解决人数': 3727, '链接': 'https://codeforces.com/problemset/problem/1514/D'}]
+[2023-07-18 10:04:41,325][INFO][- ./cf/a-problem-everyday/2023/07/18/1514D.md generate success]
