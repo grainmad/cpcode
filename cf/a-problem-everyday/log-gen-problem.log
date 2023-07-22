@@ -164,3 +164,7 @@
 [2023-07-19 09:09:36,185][INFO][- ./cf/a-problem-everyday/2023/07/19/1178E.md generate success]
 [2023-07-20 00:03:04,711][INFO][- {'contestId': 1077, '编号': '1077E', '题目': 'Thematic Contests', '分数': 1800, '标签': 'greedy, sortings', '解决人数': 4050, '链接': 'https://codeforces.com/problemset/problem/1077/E'}]
 [2023-07-20 00:03:04,715][INFO][- ./cf/a-problem-everyday/2023/07/20/1077E.md generate success]
+[2023-07-21 11:13:34,043][INFO][- {'contestId': 1513, '编号': '1513D', '题目': 'GCD and MST', '分数': 2000, '标签': 'constructive algorithms, dsu, graphs, greedy, number theory, sortings', '解决人数': 4359, '链接': 'https://codeforces.com/problemset/problem/1513/D'}]
+[2023-07-21 11:13:34,051][INFO][- ./cf/a-problem-everyday/2023/07/21/1513D.md generate success]
+[2023-07-22 16:00:33,075][INFO][- {'contestId': 1152, '编号': '1152C', '题目': 'Neko does Maths', '分数': 1800, '标签': 'brute force, math, number theory', '解决人数': 5809, '链接': 'https://codeforces.com/problemset/problem/1152/C'}]
+[2023-07-22 16:00:33,077][INFO][- ./cf/a-problem-everyday/2023/07/22/1152C.md generate success]
