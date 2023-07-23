@@ -168,3 +168,5 @@
 [2023-07-21 11:13:34,051][INFO][- ./cf/a-problem-everyday/2023/07/21/1513D.md generate success]
 [2023-07-22 16:00:33,075][INFO][- {'contestId': 1152, '编号': '1152C', '题目': 'Neko does Maths', '分数': 1800, '标签': 'brute force, math, number theory', '解决人数': 5809, '链接': 'https://codeforces.com/problemset/problem/1152/C'}]
 [2023-07-22 16:00:33,077][INFO][- ./cf/a-problem-everyday/2023/07/22/1152C.md generate success]
+[2023-07-23 00:30:46,822][INFO][- {'contestId': 1477, '编号': '1477A', '题目': 'Nezzar and Board', '分数': 1800, '标签': 'constructive algorithms, math, number theory', '解决人数': 5307, '链接': 'https://codeforces.com/problemset/problem/1477/A'}]
+[2023-07-23 00:30:46,823][INFO][- ./cf/a-problem-everyday/2023/07/23/1477A.md generate success]
