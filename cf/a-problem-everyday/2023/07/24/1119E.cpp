@@ -1,15 +1,30 @@
 
 #include <bits/stdc++.h>
-// #define SINGLE_INPUT
+#define SINGLE_INPUT
 #define ll long long
 #define ull unsigned long long
 #define N 500005
 #define MOD 998244353
 using namespace std;
 
-
 void sol() {
-
+    int n;
+    cin >> n;
+    ll ans = 0, p = 0, u = 0;
+    for (int i = 0; i < n; i++) {
+        cin >> u;
+        if (u >= 2 * p) {
+            ans += p;
+            u -= 2 * p;
+            ans += u / 3;
+            p = u % 3;
+        } else {
+            ans += u / 2;
+            p -= u / 2;
+            p += u % 2;
+        }
+    }
+    cout << ans << endl;
 }
 
 int main() {
