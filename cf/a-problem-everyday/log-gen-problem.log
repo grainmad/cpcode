@@ -172,3 +172,7 @@
 [2023-07-23 00:30:46,823][INFO][- ./cf/a-problem-everyday/2023/07/23/1477A.md generate success]
 [2023-07-24 14:57:42,017][INFO][- {'contestId': 1119, '编号': '1119E', '题目': 'Pavel and Triangles', '分数': 1900, '标签': 'brute force, dp, fft, greedy, ternary search', '解决人数': 4249, '链接': 'https://codeforces.com/problemset/problem/1119/E'}]
 [2023-07-24 14:57:42,018][INFO][- ./cf/a-problem-everyday/2023/07/24/1119E.md generate success]
+[2023-07-25 23:57:13,350][INFO][- {'contestId': 1635, '编号': '1635D', '题目': 'Infinite Set', '分数': 1800, '标签': 'bitmasks, dp, math, matrices, number theory, strings', '解决人数': 5312, '链接': 'https://codeforces.com/problemset/problem/1635/D'}]
+[2023-07-25 23:57:13,354][INFO][- ./cf/a-problem-everyday/2023/07/25/1635D.md generate success]
+[2023-07-26 00:24:34,932][INFO][- {'contestId': 1029, '编号': '1029D', '题目': 'Concatenated Multiples', '分数': 1900, '标签': 'implementation, math', '解决人数': 3447, '链接': 'https://codeforces.com/problemset/problem/1029/D'}]
+[2023-07-26 00:24:34,932][INFO][- ./cf/a-problem-everyday/2023/07/26/1029D.md generate success]
