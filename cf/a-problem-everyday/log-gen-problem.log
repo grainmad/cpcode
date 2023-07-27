@@ -176,3 +176,5 @@
 [2023-07-25 23:57:13,354][INFO][- ./cf/a-problem-everyday/2023/07/25/1635D.md generate success]
 [2023-07-26 00:24:34,932][INFO][- {'contestId': 1029, '编号': '1029D', '题目': 'Concatenated Multiples', '分数': 1900, '标签': 'implementation, math', '解决人数': 3447, '链接': 'https://codeforces.com/problemset/problem/1029/D'}]
 [2023-07-26 00:24:34,932][INFO][- ./cf/a-problem-everyday/2023/07/26/1029D.md generate success]
+[2023-07-27 09:38:49,502][INFO][- {'contestId': 1067, '编号': '1067A', '题目': 'Array Without Local Maximums ', '分数': 1900, '标签': 'dp', '解决人数': 2500, '链接': 'https://codeforces.com/problemset/problem/1067/A'}]
+[2023-07-27 09:38:49,505][INFO][- ./cf/a-problem-everyday/2023/07/27/1067A.md generate success]
