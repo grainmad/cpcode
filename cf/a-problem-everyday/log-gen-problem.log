@@ -176,3 +176,5 @@
 [2023-07-25 23:57:13,354][INFO][- ./cf/a-problem-everyday/2023/07/25/1635D.md generate success]
 [2023-07-26 00:24:34,932][INFO][- {'contestId': 1029, '编号': '1029D', '题目': 'Concatenated Multiples', '分数': 1900, '标签': 'implementation, math', '解决人数': 3447, '链接': 'https://codeforces.com/problemset/problem/1029/D'}]
 [2023-07-26 00:24:34,932][INFO][- ./cf/a-problem-everyday/2023/07/26/1029D.md generate success]
+[2023-07-28 10:55:36,529][INFO][- {'contestId': 1732, '编号': '1732C1', '题目': 'Sheikh (Easy version)', '分数': 1800, '标签': 'binary search, bitmasks, greedy, two pointers', '解决人数': 4543, '链接': 'https://codeforces.com/problemset/problem/1732/C1'}]
+[2023-07-28 10:55:36,578][INFO][- ./cf/a-problem-everyday/2023/07/28/1732C1.md generate success]
