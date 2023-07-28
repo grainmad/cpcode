@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 #define SINGLE_INPUT
 #define ll long long
@@ -7,8 +6,8 @@
 #define MOD 998244353
 using namespace std;
 
-// f[i][j][k] 前i个以k结尾，a[i-1]和a[i]的大小关系为j的方案数。
-ll f[N][3][202];
+// f[i][j][k] 前i个以k结尾，a[i-1]和a[i]的大小关系为j的方案数。0 小于 1大于等于
+int f[N][2][202];
 int a[N];
 
 void sol() {
@@ -16,80 +15,65 @@ void sol() {
     cin >> n;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
-    if (n == 2) {
-        if (a[1] != -1 && a[2] != -1)
-            cout << "0\n";
-        if (a[1] == -1 && a[2] != -1)
-            cout << "1\n";
-        if (a[1] != -1 && a[2] == -1)
-            cout << "1\n";
-        if (a[1] == -1 && a[2] == -1)
-            cout << "200\n";
-        return;
-    }
     if (a[1] != -1 && a[2] != -1) {
-        f[2][a[1] < a[2] ? 0 : (a[1] == a[2] ? 1 : 2)][a[2]] = 1;
+        if (a[1] > a[2]) {
+            cout << "0\n";
+            return;
+        }
+        if (a[1] == a[2]) {
+            f[2][1][a[2]] = 1;
+        } else {
+            f[2][0][a[2]] = 1;
+        }
     } else if (a[1] != -1 && a[2] == -1) {
-        for (int i = 1; i <= 200; i++) {
-            if (a[1] < i)
-                f[2][0][i]++;
-            if (a[1] == i)
-                f[2][1][i]++;
-            if (a[1] > i)
-                f[2][2][i]++;
+        f[2][1][a[1]] = 1;
+        for (int i = a[1] + 1; i <= 200; i++) {
+            f[2][0][i] = 1;
         }
     } else if (a[1] == -1 && a[2] != -1) {
-        for (int i = 1; i <= 200; i++) {
-            if (i < a[2])
-                f[2][0][a[2]]++;
-            if (i == a[2])
-                f[2][1][a[2]]++;
-            if (i > a[2])
-                f[2][2][a[2]]++;
-        }
+        f[2][1][a[2]] = 1;
+        // for (int i = 1; i < a[2]; i++) {
+        //     f[2][0][a[2]]++;
+        // }
+        f[2][0][a[2]] = a[2] - 1;
     } else {
         for (int i = 1; i <= 200; i++) {
-            for (int j = 1; j <= 200; j++) {
-                if (i < j)
-                    f[2][0][j]++;
-                if (i == j)
-                    f[2][1][j]++;
-                if (i > j)
-                    f[2][2][j]++;
-            }
+            f[2][1][i] = 1;
+            f[2][0][i] = i - 1;
         }
     }
     for (int i = 3; i <= n; i++) {
-        vector<vector<int>> prf(3, vector<int>(202, 0)),
-            suf(3, vector<int>(202, 0));
-        for (int j = 0; j < 3; j++) {
+        vector<vector<ll>> prf(2, vector<ll>(202, 0)),
+            suf(2, vector<ll>(202, 0));
+        for (int j = 0; j < 2; j++) {
             for (int k = 1; k <= 200; k++) {
-                prf[j][k] += prf[j][k - 1] + f[i - 1][j][k];
+                prf[j][k] = (prf[j][k - 1] + f[i - 1][j][k]) % MOD;
+                prf[j][k] %= MOD;
             }
             for (int k = 200; k >= 1; k--) {
-                suf[j][k] += suf[j][k + 1] + f[i - 1][j][k];
+                suf[j][k] = (suf[j][k + 1] + f[i - 1][j][k]) % MOD;
+                suf[j][k] %= MOD;
             }
         }
         if (a[i] == -1) {
             for (int j = 1; j <= 200; j++) {
-                f[i][0][j] += prf[0][j - 1] + prf[1][j - 1] + prf[2][j - 1];
-                f[i][1][j] += f[i - 1][0][j] + f[i - 1][1][j] + f[i - 1][2][j];
-                f[i][2][j] += suf[1][i - 1] + suf[2][i - 1];
+                f[i][0][j] = (prf[0][j - 1] + prf[1][j - 1]) % MOD;
+                f[i][0][j] %= MOD;
+                f[i][1][j] = (suf[1][j] + f[i - 1][0][j]) % MOD;
+                f[i][1][j] %= MOD;
             }
         } else {
             int j = a[i];
-            f[i][0][j] += prf[0][j - 1] + prf[1][j - 1] + prf[2][j - 1];
-            f[i][1][j] += f[i - 1][0][j] + f[i - 1][1][j] + f[i - 1][2][j];
-            f[i][2][j] += suf[1][i - 1] + suf[2][i - 1];
+            f[i][0][j] = (prf[0][j - 1] + prf[1][j - 1]) % MOD;
+            f[i][0][j] %= MOD;
+            f[i][1][j] = (suf[1][j] + f[i - 1][0][j]) % MOD;
+            f[i][1][j] %= MOD;
         }
     }
     ll ans = 0;
-    if (a[n] == -1) {
-        for (int i = 1; i <= 200; i++) {
-            ans += f[n][1][i] + f[n][2][i];
-        }
-    } else {
-        ans = f[n][1][a[n]] + f[n][2][a[n]];
+    for (int i = 1; i <= 200; i++) {
+        ans += f[n][1][i];
+        ans %= MOD;
     }
     cout << ans << "\n";
 }
