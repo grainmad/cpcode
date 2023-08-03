@@ -181,3 +181,7 @@
 [2023-07-28 10:55:36,529][INFO][- {'contestId': 1732, '编号': '1732C1', '题目': 'Sheikh (Easy version)', '分数': 1800, '标签': 'binary search, bitmasks, greedy, two pointers', '解决人数': 4543, '链接': 'https://codeforces.com/problemset/problem/1732/C1'}]
 [2023-07-28 10:55:36,578][INFO][- ./cf/a-problem-everyday/2023/07/28/1732C1.md generate success][2023-07-29 00:11:26,386][INFO][- {'contestId': 1738, '编号': '1738D', '题目': 'Permutation Addicts', '分数': 1900, '标签': 'constructive algorithms, data structures, dfs and similar, dsu, graphs, trees', '解决人数': 2973, '链接': 'https://codeforces.com/problemset/problem/1738/D'}]
 [2023-07-29 00:11:26,394][INFO][- ./cf/a-problem-everyday/2023/07/29/1738D.md generate success]
+[2023-08-01 20:23:54,923][INFO][- {'contestId': 1704, '编号': '1704D', '题目': 'Magical Array', '分数': 1900, '标签': 'constructive algorithms, hashing, implementation, math', '解决人数': 4426, '链接': 'https://codeforces.com/problemset/problem/1704/D'}]
+[2023-08-01 20:23:54,925][INFO][- ./cf/a-problem-everyday/2023/08/01/1704D.md generate success]
+[2023-08-03 20:17:32,820][INFO][- {'contestId': 1543, '编号': '1543C', '题目': 'Need for Pink Slips', '分数': 1900, '标签': 'bitmasks, brute force, dfs and similar, implementation, math, probabilities', '解决人数': 4872, '链接': 'https://codeforces.com/problemset/problem/1543/C'}]
+[2023-08-03 20:17:32,822][INFO][- ./cf/a-problem-everyday/2023/08/03/1543C.md generate success]
