@@ -7,77 +7,68 @@
 using namespace std;
 
 void sol() {
-    int n;
+    int n, nc = 0, pc = 0;
     cin >> n;
     vector<int> a(n);
-    for (int& i : a)
+    for (int& i : a) {
         cin >> i;
+        if (i < 0)
+            nc++;
+        if (i > 0)
+            pc++;
+    }
+
     int mx = *max_element(a.begin(), a.end());
+    int pmx = find(a.begin(), a.end(), mx) - a.begin();
     int mn = *min_element(a.begin(), a.end());
-    if (mx >= 0 && mn >= 0) {
-        cout << n - 1 << "\n";
-        for (int i = 2; i <= n; i++) {
-            cout << i << " " << i - 1 << endl;
-        }
-    } else if (mx <= 0 && mn <= 0) {
-        cout << n - 1 << "\n";
-        for (int i = n - 1; i >= 1; i--) {
-            cout << i << " " << i + 1 << endl;
-        }
-    } else if (mx > -mn) {
-        int p = 0;
-        for (int i = 0; i < n; i++)
-            if (a[i] == mx)
-                p = i;
-        p++;
-        vector<pair<int, int>> ans;
-        ans.emplace_back(n, p);
-        a[n - 1] += a[p - 1];
-        ans.emplace_back(n, p);
-        a[n - 1] += a[p - 1];
-        for (int i = 1; i < n; i++) {
-            if (a[i - 1] > a[i]) {
-                while (a[i - 1] - a[i] > a[n - 1]) {
-                    a[n - 1] *= 2;
-                    ans.emplace_back(n, n);
-                }
-                a[i] += a[n - 1];
-                ans.emplace_back(i + 1, n);
+    int pmn = find(a.begin(), a.end(), mn) - a.begin();
+    vector<pair<int, int>> ans;
+    if (mx >= -mn) {
+        if (nc <= 12) {
+            for (int i = 0; i < n; i++) {
+                if (a[i] < 0)
+                    ans.emplace_back(i, pmx);
             }
-            // for (int j : a) {
-            //     cout << j << " ";
-            // }
-            // cout << endl;
-        }
-        cout << ans.size() << "\n";
-        for (auto [i, j] : ans) {
-            cout << i << " " << j << "\n";
+            for (int i = 1; i < n; i++) {
+                ans.emplace_back(i, i - 1);
+            }
+        } else {  // negtive > 12 , postive <= 7, 31-19-7=5, -2^5<-20
+            for (int i = 0; i < 5; i++) {
+                ans.emplace_back(pmn, pmn);
+            }
+            for (int i = 0; i < n; i++) {
+                if (a[i] > 0)
+                    ans.emplace_back(i, pmn);
+            }
+            for (int i = n - 1; i > 0; i--) {
+                ans.emplace_back(i - 1, i);
+            }
         }
     } else {
-        int p = 0;
-        for (int i = 0; i < n; i++)
-            if (a[i] == mn)
-                p = i;
-        p++;
-        vector<pair<int, int>> ans;
-        ans.emplace_back(1, p);
-        a[0] += a[p - 1];
-        ans.emplace_back(1, p);
-        a[0] += a[p - 1];
-        for (int i = n - 1; i >= 1; i--) {
-            if (a[i - 1] > a[i]) {
-                while (a[i - 1] + a[0] > a[i]) {
-                    a[0] *= 2;
-                    ans.emplace_back(1, 1);
-                }
-                a[i - 1] += a[0];
-                ans.emplace_back(i, 1);
+        if (pc <= 12) {
+            for (int i = 0; i < n; i++) {
+                if (a[i] > 0)
+                    ans.emplace_back(i, pmn);
+            }
+            for (int i = n - 1; i > 0; i--) {
+                ans.emplace_back(i - 1, i);
+            }
+        } else {  // postive > 12 , negtive <= 7, 31-19-7=5, 2^5>20
+            for (int i = 0; i < 5; i++) {
+                ans.emplace_back(pmx, pmx);
+            }
+            for (int i = 0; i < n; i++) {
+                if (a[i] < 0)
+                    ans.emplace_back(i, pmx);
+            }
+            for (int i = 1; i < n; i++) {
+                ans.emplace_back(i, i - 1);
             }
         }
-        cout << ans.size() << "\n";
-        for (auto [i, j] : ans) {
-            cout << i << " " << j << "\n";
-        }
+    }
+    cout << ans.size() << "\n";
+    for (auto [i, j] : ans) {
+        cout << i + 1 << " " << j + 1 << "\n";
     }
 }
 
