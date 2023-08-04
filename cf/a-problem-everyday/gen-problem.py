@@ -121,7 +121,7 @@ def random_problem(all_problems):
         "rating-lest": 1800,
         "rating-most": 2000,
         # [] 空则选取所有标签
-        "include-tags": ["constructive algorithms", "greedy", "math", "dp"]
+        "include-tags": [] #["constructive algorithms", "greedy", "math", "dp"]
 
     }
     filtered_problems = problems_filter(condition, all_problems)
