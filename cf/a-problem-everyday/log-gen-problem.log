@@ -189,3 +189,7 @@
 [2023-08-04 20:55:15,311][INFO][- ./cf/a-problem-everyday/2023/08/04/1264B.md generate success]
 [2023-08-05 15:09:55,416][INFO][- {'contestId': 1184, '编号': '1184E1', '题目': "Daleks' Invasion (easy)", '分数': 1900, '标签': 'graphs, trees', '解决人数': 1431, '链接': 'https://codeforces.com/problemset/problem/1184/E1'}]
 [2023-08-05 15:09:55,418][INFO][- ./cf/a-problem-everyday/2023/08/05/1184E1.md generate success]
+[2023-08-06 23:42:20,836][INFO][- {'contestId': 1702, '编号': '1702G1', '题目': 'Passable Paths (easy version)', '分数': 1900, '标签': 'dfs and similar, trees', '解决人数': 4270, '链接': 'https://codeforces.com/problemset/problem/1702/G1'}]
+[2023-08-06 23:42:20,838][INFO][- ./cf/a-problem-everyday/2023/08/06/1702G1.md generate success]
+[2023-08-07 08:37:33,307][INFO][- {'contestId': 1613, '编号': '1613D', '题目': 'MEX Sequences', '分数': 1900, '标签': 'dp, math', '解决人数': 3935, '链接': 'https://codeforces.com/problemset/problem/1613/D'}]
+[2023-08-07 08:37:33,309][INFO][- ./cf/a-problem-everyday/2023/08/07/1613D.md generate success]
