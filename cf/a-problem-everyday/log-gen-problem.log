@@ -193,3 +193,5 @@
 [2023-08-06 23:42:20,838][INFO][- ./cf/a-problem-everyday/2023/08/06/1702G1.md generate success]
 [2023-08-07 08:37:33,307][INFO][- {'contestId': 1613, '编号': '1613D', '题目': 'MEX Sequences', '分数': 1900, '标签': 'dp, math', '解决人数': 3935, '链接': 'https://codeforces.com/problemset/problem/1613/D'}]
 [2023-08-07 08:37:33,309][INFO][- ./cf/a-problem-everyday/2023/08/07/1613D.md generate success]
+[2023-08-09 15:52:29,205][INFO][- {'contestId': 1728, '编号': '1728D', '题目': 'Letter Picking', '分数': 1800, '标签': 'constructive algorithms, dp, games, two pointers', '解决人数': 5864, '链接': 'https://codeforces.com/problemset/problem/1728/D'}]
+[2023-08-09 15:52:29,208][INFO][- ./cf/a-problem-everyday/2023/08/09/1728D.md generate success]
