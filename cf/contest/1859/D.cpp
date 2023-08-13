@@ -23,8 +23,8 @@ void sol() {
         mx.push_back(b);
         v.emplace_back(l, 0, i);
         v.emplace_back(a, 1, i);
-        v.emplace_back(b, 1, i);
-        v.emplace_back(r, 0, i);
+        v.emplace_back(b, 2, i);
+        v.emplace_back(r, 3, i);
     }
     sort(v.begin(), v.end());
     int q;
@@ -38,9 +38,12 @@ void sol() {
     int p = 0;
     int r = 0;
     for (auto& o : v) {
-        r = max(r, mx[o.p]);
-        while (p < q && pos[idx[p]] < o.x)
-            ans[idx[p++]] = max(r, o.x);
+        if (r >= o.x) {
+            r = max(r, mx[o.p]);
+        } else if (o.t == 3 && o.x > r) {
+            while (p < q && pos[idx[p]] <= r)
+                ans[idx[p++]] = r;
+        }
     }
     for (int i : ans) {
         cout << i << " ";
