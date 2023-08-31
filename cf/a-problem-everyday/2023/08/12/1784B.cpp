@@ -7,73 +7,88 @@
 #define MOD 998244353
 using namespace std;
 
+int ch[200];
+
 void sol() {
+    ch['w'] = 0;
+    ch['i'] = 1;
+    ch['n'] = 2;
     int m;
     cin >> m;
     map<string, vector<int>> mp;
+    vector<int> c(3);
+    vector<int> g[3][3];
     for (int i = 1; i <= m; i++) {
         string s;
         cin >> s;
-        sort(s.begin(), s.end());
-        // cout << s << endl;
-        mp[s].push_back(i);
+        c[0] = c[1] = c[2] = 0;
+        for (char j : s)
+            c[ch[j]]++;
+        if (c[0] == 3) {
+            g[0][1].push_back(i);
+            g[0][2].push_back(i);
+        }
+        if (c[1] == 3) {
+            g[1][0].push_back(i);
+            g[1][2].push_back(i);
+        }
+        if (c[2] == 3) {
+            g[2][0].push_back(i);
+            g[2][1].push_back(i);
+        }
+        if (c[0] == 2) {
+            g[0][c[1] ? 2 : 1].push_back(i);
+        }
+        if (c[1] == 2) {
+            g[1][c[2] ? 0 : 2].push_back(i);
+        }
+        if (c[2] == 2) {
+            g[2][c[1] ? 0 : 1].push_back(i);
+        }
     }
+    // for (int i = 0; i < 3; i++) {
+    //     for (int j = 0; j < 3; j++) {
+    //         cout << g[i][j].size() << " ";
+    //     }
+    //     cout << endl;
+    // }
     vector<string> ans;
-    // 三个全相同
-    while (mp["www"].size() && mp["iii"].size() && mp["nnn"].size()) {
-        ans.emplace_back(to_string(mp["www"].back()) + " w " +
-                         to_string(mp["iii"].back()) + " i");
-        ans.emplace_back(to_string(mp["www"].back()) + " w " +
-                         to_string(mp["nnn"].back()) + " n");
-        ans.emplace_back(to_string(mp["iii"].back()) + " i " +
-                         to_string(mp["nnn"].back()) + " n");
-        mp["www"].pop_back();
-        mp["iii"].pop_back();
-        mp["nnn"].pop_back();
+    while (g[0][1].size() && g[1][0].size()) {
+        ans.push_back(to_string(g[0][1].back()) + " w " +
+                      to_string(g[1][0].back()) + " i");
+        g[0][1].pop_back();
+        g[1][0].pop_back();
     }
-    // 含一个全相同 两次交换恢复3个
-    auto case1 = [&](const string& a, const string& b, const string& c) {
-        while (mp[a].size() && mp[b].size() && mp[c].size()) {
-            ans.emplace_back(to_string(mp[a].back()) + " " + a[1] + " " +
-                             to_string(mp[b].back()) + " " + b[1]);
-            ans.emplace_back(to_string(mp[a].back()) + " " + a[1] + " " +
-                             to_string(mp[c].back()) + " " + c[1]);
-            mp[a].pop_back();
-            mp[b].pop_back();
-            mp[c].pop_back();
-        }
-    };
-    case1("www", "iin", "inn");
-    case1("iii", "nww", "nnw");
-    case1("nnn", "iiw", "iww");
-    // 不含全相同 两次交换恢复3个
-    auto case2 = [&](const string& a, const string& b, const string& c) {
-        while (mp[a].size() && mp[b].size() && mp[c].size()) {
-            ans.emplace_back(to_string(mp[a].back()) + " w " +
-                             to_string(mp[b].back()) + " " + b[1]);
-            ans.emplace_back(to_string(mp[b].back()) + " w " +
-                             to_string(mp[c].back()) + " " + c[1]);
-            mp[a].pop_back();
-            mp[b].pop_back();
-            mp[c].pop_back();
-        }
-    };
-    case2("nww", "iiw", "inn");
-    case2("iww", "nnw", "iin");
-
-    // 一次交换恢复两个
-    auto case3 = [&](const string& a, const string& b) {
-        while (mp[a].size() && mp[b].size()) {
-            ans.emplace_back(to_string(mp[a].back()) + " " + a[1] + " " +
-                             to_string(mp[b].back()) + " " + b[1]);
-            mp[a].pop_back();
-            mp[b].pop_back();
-        }
-    };
-    case3("iww", "inn");
-    case3("nww", "iin");
-    case3("iiw", "nnw");
-
+    while (g[1][2].size() && g[2][1].size()) {
+        ans.push_back(to_string(g[1][2].back()) + " i " +
+                      to_string(g[2][1].back()) + " n");
+        g[1][2].pop_back();
+        g[2][1].pop_back();
+    }
+    while (g[0][2].size() && g[2][0].size()) {
+        ans.push_back(to_string(g[0][2].back()) + " w " +
+                      to_string(g[2][0].back()) + " n");
+        g[0][2].pop_back();
+        g[2][0].pop_back();
+    }
+    while (g[0][1].size() && g[1][2].size() && g[2][0].size()) {
+        ans.push_back(to_string(g[0][1].back()) + " w " +
+                      to_string(g[1][2].back()) + " i");
+        ans.push_back(to_string(g[1][2].back()) + " w " +
+                      to_string(g[2][0].back()) + " n");
+        g[0][1].pop_back();
+        g[1][2].pop_back();
+        g[2][0].pop_back();
+    }
+    while (g[0][2].size() && g[2][1].size() && g[1][0].size()) {
+        ans.push_back(to_string(g[0][2].back()) + " w " +
+                      to_string(g[2][1].back()) + " n");
+        ans.push_back(to_string(g[2][1].back()) + " w " +
+                      to_string(g[1][0].back()) + " i");
+        g[0][2].pop_back();
+        g[2][1].pop_back();
+        g[1][0].pop_back();
+    }
     cout << ans.size() << "\n";
     for (auto i : ans) {
         cout << i << "\n";
