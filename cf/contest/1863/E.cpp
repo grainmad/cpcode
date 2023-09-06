@@ -14,60 +14,67 @@ void sol() {
         cin >> h[i];
     }
     vector<int> g[n + 1];
-    vector<ll> in(n + 1), mx(n + 1), mn(n + 1, k);
+    vector<ll> in(n + 1), cnt(n + 1), t(n + 1, 0);
     for (int i = 0; i < m; i++) {
         int x, y;
         cin >> x >> y;
         g[x].push_back(y);
         in[y]++;
     }
+    ll mxt = 0;
     queue<int> q;
     for (int i = 1; i <= n; i++) {
         if (in[i] == 0) {
-            mx[i] = h[i];
-            mn[i] = h[i];
+            t[i] = h[i];
             q.push(i);
         }
     }
     while (q.size()) {
         int u = q.front();
         q.pop();
+        mxt = max(mxt, t[u]);
         for (int v : g[u]) {
-            mn[v] = min(mn[v], mn[u]);
-            mx[v] = max(mx[v], mx[u]);
-            if (--in[v] == 0) {
-                // cout << v << " " << h[v] << endl;
-                if (mx[v] % k > h[v]) {
-                    mx[v] += k - mx[v] % k + h[v];
-                } else {
-                    mx[v] += -(mx[v] % k) + h[v];
-                }
+            if (h[v] >= t[u] % k) {
+                t[v] = max(t[v], t[u] - t[u] % k + h[v]);
+            } else {
+                t[v] = max(t[v], t[u] + k - t[u] % k + h[v]);
+            }
+
+            if (in[v] == ++cnt[v]) {
                 q.push(v);
             }
         }
     }
-    map<ll, ll> mp;
-
-    auto add = [&](ll left, ll right) {
-        for (auto it = mp.lower_bound(left);
-             it != mp.end() && it->second <= right; mp.erase(it++)) {
-            ll l = it->second, r = it->first;
-            left = min(left, l);
-            right = max(right, r);
-        }
-        mp[right] = left;
-    };
+    map<ll, vector<int>> mp;
     for (int i = 1; i <= n; i++) {
-        add(mn[i], mx[i]);
+        if (in[i] == 0) {
+            mp[t[i]].push_back(i);
+        }
     }
-    ll l = mp.begin()->second, r = mp.rbegin()->first;
-    ll R = (r + k - 1) / k * k;
-    ll Mn = r - l;
-    vector<pair<ll, ll>> v(mp.begin(), mp.end());
-    for (int i = 1; i < v.size(); i++) {
-        Mn = min(Mn, R - (v[i].second - v[i - 1].first));
+    auto udp = [&](int x) {
+        queue<int> q;
+        q.push(x);
+        while (q.size()) {
+            int u = q.front();
+            q.pop();
+            mxt = max(mxt, t[u]);
+            for (int v : g[u]) {
+                if (t[v] < t[u]) {
+                    t[v] += k;
+                    q.push(v);
+                }
+            }
+        }
+    };
+    ll ans = 1e18;
+    for (auto& [i, j] : mp) {
+        ans = min(ans, mxt - i);
+        for (int u : j) {
+            t[u] += k;
+            udp(u);
+        }
     }
-    cout << Mn << "\n";
+    cout << ans << "\n";
 }
 
 int main() {
