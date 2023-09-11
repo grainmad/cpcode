@@ -209,3 +209,5 @@
 [2023-08-30 09:48:18,928][INFO][- ./cf/a-problem-everyday/2023/08/30/1716D.md generate success]
 [2023-09-06 16:33:00,350][INFO][- {'contestId': 1200, '编号': '1200E', '题目': 'Compress Words', '分数': 2000, '标签': 'brute force, hashing, implementation, string suffix structures, strings', '解决人数': 6094, '链接': 'https://codeforces.com/problemset/problem/1200/E'}]
 [2023-09-06 16:33:00,352][INFO][- ./cf/a-problem-everyday/2023/09/06/1200E.md generate success]
+[2023-09-11 20:48:43,104][INFO][- {'contestId': 1493, '编号': '1493C', '题目': 'K-beautiful Strings', '分数': 2000, '标签': 'binary search, brute force, constructive algorithms, greedy, strings', '解决人数': 4255, '链接': 'https://codeforces.com/problemset/problem/1493/C'}]
+[2023-09-11 20:48:43,108][INFO][- ./cf/a-problem-everyday/2023/09/11/1493C.md generate success]
