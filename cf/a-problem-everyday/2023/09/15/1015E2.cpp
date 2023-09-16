@@ -17,6 +17,8 @@ int f[4][N][N];
 int dfs(int d, int x, int y) {
     if (x < 0 || x >= n || y < 0 || y >= m || g[x][y] == '.')
         return 0;
+    if (f[d][x][y])
+        return f[d][x][y];
     return f[d][x][y] = dfs(d, x + (d - 1) % 2, y + (d - 2) % 2) + 1;
 }
 
@@ -25,6 +27,7 @@ void sol() {
     for (int i = 0; i < n; i++) {
         cin >> g[i];
     }
+    vector<vector<int>> ans;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             if (g[i][j] == '*') {
@@ -33,10 +36,14 @@ void sol() {
                     mn = min(mn, dfs(k, i, j));
                 }
                 // [i,j] [i-mn+1, i+mn-1] [j-mn+1, j+mn-1]
-                rd[i][j - mn + 1]++;
-                rd[i][j + mn]--;
-                cd[j][i - mn + 1]++;
-                cd[j][j + mn]--;
+                if (mn > 1) {
+                    rd[i][j - mn + 1]++;
+                    rd[i][j + mn]--;
+                    cd[j][i - mn + 1]++;
+                    cd[j][i + mn]--;
+                    // cout << i << " " << j << " " << mn << "\n";
+                    ans.push_back({i + 1, j + 1, mn - 1});
+                }
             }
         }
     }
@@ -50,27 +57,32 @@ void sol() {
             cd[i][j] += cd[i][j - 1];
         }
     }
+    // for (int i = 0; i < n; i++) {
+    //     for (int j = 0; j < m; j++) {
+    //         cout << rd[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // cout << endl;
+    // for (int i = 0; i < n; i++) {
+    //     for (int j = 0; j < m; j++) {
+    //         cout << cd[j][i] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // cout << endl;
     int ok = 1;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (g[i][j] == '.' || rd[i][j] == 0 || cd[j][i] == 0)
+            if (g[i][j] == '.' || rd[i][j] || cd[j][i])
                 continue;
             ok = 0;
         }
     }
     if (ok) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (g[i][j] == '*') {
-                    int mn = N;
-                    for (int k = 0; k < 4; k++) {
-                        mn = min(mn, dfs(k, i, j));
-                    }
-                    if (mn > 1) {
-                        cout << i << " " << j << " " << mn - 1 << "\n";
-                    }
-                }
-            }
+        cout << ans.size() << "\n";
+        for (auto& i : ans) {
+            cout << i[0] << " " << i[1] << " " << i[2] << "\n";
         }
     } else {
         cout << "-1\n";
