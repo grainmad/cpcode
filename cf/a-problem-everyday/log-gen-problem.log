@@ -213,3 +213,5 @@
 [2023-09-11 20:48:43,108][INFO][- ./cf/a-problem-everyday/2023/09/11/1493C.md generate success]
 [2023-09-15 19:24:48,536][INFO][- {'contestId': 1015, '编号': '1015E2', '题目': 'Stars Drawing (Hard Edition)', '分数': 1900, '标签': 'binary search, dp, greedy', '解决人数': 3237, '链接': 'https://codeforces.com/problemset/problem/1015/E2'}]
 [2023-09-15 19:24:48,537][INFO][- ./cf/a-problem-everyday/2023/09/15/1015E2.md generate success]
+[2023-09-16 10:05:04,415][INFO][- {'contestId': 1280, '编号': '1280B', '题目': 'Beingawesomeism', '分数': 1800, '标签': 'implementation, math', '解决人数': 3591, '链接': 'https://codeforces.com/problemset/problem/1280/B'}]
+[2023-09-16 10:05:04,416][INFO][- ./cf/a-problem-everyday/2023/09/16/1280B.md generate success]
