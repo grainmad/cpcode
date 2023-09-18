@@ -22,7 +22,10 @@ if [ "$#" -eq 1 -a -e "$1" ]
 then
         echo = = = = = = = = = = = = = ${1} output = = = = = = = = = = = = =
         g++ -std=c++17 $1 -o ${program}
-        ${program} < ${input}
+        if test "$?" -eq 0
+        then
+                ${program} < ${input}
+        fi
 else
         echo Only requires a cpp file as parameter
 fi
