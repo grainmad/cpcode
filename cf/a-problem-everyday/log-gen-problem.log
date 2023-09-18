@@ -215,3 +215,5 @@
 [2023-09-15 19:24:48,537][INFO][- ./cf/a-problem-everyday/2023/09/15/1015E2.md generate success]
 [2023-09-16 10:05:04,415][INFO][- {'contestId': 1280, '编号': '1280B', '题目': 'Beingawesomeism', '分数': 1800, '标签': 'implementation, math', '解决人数': 3591, '链接': 'https://codeforces.com/problemset/problem/1280/B'}]
 [2023-09-16 10:05:04,416][INFO][- ./cf/a-problem-everyday/2023/09/16/1280B.md generate success]
+[2023-09-17 21:47:55,815][INFO][- {'contestId': 1466, '编号': '1466E', '题目': 'Apollo versus Pan', '分数': 1800, '标签': 'bitmasks, brute force, math', '解决人数': 6490, '链接': 'https://codeforces.com/problemset/problem/1466/E'}]
+[2023-09-17 21:47:55,819][INFO][- ./cf/a-problem-everyday/2023/09/17/1466E.md generate success]
