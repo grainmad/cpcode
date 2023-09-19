@@ -219,3 +219,5 @@
 [2023-09-17 21:47:55,819][INFO][- ./cf/a-problem-everyday/2023/09/17/1466E.md generate success]
 [2023-09-18 10:19:17,691][INFO][- {'contestId': 1780, '编号': '1780D', '题目': 'Bit Guessing Game', '分数': 1800, '标签': 'binary search, bitmasks, constructive algorithms, interactive', '解决人数': 4070, '链接': 'https://codeforces.com/problemset/problem/1780/D'}]
 [2023-09-18 10:19:17,693][INFO][- ./cf/a-problem-everyday/2023/09/18/1780D.md generate success]
+[2023-09-19 09:10:02,072][INFO][- {'contestId': 1402, '编号': '1402A', '题目': 'Fancy Fence', '分数': 1800, '标签': '*special, data structures, dsu, implementation, math, sortings', '解决人数': 1038, '链接': 'https://codeforces.com/problemset/problem/1402/A'}]
+[2023-09-19 09:10:02,074][INFO][- ./cf/a-problem-everyday/2023/09/19/1402A.md generate success]
