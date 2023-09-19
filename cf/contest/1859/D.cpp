@@ -6,47 +6,37 @@
 #define MOD 998244353
 using namespace std;
 
-struct Node {
-    int x, t, p;
-    bool operator<(const Node& o) const { return x < o.x; }
-    Node(int x, int t, int p) : x(x), t(t), p(p) {}
-};
-
 void sol() {
+    map<int, int> mp;
+    auto add = [&](int left, int right) {
+        for (auto it = mp.lower_bound(left);
+             it != mp.end() && it->second <= right; mp.erase(it++)) {
+            int l = it->second, r = it->first;
+            left = min(left, l);
+            right = max(right, r);
+        }
+        mp[right] = left;
+    };
     int n;
     cin >> n;
-    vector<Node> v;
-    vector<int> mx;
+    vector<pair<int, int>> s;
     for (int i = 0; i < n; i++) {
-        int l, a, b, r;
-        cin >> l >> a >> b >> r;
-        mx.push_back(b);
-        v.emplace_back(l, 0, i);
-        v.emplace_back(a, 1, i);
-        v.emplace_back(b, 2, i);
-        v.emplace_back(r, 3, i);
+        int l, r, a, b;
+        cin >> l >> r >> a >> b;
+        s.emplace_back(l, b);
+        add(l, b);
     }
-    sort(v.begin(), v.end());
+    // cout << "------\n";
+    // for (auto [i, j] : mp) {
+    //     cout << i << " " << j << endl;
+    // }
     int q;
     cin >> q;
-    vector<int> pos(q), idx(q);
-    for (auto& i : pos)
-        cin >> i;
-    iota(idx.begin(), idx.end(), 0);
-    sort(idx.begin(), idx.end(), [&](int x, int y) { return pos[x] < pos[y]; });
-    vector<int> ans(q);
-    int p = 0;
-    int r = 0;
-    for (auto& o : v) {
-        if (r >= o.x) {
-            r = max(r, mx[o.p]);
-        } else if (o.t == 3 && o.x > r) {
-            while (p < q && pos[idx[p]] <= r)
-                ans[idx[p++]] = r;
-        }
-    }
-    for (int i : ans) {
-        cout << i << " ";
+    for (int i = 0; i < q; i++) {
+        int x;
+        cin >> x;
+        auto it = mp.lower_bound(x);
+        cout << (it != mp.end() && it->second <= x ? it->first : x) << " ";
     }
     cout << "\n";
 }
