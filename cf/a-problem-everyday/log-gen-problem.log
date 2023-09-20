@@ -221,3 +221,5 @@
 [2023-09-18 10:19:17,693][INFO][- ./cf/a-problem-everyday/2023/09/18/1780D.md generate success]
 [2023-09-19 09:10:02,072][INFO][- {'contestId': 1402, '编号': '1402A', '题目': 'Fancy Fence', '分数': 1800, '标签': '*special, data structures, dsu, implementation, math, sortings', '解决人数': 1038, '链接': 'https://codeforces.com/problemset/problem/1402/A'}]
 [2023-09-19 09:10:02,074][INFO][- ./cf/a-problem-everyday/2023/09/19/1402A.md generate success]
+[2023-09-20 19:23:56,838][INFO][- {'contestId': 1495, '编号': '1495B', '题目': "Let's Go Hiking", '分数': 1900, '标签': 'games, greedy', '解决人数': 5583, '链接': 'https://codeforces.com/problemset/problem/1495/B'}]
+[2023-09-20 19:23:56,840][INFO][- ./cf/a-problem-everyday/2023/09/20/1495B.md generate success]
