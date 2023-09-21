@@ -223,3 +223,5 @@
 [2023-09-19 09:10:02,074][INFO][- ./cf/a-problem-everyday/2023/09/19/1402A.md generate success]
 [2023-09-20 19:23:56,838][INFO][- {'contestId': 1495, '编号': '1495B', '题目': "Let's Go Hiking", '分数': 1900, '标签': 'games, greedy', '解决人数': 5583, '链接': 'https://codeforces.com/problemset/problem/1495/B'}]
 [2023-09-20 19:23:56,840][INFO][- ./cf/a-problem-everyday/2023/09/20/1495B.md generate success]
+[2023-09-21 09:38:53,865][INFO][- {'contestId': 1525, '编号': '1525D', '题目': 'Armchairs', '分数': 1800, '标签': 'dp, flows, graph matchings, greedy', '解决人数': 8603, '链接': 'https://codeforces.com/problemset/problem/1525/D'}]
+[2023-09-21 09:38:53,865][INFO][- ./cf/a-problem-everyday/2023/09/21/1525D.md generate success]
