@@ -231,3 +231,5 @@
 [2023-09-24 22:14:18,399][INFO][- ./cf/a-problem-everyday/2023/09/24/1665D.md generate success]
 [2023-09-26 00:10:26,623][INFO][- {'contestId': 1290, '编号': '1290B', '题目': 'Irreducible Anagrams', '分数': 1800, '标签': 'binary search, constructive algorithms, data structures, strings, two pointers', '解决人数': 4417, '链接': 'https://codeforces.com/problemset/problem/1290/B'}]
 [2023-09-26 00:10:26,624][INFO][- ./cf/a-problem-everyday/2023/09/26/1290B.md generate success]
+[2023-10-08 09:32:15,291][INFO][- {'contestId': 1801, '编号': '1801C', '题目': 'Music Festival', '分数': 1900, '标签': 'binary search, data structures, dp, greedy, sortings', '解决人数': 2658, '链接': 'https://codeforces.com/problemset/problem/1801/C'}]
+[2023-10-08 09:32:15,296][INFO][- ./cf/a-problem-everyday/2023/10/08/1801C.md generate success]
