@@ -8,8 +8,23 @@
 using namespace std;
 
 
-void sol() {
+ll h = 1231321;
 
+ll ask(ll a, ll b) {
+    cout << "? " << a << " " << b << endl;
+    int rt;
+    cin >> rt;
+    // rt = gcd(h+a, h+b);
+    return rt;
+}
+
+void sol() {
+    ll r = 0;
+    for (int i=0; i<30; i++) {
+        ll rt = ask((1LL<<i)-r, (3LL<<i)-r);
+        if (rt == (1<<i+1)) r |= 1LL<<i;
+    }
+    cout << "! " << r << endl;
 }
 
 int main() {
