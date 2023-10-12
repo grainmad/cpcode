@@ -26,13 +26,6 @@ void sol() {
             cout << "NO\n";
         }
 
-    } else if (n % 3 == 1) {
-        if (check(1, 2, n - 3)) {
-            cout << "YES\n";
-            cout << "1 2 " << n - 3 << "\n";
-        } else {
-            cout << "NO\n";
-        }
     } else {
         if (check(1, 2, n - 3)) {
             cout << "YES\n";
