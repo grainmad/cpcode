@@ -239,3 +239,5 @@
 [2023-10-13 09:49:54,429][INFO][- ./cf/a-problem-everyday/2023/10/13/1005E1.md generate success]
 [2023-10-14 02:41:56,597][INFO][- {'contestId': 1468, '编号': '1468J', '题目': 'Road Reform', '分数': 1800, '标签': 'dsu, graphs, greedy', '解决人数': 3471, '链接': 'https://codeforces.com/problemset/problem/1468/J'}]
 [2023-10-14 02:41:56,601][INFO][- ./cf/a-problem-everyday/2023/10/14/1468J.md generate success]
+[2023-10-16 03:26:37,767][INFO][- {'contestId': 1036, '编号': '1036C', '题目': 'Classy Numbers', '分数': 1900, '标签': 'combinatorics, dp', '解决人数': 7523, '链接': 'https://codeforces.com/problemset/problem/1036/C'}]
+[2023-10-16 03:26:37,769][INFO][- ./cf/a-problem-everyday/2023/10/16/1036C.md generate success]
