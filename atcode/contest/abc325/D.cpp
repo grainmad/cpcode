@@ -16,15 +16,25 @@ void sol() {
     }
 
     sort(a.begin(), a.end());
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
+    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<>> q;
     int ans = 0;
     int p = 0;
 
-    for (int i = 0;; i++) {
+    for (ll i = 0;; i++) {
+        while (q.size() && q.top().first < i) {
+            q.pop();
+        }
+        if (q.empty()) {
+            if (p == n)
+                break;
+            i = a[p].first;
+        }
         while (p < n && i == a[p].first) {
             q.emplace(a[p].second, a[p].first);
             p++;
         }
+        q.pop();
+        ans++;
     }
     cout << ans << "\n";
 }

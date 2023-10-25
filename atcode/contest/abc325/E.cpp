@@ -10,22 +10,35 @@ ll n, a, b, c;
 #define N 1005
 #define INF 0x3f3f3f3f3f3f3f3f
 ll g[N][N];  // memset(g, 0x3f, sizeof(g));
-ll dis[N], vis[N];
+ll dis[2][N], vis[2][N];
 void dijkstra(int n, int s) {
     memset(dis, 0x3f, sizeof(dis));
     memset(vis, 0, sizeof(vis));
-    dis[s] = 0;
+    dis[0][s] = dis[0][s] = 0;
     for (int i = 0; i < n; i++) {
         ll u = 0, mind = INF;
         for (int j = 0; j < n; j++)
-            if (!vis[j] && dis[j] < mind)
-                u = j, mind = dis[j];
-        vis[u] = 1;
+            if (!vis[0][j] && dis[0][j] < mind)
+                u = j, mind = dis[0][j];
+        vis[0][u] = 1;
         for (int v = 0; v < n; v++) {
             if (v == u)
                 continue;
-            if (dis[v] > dis[u] + min(g[u][v] * a, g[u][v] * b + c))
-                dis[v] = dis[u] + min(g[u][v] * a, g[u][v] * b + c);
+            if (dis[0][v] > dis[0][u] + g[u][v] * a)
+                dis[0][v] = dis[0][u] + g[u][v] * a;
+            if (dis[1][v] > dis[0][u] + g[u][v] * b + c)
+                dis[1][v] = dis[0][u] + g[u][v] * b + c;
+        }
+        u = 0, mind = INF;
+        for (int j = 0; j < n; j++)
+            if (!vis[1][j] && dis[1][j] < mind)
+                u = j, mind = dis[1][j];
+        vis[1][u] = 1;
+        for (int v = 0; v < n; v++) {
+            if (v == u)
+                continue;
+            if (dis[1][v] > dis[1][u] + g[u][v] * b + c)
+                dis[1][v] = dis[1][u] + g[u][v] * b + c;
         }
     }
 }
@@ -38,7 +51,7 @@ void sol() {
         }
     }
     dijkstra(n, 0);
-    cout << dis[n - 1];
+    cout << min(dis[0][n - 1], dis[1][n - 1]);
 }
 
 int main() {
