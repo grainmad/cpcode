@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-// #define SINGLE_INPUT
+#define SINGLE_INPUT
 #define ull unsigned long long
 #define ll long long
 #define N 500005
@@ -16,16 +16,18 @@ void sol() {
         cin >> opt >> a >> b;
         if (opt == "+") {
             int ok = 0;
-            if (l.size() && l.begin()->first < a)
-                ok = 1;
-            if (r.size() && r.rbegin()->first > b)
-                ok = 1;
-            l[b]++;
-            r[a]++;
+            l[a]++;
+            r[b]++;
         } else {
-            l[b]--;
-            r[a]--;
+            if (--l[a] == 0)
+                l.erase(a);
+            if (--r[b] == 0)
+                r.erase(b);
         }
+        if (l.size() && r.size() && l.rbegin()->first > r.begin()->first)
+            cout << "YES\n";
+        else
+            cout << "NO\n";
     }
 }
 

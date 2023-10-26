@@ -9,27 +9,24 @@ using namespace std;
 void sol() {
     int n;
     cin >> n;
-    vector<ll> a(n);
+    vector<int> a(n), c(n);
     for (auto& i : a)
         cin >> i;
-    ll ans = 0, p = 0;
-    for (int i = 1; i < n; i++) {
-        if (a[i - 1] > a[i]) {
-            ll t = a[i];
-            while (a[i - 1] > t) {
-                t *= 2;
-                p++;
-            }
-        } else {
-            ll t = a[i];
-            while (a[i - 1] <= t / 2) {
-                t /= 2;
-                p--;
-            }
-            p = max(0LL, p);
+    set<int> st;
+    for (int i = 0; i < n; i++) {
+        if (st.count(a[i]) == 0)
+            c[i]++;
+        if (i)
+            c[i] += c[i - 1];
+        st.insert(a[i]);
+    }
+    st.clear();
+    ll ans = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        if (st.count(a[i]) == 0) {
+            ans += c[i];
         }
-        // cout << p << ", ";
-        ans += p;
+        st.insert(a[i]);
     }
     cout << ans << "\n";
 }
