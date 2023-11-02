@@ -253,3 +253,5 @@
 [2023-10-21 08:15:45,530][INFO][- ./cf/a-problem-everyday/2023/10/21/1759F.md generate success]
 [2023-10-27 09:11:39,767][INFO][- {'contestId': 1744, '编号': '1744F', '题目': 'MEX vs MED', '分数': 2000, '标签': 'math, two pointers', '解决人数': 2431, '链接': 'https://codeforces.com/problemset/problem/1744/F'}]
 [2023-10-27 09:11:39,768][INFO][- ./cf/a-problem-everyday/2023/10/27/1744F.md generate success]
+[2023-11-01 11:07:39,721][INFO][- {'contestId': 1413, '编号': '1413C', '题目': 'Perform Easily', '分数': 1900, '标签': 'binary search, brute force, dp, implementation, sortings, two pointers', '解决人数': 5288, '链接': 'https://codeforces.com/problemset/problem/1413/C'}]
+[2023-11-01 11:07:39,722][INFO][- ./cf/a-problem-everyday/2023/11/01/1413C.md generate success]
