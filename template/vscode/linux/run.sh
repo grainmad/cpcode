@@ -17,6 +17,11 @@ fi
 program="${ws}/a.out"
 input="${ws}/in.txt"
 
+if [ ! -e $input ] 
+then
+        echo "not exist in.txt, creating"
+        touch $input
+fi
 
 if [ "$#" -eq 1 -a -e "$1" ]
 then

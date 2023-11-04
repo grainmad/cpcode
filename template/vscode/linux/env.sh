@@ -1,5 +1,6 @@
-# first set environment variable ws="/root/cpcode" as your workspace dir
-# then source env.shi
+# ~/.bashrc append below
+# export ws="/home/grainmad/cpcode"
+# source ${ws}/template/vscode/linux/env.sh
 
 if [ -z "${ws}" ]
 then

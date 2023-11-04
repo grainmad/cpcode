@@ -255,3 +255,7 @@
 [2023-10-27 09:11:39,768][INFO][- ./cf/a-problem-everyday/2023/10/27/1744F.md generate success]
 [2023-11-01 11:07:39,721][INFO][- {'contestId': 1413, '编号': '1413C', '题目': 'Perform Easily', '分数': 1900, '标签': 'binary search, brute force, dp, implementation, sortings, two pointers', '解决人数': 5288, '链接': 'https://codeforces.com/problemset/problem/1413/C'}]
 [2023-11-01 11:07:39,722][INFO][- ./cf/a-problem-everyday/2023/11/01/1413C.md generate success]
+[2023-11-03 13:22:53,261][INFO][- {'contestId': 1080, '编号': '1080D', '题目': 'Olya and magical square', '分数': 2000, '标签': 'constructive algorithms, implementation, math', '解决人数': 1456, '链接': 'https://codeforces.com/problemset/problem/1080/D'}]
+[2023-11-03 13:22:53,261][INFO][- ./cf/a-problem-everyday/2023/11/03/1080D.md generate success]
+[2023-11-04 20:48:49,855][INFO][- {'contestId': 1117, '编号': '1117C', '题目': 'Magic Ship', '分数': 1900, '标签': 'binary search', '解决人数': 5489, '链接': 'https://codeforces.com/problemset/problem/1117/C'}]
+[2023-11-04 20:48:49,860][INFO][- ./cf/a-problem-everyday/2023/11/04/1117C.md generate success]
