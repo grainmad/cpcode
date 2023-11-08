@@ -261,3 +261,5 @@
 [2023-11-04 20:48:49,860][INFO][- ./cf/a-problem-everyday/2023/11/04/1117C.md generate success]
 [2023-11-05 02:49:44,062][INFO][- {'contestId': 1733, '编号': '1733D2', '题目': 'Zero-One (Hard Version)', '分数': 2000, '标签': 'dp, greedy', '解决人数': 3572, '链接': 'https://codeforces.com/problemset/problem/1733/D2'}]
 [2023-11-05 02:49:44,063][INFO][- ./cf/a-problem-everyday/2023/11/05/1733D2.md generate success]
+[2023-11-06 12:37:03,474][INFO][- {'contestId': 1354, '编号': '1354C2', '题目': 'Not So Simple Polygon Embedding', '分数': 2000, '标签': 'binary search, brute force, geometry, math', '解决人数': 5641, '链接': 'https://codeforces.com/problemset/problem/1354/C2'}]
+[2023-11-06 12:37:03,475][INFO][- ./cf/a-problem-everyday/2023/11/06/1354C2.md generate success]
