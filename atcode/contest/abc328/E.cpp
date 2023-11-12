@@ -6,7 +6,16 @@
 #define MOD 998244353
 using namespace std;
 
+int fa[N];
+
+int getfa(int x) {
+    if (fa[x] == -1)
+        return x;
+    return getfa(fa[x]);
+}
+
 void sol() {
+    memset(fa, -1, sizeof(fa));
     ll n, m, k;
     cin >> n >> m >> k;
     vector<ll> x(m), y(m), w(m);
@@ -15,44 +24,25 @@ void sol() {
     }
 
     ll ans = 1e17;
-    vector<ll> st;
-    auto dfs = [&](auto self, int c) {
-        if (st.size() == n - 1) {
-            vector<vector<int>> g(n + 1);
-            ll tans = 0;
-            for (int i : st) {
-                tans += w[i];
-                // cout << w[i] << " ";
-                tans %= k;
-                g[x[i]].emplace_back(y[i]);
-                g[y[i]].emplace_back(x[i]);
-            }
-            // cout << "\n";
-            vector<int> vis(n + 1);
-            auto check = [&](auto ck, int u, int fa) -> bool {
-                vis[u] = 1;
-                for (auto v : g[u]) {
-                    if (v == fa)
-                        continue;
-                    if (vis[v] || !ck(ck, v, u))
-                        return false;
-                }
-                return true;
-            };
-            if (check(check, x[st[0]], -1)) {
-                // cout << tans << "\n";
-                ans = min(ans, tans);
-            }
+    ll tans = 0;
+    auto dfs = [&](auto self, int c, int cnt) {
+        if (cnt == n - 1) {
+            ans = min(ans, tans % k);
             return;
         }
         if (c == m)
             return;
-        st.push_back(c);
-        self(self, c + 1);
-        st.pop_back();
-        self(self, c + 1);
+        int u = getfa(x[c]), v = getfa(y[c]);
+        if (u != v) {
+            fa[u] = v;
+            tans += w[c];
+            self(self, c + 1, cnt + 1);
+            tans -= w[c];
+            fa[u] = -1;
+        }
+        self(self, c + 1, cnt);
     };
-    dfs(dfs, 0);
+    dfs(dfs, 0, 0);
     cout << ans << "\n";
 }
 
