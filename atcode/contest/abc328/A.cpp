@@ -1,19 +1,22 @@
-
 #include <bits/stdc++.h>
-// #define SINGLE_INPUT
-#define ll long long
+#define SINGLE_INPUT
 #define ull unsigned long long
+#define ll long long
 #define N 500005
 #define MOD 998244353
 using namespace std;
 
 void sol() {
-    int n;
-    cin >> n;
-    double pi = atan(1) * 4;
-    double EPS = 1e-9, R = pi / (2 * n);
-    auto cal = [&](double x) -> double { return fabs(cos(x) / sin(R)); };
-    cout << cal(pi / (4 * n)) << endl;
+    int n, m;
+    cin >> n >> m;
+    int s = 0;
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        if (x <= m)
+            s += x;
+    }
+    cout << s << "\n";
 }
 
 int main() {
