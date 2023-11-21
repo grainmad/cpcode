@@ -9,6 +9,20 @@ using namespace std;
 void sol() {
     int n;
     cin >> n;
+    map<int, int> mp;
+    ll ans = 0;
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        ans += mp[max(2, x)];
+        mp[max(2, x)]++;
+    }
+    cout << ans << "\n";
+}
+
+void sol2() {
+    int n;
+    cin >> n;
     vector<ll> a(n);
     map<ll, int> mp;
     ll ans = 0;
