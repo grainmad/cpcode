@@ -54,12 +54,18 @@ void sol() {
     for (auto& i : s) {
         trie.insert(i);
     }
+    // ll ans = 2 * sz * n;
+    // for (auto i : s) {
+    //     reverse(i.begin(), i.end());
+    //     ans -= trie.query(i);
+    // }
     ll ans = 0;
     for (auto i : s) {
         reverse(i.begin(), i.end());
-        ll tans = i.size() * n + sz;
+        ll tans = (ll)i.size() * n + sz;
         ans += tans - trie.query(i);
     }
+
     cout << ans << "\n";
 }
 
