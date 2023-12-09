@@ -263,3 +263,5 @@
 [2023-11-05 02:49:44,063][INFO][- ./cf/a-problem-everyday/2023/11/05/1733D2.md generate success]
 [2023-11-06 12:37:03,474][INFO][- {'contestId': 1354, '编号': '1354C2', '题目': 'Not So Simple Polygon Embedding', '分数': 2000, '标签': 'binary search, brute force, geometry, math', '解决人数': 5641, '链接': 'https://codeforces.com/problemset/problem/1354/C2'}]
 [2023-11-06 12:37:03,475][INFO][- ./cf/a-problem-everyday/2023/11/06/1354C2.md generate success]
+[2023-12-09 10:57:57,091][INFO][- {'contestId': 1010, '编号': '1010B', '题目': 'Rocket', '分数': 1800, '标签': 'binary search, interactive', '解决人数': 4831, '链接': 'https://codeforces.com/problemset/problem/1010/B'}]
+[2023-12-09 10:57:57,093][INFO][- ./cf/a-problem-everyday/2023/12/09/1010B.md generate success]

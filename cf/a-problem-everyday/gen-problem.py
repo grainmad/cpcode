@@ -119,7 +119,7 @@ def random_problem(all_problems):
     condition = {
         "contestId-lest": 1000,
         "rating-lest": 1800,
-        "rating-most": 2000,
+        "rating-most": 2100,
         # [] 空则选取所有标签
         "include-tags": [] #["constructive algorithms", "greedy", "math", "dp"]
 
