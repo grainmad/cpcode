@@ -1,11 +1,12 @@
-
-
+import requests
+from lxml import etree
 import datetime
 import json
 import logging
 import os
 import random
 import time
+
 
 
 cwd = "./cf/a-problem-everyday/"  # 当前脚本相对项目工作目录位置
@@ -40,7 +41,21 @@ int main() {
     return 0;
 }
 '''
-
+def get_question_meaning(qid):
+    url = 'https://www.luogu.com.cn/problem/'+qid
+    head = {
+        'Referer': 'https://www.lougu.com.cn/',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36'
+    }
+    response = requests.get(url, headers=head)
+    html = response.text
+    if "题目未找到" in html:
+        return ""
+    # print(html)
+    html_element = etree.HTML(html)
+    mean = html_element.xpath(
+            '//article/div/text()')[0]
+    return mean
 
 def init_log(logfile):
     LOG_FORMAT = '[%(asctime)s][%(levelname)s][- %(message)s]'
@@ -153,7 +168,9 @@ def create_file(path, info):
         f.write("tag: "+info['标签'])
         f.write("\n\n")
         f.write("## problem")
-        f.write("\n\n\n\n")
+        f.write("\n\n")
+        f.write(get_question_meaning("CF"+info['编号']))
+        f.write("\n\n")
         f.write("## solution")
         f.write("\n\n\n\n")
         f.write("## code\n\n")
