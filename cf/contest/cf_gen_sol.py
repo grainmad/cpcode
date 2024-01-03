@@ -20,6 +20,21 @@ def process_txts(txts):
     else:
         return process_txt(txts)
 
+def get_question_meaning(qid):
+    url = 'https://www.luogu.com.cn/problem/'+qid
+    head = {
+        'Referer': 'https://www.lougu.com.cn/',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36'
+    }
+    response = requests.get(url, headers=head)
+    html = response.text
+    if "题目未找到" in html:
+        return ""
+    # print(html)
+    html_element = etree.HTML(html)
+    mean = html_element.xpath(
+            '//article/div/text()')[0]
+    return mean
 
 def get_contest_info(id):
     rt = {}
@@ -60,6 +75,7 @@ def get_contest_info(id):
         note = [etree.tostring(i).decode('utf8')
                 for i in problem_statement.xpath('div[@class="note"]/*')]
         # print(note)
+        # print("CF"+id+header[0].split('.')[0])
         rt['problem_statements'].append(
             {
                 "header": {
@@ -69,6 +85,7 @@ def get_contest_info(id):
                     "stdin": header[5] + ": "+header[6],
                     "stdout": header[7] + ": "+header[8]
                 },
+                "question_meaning": get_question_meaning("CF"+id+header[0].split('.')[0]),
                 "problem_description": problem_description,
                 "input_specification": input_specification,
                 "output_specification": output_specification,
@@ -76,7 +93,7 @@ def get_contest_info(id):
                 "note": note
             })
     rt['status'] = "ok" if rt['problem_statements'] else "not ok"
-    print(rt)
+    # print(rt)
     return rt
 
 
@@ -100,7 +117,7 @@ def run():
 
     def update():
         old_txt = gettxt(dir+'/'+id+".md")
-        # print("old ", old_txt)
+        print("old ", old_txt)
         new_txt = []
         idx = 0
         skip = False
@@ -123,7 +140,7 @@ def run():
                     new_txt.append(
                         ''.join(gettxt(dir+"/"+prefix+'.cpp')))
                 new_txt.append('\n')
-        # print("new ", new_txt)
+        print("new ", new_txt)
         with open(dir+'/'+id+".md", 'w', encoding='utf8') as f:
             f.writelines(new_txt)
 
@@ -133,7 +150,8 @@ def run():
         for problem in info['problem_statements']:
             prefix = problem['header']['title'].split('. ')[0]
             txt += ['## ['+problem['header']['title']+']('+'https://codeforces.com/contest/'+id+'/problem/'+prefix+')\n\n',
-                    '### 题意\n\n\n\n',
+                    '### 题意\n\n',
+                    problem['question_meaning']+"\n\n",
                     '### 思路\n\n\n\n',
                     '### 代码\n\n',
                     '``` cpp\n',
