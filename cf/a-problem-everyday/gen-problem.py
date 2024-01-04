@@ -49,7 +49,7 @@ def get_question_meaning(qid):
     }
     response = requests.get(url, headers=head)
     html = response.text
-    if "题目未找到" in html:
+    if "出错了" in html:
         return ""
     # print(html)
     html_element = etree.HTML(html)
