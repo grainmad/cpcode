@@ -1,7 +1,7 @@
 # cpcode
 competitive programming code
 
-* /0x3f [灵神](https://leetcode.cn/u/endlesscheng/)的每日一题，~~好久没写了~~
+* /0x3f [灵神](https://leetcode.cn/u/endlesscheng/)的每日一题，好久没写了
 
 * /atcode [AtCoder](https://atcoder.jp/)是日本最大的算法竞技网站。本菜鸡只配打打abc。此外写了个python脚本atcode_gen_sol.py用于爬取比赛题目生成题解模板。
 

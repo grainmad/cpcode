@@ -8,13 +8,8 @@ then
         exit 1
 fi
 
-if test -z "`which python`" -a -z "`which python3`"
-then
-        echo can not find python
-        exit 2
-fi
 
-py=`which python`
+py=`which python3`
 
 # echo $py
 
