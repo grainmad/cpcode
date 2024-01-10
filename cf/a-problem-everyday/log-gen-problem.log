@@ -279,3 +279,5 @@
 [2024-01-07 22:29:41,708][INFO][- ./cf/a-problem-everyday/2024/01/07/1238D.md generate success]
 [2024-01-09 19:20:12,261][INFO][- {'contestId': 1209, '编号': '1209E1', '题目': 'Rotate Columns (easy version)', '分数': 2000, '标签': 'bitmasks, brute force, dp, greedy, sortings', '解决人数': 2481, '链接': 'https://codeforces.com/problemset/problem/1209/E1'}]
 [2024-01-09 19:20:12,727][INFO][- ./cf/a-problem-everyday/2024/01/09/1209E1.md generate success]
+[2024-01-10 13:36:29,938][INFO][- {'contestId': 1747, '编号': '1747D', '题目': 'Yet Another Problem', '分数': 1900, '标签': 'binary search, bitmasks, constructive algorithms, data structures', '解决人数': 4074, '链接': 'https://codeforces.com/problemset/problem/1747/D'}]
+[2024-01-10 13:36:30,346][INFO][- ./cf/a-problem-everyday/2024/01/10/1747D.md generate success]
