@@ -281,3 +281,5 @@
 [2024-01-09 19:20:12,727][INFO][- ./cf/a-problem-everyday/2024/01/09/1209E1.md generate success]
 [2024-01-10 13:36:29,938][INFO][- {'contestId': 1747, '编号': '1747D', '题目': 'Yet Another Problem', '分数': 1900, '标签': 'binary search, bitmasks, constructive algorithms, data structures', '解决人数': 4074, '链接': 'https://codeforces.com/problemset/problem/1747/D'}]
 [2024-01-10 13:36:30,346][INFO][- ./cf/a-problem-everyday/2024/01/10/1747D.md generate success]
+[2024-01-11 13:47:18,683][INFO][- {'contestId': 1486, '编号': '1486D', '题目': 'Max Median', '分数': 2100, '标签': 'binary search, data structures, dp', '解决人数': 5766, '链接': 'https://codeforces.com/problemset/problem/1486/D'}]
+[2024-01-11 13:47:19,099][INFO][- ./cf/a-problem-everyday/2024/01/11/1486D.md generate success]
