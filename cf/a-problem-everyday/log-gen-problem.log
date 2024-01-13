@@ -283,3 +283,7 @@
 [2024-01-10 13:36:30,346][INFO][- ./cf/a-problem-everyday/2024/01/10/1747D.md generate success]
 [2024-01-11 13:47:18,683][INFO][- {'contestId': 1486, '编号': '1486D', '题目': 'Max Median', '分数': 2100, '标签': 'binary search, data structures, dp', '解决人数': 5766, '链接': 'https://codeforces.com/problemset/problem/1486/D'}]
 [2024-01-11 13:47:19,099][INFO][- ./cf/a-problem-everyday/2024/01/11/1486D.md generate success]
+[2024-01-12 12:26:29,990][INFO][- {'contestId': 1467, '编号': '1467C', '题目': 'Three Bags', '分数': 1900, '标签': 'constructive algorithms, greedy', '解决人数': 5935, '链接': 'https://codeforces.com/problemset/problem/1467/C'}]
+[2024-01-12 12:26:30,399][INFO][- ./cf/a-problem-everyday/2024/01/12/1467C.md generate success]
+[2024-01-13 17:16:56,725][INFO][- {'contestId': 1372, '编号': '1372D', '题目': 'Omkar and Circle', '分数': 2100, '标签': 'brute force, dp, games, greedy', '解决人数': 5103, '链接': 'https://codeforces.com/problemset/problem/1372/D'}]
+[2024-01-13 17:16:57,142][INFO][- ./cf/a-problem-everyday/2024/01/13/1372D.md generate success]
