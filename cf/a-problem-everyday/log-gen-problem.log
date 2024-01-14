@@ -287,3 +287,5 @@
 [2024-01-12 12:26:30,399][INFO][- ./cf/a-problem-everyday/2024/01/12/1467C.md generate success]
 [2024-01-13 17:16:56,725][INFO][- {'contestId': 1372, '编号': '1372D', '题目': 'Omkar and Circle', '分数': 2100, '标签': 'brute force, dp, games, greedy', '解决人数': 5103, '链接': 'https://codeforces.com/problemset/problem/1372/D'}]
 [2024-01-13 17:16:57,142][INFO][- ./cf/a-problem-everyday/2024/01/13/1372D.md generate success]
+[2024-01-14 11:42:41,813][INFO][- {'contestId': 1624, '编号': '1624G', '题目': 'MinOr Tree', '分数': 1900, '标签': 'bitmasks, dfs and similar, dsu, graphs, greedy', '解决人数': 4934, '链接': 'https://codeforces.com/problemset/problem/1624/G'}]
+[2024-01-14 11:42:42,110][INFO][- ./cf/a-problem-everyday/2024/01/14/1624G.md generate success]
