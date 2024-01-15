@@ -289,3 +289,5 @@
 [2024-01-13 17:16:57,142][INFO][- ./cf/a-problem-everyday/2024/01/13/1372D.md generate success]
 [2024-01-14 11:42:41,813][INFO][- {'contestId': 1624, '编号': '1624G', '题目': 'MinOr Tree', '分数': 1900, '标签': 'bitmasks, dfs and similar, dsu, graphs, greedy', '解决人数': 4934, '链接': 'https://codeforces.com/problemset/problem/1624/G'}]
 [2024-01-14 11:42:42,110][INFO][- ./cf/a-problem-everyday/2024/01/14/1624G.md generate success]
+[2024-01-15 11:37:16,235][INFO][- {'contestId': 1369, '编号': '1369D', '题目': 'TediousLee', '分数': 1900, '标签': 'dp, graphs, greedy, math, trees', '解决人数': 7947, '链接': 'https://codeforces.com/problemset/problem/1369/D'}]
+[2024-01-15 11:37:16,665][INFO][- ./cf/a-problem-everyday/2024/01/15/1369D.md generate success]
