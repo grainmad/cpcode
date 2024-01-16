@@ -291,3 +291,5 @@
 [2024-01-14 11:42:42,110][INFO][- ./cf/a-problem-everyday/2024/01/14/1624G.md generate success]
 [2024-01-15 11:37:16,235][INFO][- {'contestId': 1369, '编号': '1369D', '题目': 'TediousLee', '分数': 1900, '标签': 'dp, graphs, greedy, math, trees', '解决人数': 7947, '链接': 'https://codeforces.com/problemset/problem/1369/D'}]
 [2024-01-15 11:37:16,665][INFO][- ./cf/a-problem-everyday/2024/01/15/1369D.md generate success]
+[2024-01-16 14:50:48,775][INFO][- {'contestId': 1394, '编号': '1394A', '题目': 'Boboniu Chats with Du', '分数': 1800, '标签': 'dp, greedy, sortings, two pointers', '解决人数': 6193, '链接': 'https://codeforces.com/problemset/problem/1394/A'}]
+[2024-01-16 14:50:49,005][INFO][- ./cf/a-problem-everyday/2024/01/16/1394A.md generate success]
