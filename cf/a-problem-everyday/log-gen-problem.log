@@ -293,3 +293,5 @@
 [2024-01-15 11:37:16,665][INFO][- ./cf/a-problem-everyday/2024/01/15/1369D.md generate success]
 [2024-01-16 14:50:48,775][INFO][- {'contestId': 1394, '编号': '1394A', '题目': 'Boboniu Chats with Du', '分数': 1800, '标签': 'dp, greedy, sortings, two pointers', '解决人数': 6193, '链接': 'https://codeforces.com/problemset/problem/1394/A'}]
 [2024-01-16 14:50:49,005][INFO][- ./cf/a-problem-everyday/2024/01/16/1394A.md generate success]
+[2024-01-17 10:29:34,067][INFO][- {'contestId': 1296, '编号': '1296E2', '题目': 'String Coloring (hard version)', '分数': 2000, '标签': 'data structures, dp', '解决人数': 4441, '链接': 'https://codeforces.com/problemset/problem/1296/E2'}]
+[2024-01-17 10:29:34,517][INFO][- ./cf/a-problem-everyday/2024/01/17/1296E2.md generate success]
