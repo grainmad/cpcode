@@ -295,3 +295,5 @@
 [2024-01-16 14:50:49,005][INFO][- ./cf/a-problem-everyday/2024/01/16/1394A.md generate success]
 [2024-01-17 10:29:34,067][INFO][- {'contestId': 1296, '编号': '1296E2', '题目': 'String Coloring (hard version)', '分数': 2000, '标签': 'data structures, dp', '解决人数': 4441, '链接': 'https://codeforces.com/problemset/problem/1296/E2'}]
 [2024-01-17 10:29:34,517][INFO][- ./cf/a-problem-everyday/2024/01/17/1296E2.md generate success]
+[2024-01-18 12:55:58,441][INFO][- {'contestId': 1878, '编号': '1878F', '题目': 'Vasilije Loves Number Theory', '分数': 1900, '标签': 'brute force, math, number theory', '解决人数': 3364, '链接': 'https://codeforces.com/problemset/problem/1878/F'}]
+[2024-01-18 12:55:58,832][INFO][- ./cf/a-problem-everyday/2024/01/18/1878F.md generate success]
