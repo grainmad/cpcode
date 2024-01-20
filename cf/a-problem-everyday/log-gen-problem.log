@@ -297,3 +297,5 @@
 [2024-01-17 10:29:34,517][INFO][- ./cf/a-problem-everyday/2024/01/17/1296E2.md generate success]
 [2024-01-18 12:55:58,441][INFO][- {'contestId': 1878, '编号': '1878F', '题目': 'Vasilije Loves Number Theory', '分数': 1900, '标签': 'brute force, math, number theory', '解决人数': 3364, '链接': 'https://codeforces.com/problemset/problem/1878/F'}]
 [2024-01-18 12:55:58,832][INFO][- ./cf/a-problem-everyday/2024/01/18/1878F.md generate success]
+[2024-01-19 20:06:50,198][INFO][- {'contestId': 1148, '编号': '1148D', '题目': 'Dirty Deeds Done Dirt Cheap', '分数': 1800, '标签': 'greedy, sortings', '解决人数': 4752, '链接': 'https://codeforces.com/problemset/problem/1148/D'}]
+[2024-01-19 20:06:50,659][INFO][- ./cf/a-problem-everyday/2024/01/19/1148D.md generate success]
