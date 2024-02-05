@@ -5,6 +5,21 @@ import os
 from lxml import etree
 import requests
 
+def get_question_meaning(qid):
+    url = 'https://www.luogu.com.cn/problem/'+qid
+    head = {
+        'Referer': 'https://www.lougu.com.cn/',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36'
+    }
+    response = requests.get(url, headers=head)
+    html = response.text
+    if "出错了" in html:
+        return ""
+    # print(html)
+    html_element = etree.HTML(html)
+    mean = html_element.xpath(
+            '//article/div/text()')[0]
+    return mean
 
 def get_contest_info(id):
     url = 'https://atcoder.jp/contests/'+id+'/tasks'
@@ -24,14 +39,16 @@ def get_contest_info(id):
     link = html_element.xpath(
         '//*[@id="main-container"]/div[1]/div[2]/div/table/tbody//td[2]/a/@href')
     # print(list(zip(prefix, title, link)))
-    return title, [(i, i+' - '+j, 'https://atcoder.jp'+k) for i, j, k in zip(prefix, ptitle, link)]
+    meaning = [get_question_meaning("AT_"+i.split('/')[-1]) for i in link]
+    # print(meaning)
+    return title, [(i, i+' - '+j, 'https://atcoder.jp'+k, l) for i, j, k, l in zip(prefix, ptitle, link, meaning)]
 
 
 # print(get_contest_info('abc303'))
 
 
 def run():
-    # id = 'abc303'
+    # id = 'abc339'
     id = input("Please enter contets id: ")
     title, info = get_contest_info(id)
     # print(title, info)
@@ -76,9 +93,11 @@ def run():
     def create():
         txt = ['# ' + title + '\n',
                '[Complete problemset](https://atcoder.jp/contests/'+id+'/tasks)\n\n']
-        for i, j, k in info:
+        for i, j, k,l in info:
             txt += ['## ['+j+']('+k+')\n\n',
-                    '### 题意\n\n\n\n',
+                    '### 题意\n\n',
+                    l,
+                    '\n\n',
                     '### 思路\n\n\n\n',
                     '### 代码\n\n',
                     '``` cpp\n',
