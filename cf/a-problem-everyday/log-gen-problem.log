@@ -299,3 +299,7 @@
 [2024-01-18 12:55:58,832][INFO][- ./cf/a-problem-everyday/2024/01/18/1878F.md generate success]
 [2024-01-19 20:06:50,198][INFO][- {'contestId': 1148, '编号': '1148D', '题目': 'Dirty Deeds Done Dirt Cheap', '分数': 1800, '标签': 'greedy, sortings', '解决人数': 4752, '链接': 'https://codeforces.com/problemset/problem/1148/D'}]
 [2024-01-19 20:06:50,659][INFO][- ./cf/a-problem-everyday/2024/01/19/1148D.md generate success]
+[2024-02-05 17:03:49,051][INFO][- {'contestId': 1847, '编号': '1847D', '题目': 'Professor Higashikata', '分数': 1900, '标签': 'data structures, dsu, greedy, implementation, strings', '解决人数': 3396, '链接': 'https://codeforces.com/problemset/problem/1847/D'}]
+[2024-02-05 17:03:49,484][INFO][- ./cf/a-problem-everyday/2024/02/05/1847D.md generate success]
+[2024-02-06 12:53:50,701][INFO][- {'contestId': 1560, '编号': '1560F2', '题目': 'Nearest Beautiful Number (hard version)', '分数': 2100, '标签': 'bitmasks, brute force, constructive algorithms, dfs and similar, dp, greedy', '解决人数': 4090, '链接': 'https://codeforces.com/problemset/problem/1560/F2'}]
+[2024-02-06 12:53:51,733][INFO][- ./cf/a-problem-everyday/2024/02/06/1560F2.md generate success]
