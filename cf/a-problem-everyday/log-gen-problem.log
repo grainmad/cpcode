@@ -303,3 +303,5 @@
 [2024-02-05 17:03:49,484][INFO][- ./cf/a-problem-everyday/2024/02/05/1847D.md generate success]
 [2024-02-06 12:53:50,701][INFO][- {'contestId': 1560, '编号': '1560F2', '题目': 'Nearest Beautiful Number (hard version)', '分数': 2100, '标签': 'bitmasks, brute force, constructive algorithms, dfs and similar, dp, greedy', '解决人数': 4090, '链接': 'https://codeforces.com/problemset/problem/1560/F2'}]
 [2024-02-06 12:53:51,733][INFO][- ./cf/a-problem-everyday/2024/02/06/1560F2.md generate success]
+[2024-02-07 20:00:41,678][INFO][- {'contestId': 1067, '编号': '1067B', '题目': 'Multihedgehog', '分数': 1800, '标签': 'dfs and similar, graphs, shortest paths', '解决人数': 2436, '链接': 'https://codeforces.com/problemset/problem/1067/B'}]
+[2024-02-07 20:00:42,108][INFO][- ./cf/a-problem-everyday/2024/02/07/1067B.md generate success]
