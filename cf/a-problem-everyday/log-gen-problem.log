@@ -305,3 +305,5 @@
 [2024-02-06 12:53:51,733][INFO][- ./cf/a-problem-everyday/2024/02/06/1560F2.md generate success]
 [2024-02-07 20:00:41,678][INFO][- {'contestId': 1067, '编号': '1067B', '题目': 'Multihedgehog', '分数': 1800, '标签': 'dfs and similar, graphs, shortest paths', '解决人数': 2436, '链接': 'https://codeforces.com/problemset/problem/1067/B'}]
 [2024-02-07 20:00:42,108][INFO][- ./cf/a-problem-everyday/2024/02/07/1067B.md generate success]
+[2024-02-08 23:07:57,556][INFO][- {'contestId': 1019, '编号': '1019B', '题目': 'The hat', '分数': 2000, '标签': 'binary search, interactive', '解决人数': 1871, '链接': 'https://codeforces.com/problemset/problem/1019/B'}]
+[2024-02-08 23:07:58,002][INFO][- ./cf/a-problem-everyday/2024/02/08/1019B.md generate success]
