@@ -307,3 +307,7 @@
 [2024-02-07 20:00:42,108][INFO][- ./cf/a-problem-everyday/2024/02/07/1067B.md generate success]
 [2024-02-08 23:07:57,556][INFO][- {'contestId': 1019, '编号': '1019B', '题目': 'The hat', '分数': 2000, '标签': 'binary search, interactive', '解决人数': 1871, '链接': 'https://codeforces.com/problemset/problem/1019/B'}]
 [2024-02-08 23:07:58,002][INFO][- ./cf/a-problem-everyday/2024/02/08/1019B.md generate success]
+[2024-02-10 13:54:14,734][INFO][- {'contestId': 1263, '编号': '1263E', '题目': 'Editor', '分数': 2100, '标签': 'data structures, implementation', '解决人数': 2508, '链接': 'https://codeforces.com/problemset/problem/1263/E'}]
+[2024-02-10 13:54:15,176][INFO][- ./cf/a-problem-everyday/2024/02/10/1263E.md generate success]
+[2024-02-11 14:53:42,519][INFO][- {'contestId': 1342, '编号': '1342D', '题目': 'Multiple Testcases', '分数': 1900, '标签': 'binary search, constructive algorithms, data structures, greedy, sortings, two pointers', '解决人数': 5775, '链接': 'https://codeforces.com/problemset/problem/1342/D'}]
+[2024-02-11 14:53:42,928][INFO][- ./cf/a-problem-everyday/2024/02/11/1342D.md generate success]
