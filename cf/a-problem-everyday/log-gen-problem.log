@@ -317,3 +317,5 @@
 [2024-02-12 08:24:05,356][INFO][- ./cf/a-problem-everyday/2024/02/12/1838D.md generate success]
 [2024-02-12 09:26:40,113][INFO][- {'contestId': 1729, '编号': '1729G', '题目': 'Cut Substrings', '分数': 2100, '标签': 'combinatorics, dp, hashing, strings, two pointers', '解决人数': 1978, '链接': 'https://codeforces.com/problemset/problem/1729/G'}]
 [2024-02-12 09:26:40,540][INFO][- ./cf/a-problem-everyday/2024/02/12/1729G.md generate success]
+[2024-02-14 14:49:20,116][INFO][- {'contestId': 1525, '编号': '1525E', '题目': 'Assimilation IV', '分数': 2100, '标签': 'combinatorics, dp, math, probabilities, two pointers', '解决人数': 1880, '链接': 'https://codeforces.com/problemset/problem/1525/E'}]
+[2024-02-14 14:49:20,579][INFO][- ./cf/a-problem-everyday/2024/02/14/1525E.md generate success]
