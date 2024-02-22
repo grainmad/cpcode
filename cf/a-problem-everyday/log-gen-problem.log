@@ -319,3 +319,5 @@
 [2024-02-12 09:26:40,540][INFO][- ./cf/a-problem-everyday/2024/02/12/1729G.md generate success]
 [2024-02-14 14:49:20,116][INFO][- {'contestId': 1525, '编号': '1525E', '题目': 'Assimilation IV', '分数': 2100, '标签': 'combinatorics, dp, math, probabilities, two pointers', '解决人数': 1880, '链接': 'https://codeforces.com/problemset/problem/1525/E'}]
 [2024-02-14 14:49:20,579][INFO][- ./cf/a-problem-everyday/2024/02/14/1525E.md generate success]
+[2024-02-23 00:24:48,426][INFO][- {'contestId': 1032, '编号': '1032D', '题目': 'Barcelonian Distance', '分数': 1900, '标签': 'geometry, implementation', '解决人数': 2529, '链接': 'https://codeforces.com/problemset/problem/1032/D'}]
+[2024-02-23 00:24:48,852][INFO][- ./cf/a-problem-everyday/2024/02/23/1032D.md generate success]
