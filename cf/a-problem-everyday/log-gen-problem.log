@@ -321,3 +321,5 @@
 [2024-02-14 14:49:20,579][INFO][- ./cf/a-problem-everyday/2024/02/14/1525E.md generate success]
 [2024-02-23 00:24:48,426][INFO][- {'contestId': 1032, '编号': '1032D', '题目': 'Barcelonian Distance', '分数': 1900, '标签': 'geometry, implementation', '解决人数': 2529, '链接': 'https://codeforces.com/problemset/problem/1032/D'}]
 [2024-02-23 00:24:48,852][INFO][- ./cf/a-problem-everyday/2024/02/23/1032D.md generate success]
+[2024-02-24 22:58:36,916][INFO][- {'contestId': 1391, '编号': '1391D', '题目': '505', '分数': 2000, '标签': 'bitmasks, brute force, constructive algorithms, dp, greedy, implementation', '解决人数': 4814, '链接': 'https://codeforces.com/problemset/problem/1391/D'}]
+[2024-02-24 22:58:37,395][INFO][- ./cf/a-problem-everyday/2024/02/24/1391D.md generate success]
