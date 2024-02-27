@@ -327,3 +327,5 @@
 [2024-02-25 18:02:08,814][INFO][- ./cf/a-problem-everyday/2024/02/25/1914F.md generate success]
 [2024-02-26 11:44:55,798][INFO][- {'contestId': 1707, '编号': '1707B', '题目': 'Difference Array', '分数': 1900, '标签': 'brute force, data structures, implementation, sortings', '解决人数': 5376, '链接': 'https://codeforces.com/problemset/problem/1707/B'}]
 [2024-02-26 11:44:56,263][INFO][- ./cf/a-problem-everyday/2024/02/26/1707B.md generate success]
+[2024-02-27 10:44:04,414][INFO][- {'contestId': 1338, '编号': '1338B', '题目': 'Edge Weight Assignment', '分数': 1800, '标签': 'bitmasks, constructive algorithms, dfs and similar, greedy, math, trees', '解决人数': 7883, '链接': 'https://codeforces.com/problemset/problem/1338/B'}]
+[2024-02-27 10:44:04,896][INFO][- ./cf/a-problem-everyday/2024/02/27/1338B.md generate success]
