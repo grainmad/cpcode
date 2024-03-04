@@ -337,3 +337,5 @@
 [2024-03-01 15:14:05,379][INFO][- ./cf/a-problem-everyday/2024/03/01/1190D.md generate success]
 [2024-03-02 11:26:21,963][INFO][- {'contestId': 1216, '编号': '1216E1', '题目': 'Numerical Sequence (easy version)', '分数': 1900, '标签': 'binary search, brute force, math', '解决人数': 3282, '链接': 'https://codeforces.com/problemset/problem/1216/E1'}]
 [2024-03-02 11:26:24,153][INFO][- ./cf/a-problem-everyday/2024/03/02/1216E1.md generate success]
+[2024-03-04 15:55:52,201][INFO][- {'contestId': 1556, '编号': '1556C', '题目': 'Compressed Bracket Sequence', '分数': 1800, '标签': 'brute force, implementation', '解决人数': 5554, '链接': 'https://codeforces.com/problemset/problem/1556/C'}]
+[2024-03-04 15:55:54,390][INFO][- ./cf/a-problem-everyday/2024/03/04/1556C.md generate success]
