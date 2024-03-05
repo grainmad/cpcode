@@ -7,3 +7,5 @@ out.txt
 hexo-deployer-setting.json
 tmp/
 a.out
+*.cpp.exc
+*.cpp.txt
