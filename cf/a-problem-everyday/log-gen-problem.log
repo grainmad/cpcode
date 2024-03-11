@@ -361,3 +361,5 @@
 [2024-03-08 11:48:47,153][INFO][- ./cf/a-problem-everyday/2024/03/08/1611D.md generate success]
 [2024-03-08 16:03:22,331][INFO][- {'contestId': 1551, '编号': '1551D1', '题目': 'Domino (easy version)', '分数': 1700, '标签': 'constructive algorithms, math', '解决人数': 6758, '链接': 'https://codeforces.com/problemset/problem/1551/D1'}]
 [2024-03-08 16:03:25,420][INFO][- ./cf/a-problem-everyday/2024/03/08/1551D1.md generate success]
+[2024-03-10 18:00:35,200][INFO][- {'contestId': 1355, '编号': '1355E', '题目': 'Restorer Distance', '分数': 2100, '标签': 'binary search, greedy, math, sortings, ternary search', '解决人数': 4642, '链接': 'https://codeforces.com/problemset/problem/1355/E'}]
+[2024-03-10 18:00:37,128][INFO][- ./cf/a-problem-everyday/2024/03/10/1355E.md generate success]
