@@ -363,3 +363,7 @@
 [2024-03-08 16:03:25,420][INFO][- ./cf/a-problem-everyday/2024/03/08/1551D1.md generate success]
 [2024-03-10 18:00:35,200][INFO][- {'contestId': 1355, '编号': '1355E', '题目': 'Restorer Distance', '分数': 2100, '标签': 'binary search, greedy, math, sortings, ternary search', '解决人数': 4642, '链接': 'https://codeforces.com/problemset/problem/1355/E'}]
 [2024-03-10 18:00:37,128][INFO][- ./cf/a-problem-everyday/2024/03/10/1355E.md generate success]
+[2024-03-12 14:17:24,722][INFO][- {'contestId': 1423, '编号': '1423B', '题目': 'Valuable Paper', '分数': 1900, '标签': 'binary search, flows, graph matchings, graphs', '解决人数': 1707, '链接': 'https://codeforces.com/problemset/problem/1423/B'}]
+[2024-03-12 14:17:27,210][INFO][- ./cf/a-problem-everyday/2024/03/12/1423B.md generate success]
+[2024-03-12 14:46:06,692][INFO][- {'contestId': 1227, '编号': '1227D2', '题目': 'Optimal Subsequences (Hard Version)', '分数': 1800, '标签': 'data structures, greedy', '解决人数': 4193, '链接': 'https://codeforces.com/problemset/problem/1227/D2'}]
+[2024-03-12 14:46:11,570][INFO][- ./cf/a-problem-everyday/2024/03/12/1227D2.md generate success]
