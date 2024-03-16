@@ -371,3 +371,5 @@
 [2024-03-13 16:10:33,271][INFO][- ./cf/a-problem-everyday/2024/03/13/1383B.md generate success]
 [2024-03-14 12:54:03,745][INFO][- {'contestId': 1717, '编号': '1717D', '题目': 'Madoka and The Corruption Scheme', '分数': 1900, '标签': 'combinatorics, constructive algorithms, greedy, math', '解决人数': 4169, '链接': 'https://codeforces.com/problemset/problem/1717/D'}]
 [2024-03-14 12:54:06,830][INFO][- ./cf/a-problem-everyday/2024/03/14/1717D.md generate success]
+[2024-03-15 13:22:48,916][INFO][- {'contestId': 1012, '编号': '1012C', '题目': 'Hills', '分数': 1900, '标签': 'dp', '解决人数': 3174, '链接': 'https://codeforces.com/problemset/problem/1012/C'}]
+[2024-03-15 13:22:51,869][INFO][- ./cf/a-problem-everyday/2024/03/15/1012C.md generate success]
