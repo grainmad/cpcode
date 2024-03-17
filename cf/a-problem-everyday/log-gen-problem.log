@@ -373,3 +373,5 @@
 [2024-03-14 12:54:06,830][INFO][- ./cf/a-problem-everyday/2024/03/14/1717D.md generate success]
 [2024-03-15 13:22:48,916][INFO][- {'contestId': 1012, '编号': '1012C', '题目': 'Hills', '分数': 1900, '标签': 'dp', '解决人数': 3174, '链接': 'https://codeforces.com/problemset/problem/1012/C'}]
 [2024-03-15 13:22:51,869][INFO][- ./cf/a-problem-everyday/2024/03/15/1012C.md generate success]
+[2024-03-17 17:33:39,767][INFO][- {'contestId': 1725, '编号': '1725M', '题目': 'Moving Both Hands', '分数': 1800, '标签': 'dp, graphs, shortest paths', '解决人数': 2745, '链接': 'https://codeforces.com/problemset/problem/1725/M'}]
+[2024-03-17 17:33:42,246][INFO][- ./cf/a-problem-everyday/2024/03/17/1725M.md generate success]
