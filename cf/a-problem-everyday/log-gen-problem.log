@@ -377,3 +377,5 @@
 [2024-03-17 17:33:42,246][INFO][- ./cf/a-problem-everyday/2024/03/17/1725M.md generate success]
 [2024-03-18 21:09:58,014][INFO][- {'contestId': 1396, '编号': '1396B', '题目': 'Stoned Game', '分数': 1800, '标签': 'brute force, constructive algorithms, games, greedy', '解决人数': 10718, '链接': 'https://codeforces.com/problemset/problem/1396/B'}]
 [2024-03-18 21:10:02,113][INFO][- ./cf/a-problem-everyday/2024/03/18/1396B.md generate success]
+[2024-03-19 19:08:19,749][INFO][- {'contestId': 1726, '编号': '1726D', '题目': 'Edge Split', '分数': 2000, '标签': 'brute force, constructive algorithms, dfs and similar, dsu, graphs, probabilities, trees', '解决人数': 3485, '链接': 'https://codeforces.com/problemset/problem/1726/D'}]
+[2024-03-19 19:08:22,145][INFO][- ./cf/a-problem-everyday/2024/03/19/1726D.md generate success]
