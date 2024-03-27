@@ -379,3 +379,5 @@
 [2024-03-18 21:10:02,113][INFO][- ./cf/a-problem-everyday/2024/03/18/1396B.md generate success]
 [2024-03-19 19:08:19,749][INFO][- {'contestId': 1726, '编号': '1726D', '题目': 'Edge Split', '分数': 2000, '标签': 'brute force, constructive algorithms, dfs and similar, dsu, graphs, probabilities, trees', '解决人数': 3485, '链接': 'https://codeforces.com/problemset/problem/1726/D'}]
 [2024-03-19 19:08:22,145][INFO][- ./cf/a-problem-everyday/2024/03/19/1726D.md generate success]
+[2024-03-26 19:51:00,513][INFO][- {'contestId': 1883, '编号': '1883G2', '题目': 'Dances (Hard Version)', '分数': 1900, '标签': 'binary search, greedy, sortings, two pointers', '解决人数': 4609, '链接': 'https://codeforces.com/problemset/problem/1883/G2'}]
+[2024-03-26 19:51:06,751][INFO][- ./cf/a-problem-everyday/2024/03/26/1883G2.md generate success]
