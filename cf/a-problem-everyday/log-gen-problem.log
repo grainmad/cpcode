@@ -387,3 +387,5 @@
 [2024-03-28 16:51:54,466][INFO][- ./cf/a-problem-everyday/2024/03/28/1151C.md generate success]
 [2024-03-29 15:05:04,549][INFO][- {'contestId': 1714, '编号': '1714F', '题目': 'Build a Tree and That Is It', '分数': 1900, '标签': 'constructive algorithms, implementation, trees', '解决人数': 2990, '链接': 'https://codeforces.com/problemset/problem/1714/F'}]
 [2024-03-29 15:05:06,962][INFO][- ./cf/a-problem-everyday/2024/03/29/1714F.md generate success]
+[2024-03-30 00:12:06,488][INFO][- {'contestId': 1213, '编号': '1213G', '题目': 'Path Queries', '分数': 1800, '标签': 'divide and conquer, dsu, graphs, sortings, trees', '解决人数': 6459, '链接': 'https://codeforces.com/problemset/problem/1213/G'}]
+[2024-03-30 00:12:09,689][INFO][- ./cf/a-problem-everyday/2024/03/30/1213G.md generate success]
