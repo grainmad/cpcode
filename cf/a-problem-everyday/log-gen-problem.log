@@ -381,3 +381,7 @@
 [2024-03-19 19:08:22,145][INFO][- ./cf/a-problem-everyday/2024/03/19/1726D.md generate success]
 [2024-03-26 19:51:00,513][INFO][- {'contestId': 1883, '编号': '1883G2', '题目': 'Dances (Hard Version)', '分数': 1900, '标签': 'binary search, greedy, sortings, two pointers', '解决人数': 4609, '链接': 'https://codeforces.com/problemset/problem/1883/G2'}]
 [2024-03-26 19:51:06,751][INFO][- ./cf/a-problem-everyday/2024/03/26/1883G2.md generate success]
+[2024-03-28 03:32:56,899][INFO][- {'contestId': 1442, '编号': '1442A', '题目': 'Extreme Subtraction', '分数': 1800, '标签': 'constructive algorithms, dp, greedy', '解决人数': 8431, '链接': 'https://codeforces.com/problemset/problem/1442/A'}]
+[2024-03-28 03:32:59,228][INFO][- ./cf/a-problem-everyday/2024/03/28/1442A.md generate success]
+[2024-03-28 16:51:52,194][INFO][- {'contestId': 1151, '编号': '1151C', '题目': 'Problem for Nazar', '分数': 1800, '标签': 'constructive algorithms, math', '解决人数': 5077, '链接': 'https://codeforces.com/problemset/problem/1151/C'}]
+[2024-03-28 16:51:54,466][INFO][- ./cf/a-problem-everyday/2024/03/28/1151C.md generate success]
