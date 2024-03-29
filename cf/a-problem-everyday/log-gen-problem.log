@@ -385,3 +385,5 @@
 [2024-03-28 03:32:59,228][INFO][- ./cf/a-problem-everyday/2024/03/28/1442A.md generate success]
 [2024-03-28 16:51:52,194][INFO][- {'contestId': 1151, '编号': '1151C', '题目': 'Problem for Nazar', '分数': 1800, '标签': 'constructive algorithms, math', '解决人数': 5077, '链接': 'https://codeforces.com/problemset/problem/1151/C'}]
 [2024-03-28 16:51:54,466][INFO][- ./cf/a-problem-everyday/2024/03/28/1151C.md generate success]
+[2024-03-29 15:05:04,549][INFO][- {'contestId': 1714, '编号': '1714F', '题目': 'Build a Tree and That Is It', '分数': 1900, '标签': 'constructive algorithms, implementation, trees', '解决人数': 2990, '链接': 'https://codeforces.com/problemset/problem/1714/F'}]
+[2024-03-29 15:05:06,962][INFO][- ./cf/a-problem-everyday/2024/03/29/1714F.md generate success]

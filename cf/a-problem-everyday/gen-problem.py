@@ -116,6 +116,7 @@ def problems_filter(condition, all_problems):
                if condition["rating-lest"] <= v['分数'] <= condition["rating-most"]
                and (not condition['include-tags'] or set(v['标签'].split(", ")) & set(condition['include-tags']))
                and condition["contestId-lest"] <= v['contestId']
+               and not set(v['标签'].split(", ")) & set(condition['exclude-tags'])
                )
 
 
@@ -144,14 +145,16 @@ def get_existed_promblems(dir):
 
 
 def random_problem(all_problems):
-    condition = {
-        "contestId-lest": 1000,
-        "rating-lest": 1800,
-        "rating-most": 2100,
-        # [] 空则选取所有标签
-        "include-tags": [] #["constructive algorithms", "greedy", "math", "dp"]
-
-    }
+    # condition = {
+    #     "contestId-lest": 1000,
+    #     "rating-lest": 1800,
+    #     "rating-most": 2100,
+    #     # [] 空则选取所有标签
+    #     "include-tags": [], #["constructive algorithms", "greedy", "math", "dp"]
+    #     "exclude-tags": [""]
+    # }
+    with open('ape-setting.json', 'r', encoding='utf8') as f:
+        condition = json.load(f)
     filtered_problems = problems_filter(condition, all_problems)
     # print(filtered_problems, len(filtered_problems))
 
