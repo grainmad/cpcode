@@ -1,28 +1,3 @@
-# Boring Segments
-
-Created by LXC on Wed Apr  3 17:07:12 2024
-
-https://codeforces.com/problemset/problem/1555/E
-
-ranting: 2100
-
-tag: data structures, sortings, trees, two pointers
-
-## problem
-
-在一个 $[1,m]$ 的数轴上有 n 条线段，第 i 条覆盖了 $[l_i,r_i]$ 的区间，权值为 $w_i$ ，你的任务是从这些线段中选出若干条首尾相接线段覆盖整个数轴，使得这些线段权值极差最小化，输出这个极差
-
-首尾相接的定义是，假设你有机会从同一条线段覆盖的任意两个点中移动，如果你可以从位置 1 出发，经过一些线段到达位置 m ，就称为这些线段首尾相接
-
-## solution
-
-将线段按照权值排序后得到新数组d，d中的一个子数组的所有线段如果能够覆盖1到m，称这个子数组合法。那么包含了这个子数组的子数组也合法，满足区间包含性。我们用滑动窗口来求最小长度的合法子数组。
-
-需要高效判断窗口内线段能否覆盖1到m。用线段树，窗口内增加一个线段[l,r]则在线段树区间[l,r-1]上加1，窗口内减少一个线段[l,r]则在线段树区间[l,r-1]上减1，然后线段树维护区间上的最小值，只要1到m这个区间最小值不是0，则覆盖了整个区间。
-
-## code
-
-``` cpp
 
 #include <bits/stdc++.h>
 #define SINGLE_INPUT
@@ -146,5 +121,3 @@ int main() {
 #endif
     return 0;
 }
-
-```
