@@ -405,3 +405,5 @@
 [2024-04-05 03:07:27,033][INFO][- ./cf/a-problem-everyday/2024/04/05/1709C.md generate success]
 [2024-04-07 11:39:21,719][INFO][- {'contestId': 1650, '编号': '1650E', '题目': 'Rescheduling the Exam', '分数': 1900, '标签': 'binary search, data structures, greedy, implementation, math, sortings', '解决人数': 3939, '链接': 'https://codeforces.com/problemset/problem/1650/E'}]
 [2024-04-07 11:39:24,345][INFO][- ./cf/a-problem-everyday/2024/04/07/1650E.md generate success]
+[2024-04-07 19:39:02,195][INFO][- {'contestId': 1768, '编号': '1768D', '题目': 'Lucky Permutation', '分数': 1800, '标签': 'constructive algorithms, dfs and similar, graphs, greedy', '解决人数': 6512, '链接': 'https://codeforces.com/problemset/problem/1768/D'}]
+[2024-04-07 19:39:36,390][INFO][- ./cf/a-problem-everyday/2024/04/07/1768D.md generate success]
