@@ -403,3 +403,5 @@
 [2024-04-04 18:54:26,617][INFO][- ./cf/a-problem-everyday/2024/04/04/1801D.md generate success]
 [2024-04-05 03:07:23,137][INFO][- {'contestId': 1709, '编号': '1709C', '题目': 'Recover an RBS', '分数': 1800, '标签': 'constructive algorithms, greedy, implementation, strings', '解决人数': 8340, '链接': 'https://codeforces.com/problemset/problem/1709/C'}]
 [2024-04-05 03:07:27,033][INFO][- ./cf/a-problem-everyday/2024/04/05/1709C.md generate success]
+[2024-04-07 11:39:21,719][INFO][- {'contestId': 1650, '编号': '1650E', '题目': 'Rescheduling the Exam', '分数': 1900, '标签': 'binary search, data structures, greedy, implementation, math, sortings', '解决人数': 3939, '链接': 'https://codeforces.com/problemset/problem/1650/E'}]
+[2024-04-07 11:39:24,345][INFO][- ./cf/a-problem-everyday/2024/04/07/1650E.md generate success]

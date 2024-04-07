@@ -19,6 +19,12 @@ cpp_template = '''
 #define MOD 998244353
 using namespace std;
 
+random_device seed;
+ranlux48 engine(seed());
+int random(int l, int r) {
+    uniform_int_distribution<> distrib(l, r);
+    return distrib(engine);
+}
 template<class t,class u> ostream& operator<<(ostream& os,const pair<t,u>& p) {
     return os<<'['<<p.first<<", "<<p.second<<']';
 }
