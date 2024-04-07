@@ -1,8 +1,8 @@
 {
     "contestId-lest": 1000,
     "rating-lest": 1800,
-    "rating-most": 2100,
-    "include-tags": [],
+    "rating-most": 2000,
+    "include-tags": ["constructive algorithms"],
     "exclude-tags": ["*special"],
     "//":["constructive algorithms", "greedy", "math", "dp"]
 }
