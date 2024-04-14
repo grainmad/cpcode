@@ -437,3 +437,5 @@
 [2024-04-11 23:54:23,390][INFO][- ./cf/a-problem-everyday/2024/04/11/1508B.md generate success]
 [2024-04-12 09:48:37,809][INFO][- {'contestId': 1854, '编号': '1854A2', '题目': 'Dual (Hard Version)', '分数': 1900, '标签': 'constructive algorithms, math', '解决人数': 6511, '链接': 'https://codeforces.com/problemset/problem/1854/A2'}]
 [2024-04-12 09:48:39,876][INFO][- ./cf/a-problem-everyday/2024/04/12/1854A2.md generate success]
+[2024-04-13 19:23:55,019][INFO][- {'contestId': 1329, '编号': '1329A', '题目': 'Dreamoon Likes Coloring', '分数': 1800, '标签': 'constructive algorithms, greedy, implementation, math', '解决人数': 8707, '链接': 'https://codeforces.com/problemset/problem/1329/A'}]
+[2024-04-13 19:23:57,573][INFO][- ./cf/a-problem-everyday/2024/04/13/1329A.md generate success]
