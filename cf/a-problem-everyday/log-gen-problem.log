@@ -447,3 +447,7 @@
 [2024-04-24 15:52:58,453][INFO][- ./cf/a-problem-everyday/2024/04/24/1638D.md generate success]
 [2024-04-24 17:08:12,434][INFO][- {'contestId': 1554, '编号': '1554D', '题目': 'Diane', '分数': 1800, '标签': 'constructive algorithms, greedy, strings', '解决人数': 8927, '链接': 'https://codeforces.com/problemset/problem/1554/D'}]
 [2024-04-24 17:08:14,847][INFO][- ./cf/a-problem-everyday/2024/04/24/1554D.md generate success]
+[2024-04-24 20:43:54,211][INFO][- {'contestId': 1770, '编号': '1770D', '题目': 'Koxia and Game', '分数': 2000, '标签': 'constructive algorithms, data structures, dfs and similar, dsu, flows, games, graph matchings, graphs, implementation', '解决人数': 3600, '链接': 'https://codeforces.com/problemset/problem/1770/D'}]
+[2024-04-24 20:43:56,594][INFO][- ./cf/a-problem-everyday/2024/04/24/1770D.md generate success]
+[2024-04-25 16:17:00,028][INFO][- {'contestId': 1244, '编号': '1244D', '题目': 'Paint the Tree', '分数': 1800, '标签': 'brute force, constructive algorithms, dp, graphs, implementation, trees', '解决人数': 7092, '链接': 'https://codeforces.com/problemset/problem/1244/D'}]
+[2024-04-25 16:17:02,272][INFO][- ./cf/a-problem-everyday/2024/04/25/1244D.md generate success]
