@@ -459,3 +459,5 @@
 [2024-04-30 13:47:33,449][INFO][- ./cf/a-problem-everyday/2024/04/30/1208C.md generate success]
 [2024-04-30 14:01:31,028][INFO][- {'contestId': 1438, '编号': '1438C', '题目': 'Engineer Artem', '分数': 2000, '标签': '2-sat, chinese remainder theorem, constructive algorithms, fft, flows', '解决人数': 10011, '链接': 'https://codeforces.com/problemset/problem/1438/C'}]
 [2024-04-30 14:01:33,589][INFO][- ./cf/a-problem-everyday/2024/04/30/1438C.md generate success]
+[2024-05-05 19:47:40,579][INFO][- {'contestId': 1081, '编号': '1081E', '题目': 'Missing Numbers', '分数': 1900, '标签': 'binary search, constructive algorithms, greedy, math, number theory', '解决人数': 2510, '链接': 'https://codeforces.com/problemset/problem/1081/E'}]
+[2024-05-05 19:47:43,007][INFO][- ./cf/a-problem-everyday/2024/05/05/1081E.md generate success]
