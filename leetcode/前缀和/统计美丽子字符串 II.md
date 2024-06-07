@@ -65,7 +65,7 @@ Explanation: There are no beautiful substrings in the given string.
 
   
 
-## 解题
+## 题解
 
 ### 方法一：
 

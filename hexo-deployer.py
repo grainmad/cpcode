@@ -170,7 +170,7 @@ class LeetCodeOption(DefaultOption):
         for i, j in enumerate(new_blog_file):
             if j == "## 题目\n":
                 start = i+1
-            if j == "## 解题\n":
+            if j == "## 题解\n":
                 end = i
         return self.markdown2html(new_blog_file[start:end])
 
@@ -313,7 +313,6 @@ def process(mdir):
     # 替换博客项目的文件夹 
     if os.path.isdir(oldblog):
         shutil.rmtree(oldblog)
-    # os.makedirs(os.path.dirname(oldblog), exist_ok=True)
     shutil.copytree(newblog, oldblog) # oldblog 不存在的父级目录也会创建
     # 删除临时文件 
     shutil.rmtree(newblog)
