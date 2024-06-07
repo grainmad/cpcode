@@ -485,3 +485,5 @@
 [2024-05-10 15:51:11,329][INFO][- ./cf/a-problem-everyday/2024/05/10/1296E1.md generate success]
 [2024-05-10 16:20:12,357][INFO][- {'contestId': 1823, '编号': '1823D', '题目': 'Unique Palindromes', '分数': 1900, '标签': 'constructive algorithms, math, strings', '解决人数': 3527, '链接': 'https://codeforces.com/problemset/problem/1823/D'}]
 [2024-05-10 16:20:15,394][INFO][- ./cf/a-problem-everyday/2024/05/10/1823D.md generate success]
+[2024-06-07 22:59:43,446][INFO][- {'contestId': 1228, '编号': '1228D', '题目': 'Complete Tripartite', '分数': 1900, '标签': 'brute force, constructive algorithms, graphs, hashing, implementation', '解决人数': 5128, '链接': 'https://codeforces.com/problemset/problem/1228/D'}]
+[2024-06-07 22:59:43,728][INFO][- ./cf/a-problem-everyday/2024/06/07/1228D.md generate success]
