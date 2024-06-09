@@ -10,6 +10,10 @@ from dotenv import load_dotenv
 import markdown
 import html
 from pprint import pprint
+import logging
+
+LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
 load_dotenv()
 
@@ -82,7 +86,7 @@ class DefaultOption:
         self.data = data
         cur_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         old_date = self.get_old_blog_date(data)
-        self.title = data["name"]
+        self.title = self.get_blog_title()
         self.date = old_date if old_date else cur_date
         self.updated = cur_date if self.is_diff(data) else self.get_old_blog_updated(data)
         self.tag = self.get_ancestor_dir(data)
@@ -92,6 +96,9 @@ class DefaultOption:
         self.description = ""
         # print(data)
     
+    def get_blog_title(self):
+        return self.data["name"]
+
     def gen_blog(self):
         new_blog = self.get_blog_head() + self.data['file-lines']
         # pprint(new_blog)
@@ -163,6 +170,9 @@ class LeetCodeOption(DefaultOption):
     def __init__(self, data):
         super(LeetCodeOption, self).__init__(data)
         self.description = self.leetcode_description(data)
+
+        logging.info(f"{'existed' if self.get_old_blog_date(data) else 'create ! ! !'} {self.get_blog_title()}")
+        logging.info(f"{'update ! ! !' if self.is_diff(data) else 'not update'} {self.get_blog_title()}")
     
     def leetcode_description(self, data):
         new_blog_file = data["file-lines"]
@@ -193,7 +203,10 @@ class CodeforcesAPEOption(DefaultOption):
         self.tag = self.get_blog_tag()
         self.categories = ["codeforces", "practice"]
         self.description = self.cfape_description(data)
-    
+
+        logging.info(f"{'existed' if self.get_old_blog_date(data) else 'create'} {self.get_blog_title()}")
+        logging.info(f"{'update' if self.is_diff(data) else 'not update'} {self.get_blog_title()}")
+
     def get_blog_title(self):
         return self.data["file-lines"][0][2:-1]
 
@@ -229,7 +242,10 @@ class CodeforcesContestOption(DefaultOption):
         self.tag = ["codeforces", "contest"]
         self.categories = ["codeforces", "contest"]
         self.description = self.cfcontest_description(data)
-    
+
+        logging.info(f"{'existed' if self.get_old_blog_date(data) else 'create'} {self.get_blog_title()}")
+        logging.info(f"{'update' if self.is_diff(data) else 'not update'} {self.get_blog_title()}")
+
     def get_blog_title(self):
         return self.data["file-lines"][0][2:-1]
 
@@ -256,7 +272,10 @@ class AtcoderContestOption(DefaultOption):
         self.tag = ["atcoder", "contest"]
         self.categories = "atcoder"
         self.description = self.atcontest_description(data)
-    
+
+        logging.info(f"{'existed' if self.get_old_blog_date(data) else 'create'} {self.get_blog_title()}")
+        logging.info(f"{'update' if self.is_diff(data) else 'not update'} {self.get_blog_title()}")
+
     def get_blog_title(self):
         return self.data["file-lines"][0][2:-1]
 
@@ -292,7 +311,9 @@ setting = {
 
 def process(mdir):
     # 生成字典信息
+    logging.info("generate data")
     data = list_files(os.path.join(CWD, mdir["src"]), os.path.join(HEXO_BLOG_POST, mdir["dst"]), [])
+    logging.debug(data)
     def dfs(node, tmp_file_path):
         cur_path = os.path.join(tmp_file_path, node["name"])
         if node['type'] == 'dir':
@@ -308,27 +329,37 @@ def process(mdir):
     oldblog = os.path.join(HEXO_BLOG_POST, mdir["dst"])
     # print(newblog, oldblog)
     # 将转化结果存至tmp下
+    logging.info("generate blog dir at /tmp")
     dfs(data, tmpdir)
     
     # 替换博客项目的文件夹 
+    logging.info("replace old blog dir")
     if os.path.isdir(oldblog):
+        logging.info("exist old blog, remove it!")
         shutil.rmtree(oldblog)
     shutil.copytree(newblog, oldblog) # oldblog 不存在的父级目录也会创建
     # 删除临时文件 
+    logging.info("remove /tmp file")
     shutil.rmtree(newblog)
 
 def processAll():
     for i in setting["mount_dirs"]:
+        logging.info(f"process {i}")
         process(i)
 
 # processAll()
 def run(bygit = False):
     if bygit:
+        logging.warning("已开启git操作")
         repo = Repo(HEXO_BLOG)
+        logging.info("git pull")
         repo.git.pull("--rebase")
         processAll()
+        logging.info("git add -all")
         repo.git.add("--all")
+        logging.info("git commit")
         repo.git.commit("-m auto update by [bot] hexo-deployer v2.0")
+        logging.info("git push")
         repo.git.push()
     else:
         processAll()
