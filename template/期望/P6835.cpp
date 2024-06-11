@@ -182,7 +182,7 @@ $\sum\limits_{i=1}^{\infty}\big(\frac{1}{x}\big)^i=\frac{1}{x}+\frac{1}{x^2}+\fr
 
 ## 数据范围与约定
 
-对于 $100\%$ 的数据，保证：$id \in \{1,2,3,4,5\}$，$0 < n,m \le 10^6$，$1 \le
+对于 $100\%$ 的数据，保证：$id \in \lbrace 1,2,3,4,5\rbrace $，$0 < n,m \le 10^6$，$1 \le
 v_i \le u_i \le n$。
 
 #### 子任务「本题采用捆绑测试」
