@@ -171,7 +171,7 @@ class LeetCodeOption(DefaultOption):
         super(LeetCodeOption, self).__init__(data)
         self.description = self.leetcode_description(data)
 
-        logging.info(f"{'existed' if self.get_old_blog_date(data) else 'create ! ! !'} {'update ! ! !' if self.is_diff(data) else 'not update'} {self.get_blog_title()}")
+        logging.info(f"[{'existed' if self.get_old_blog_date(data) else 'create ! ! !'}] [{'update ! ! !' if self.is_diff(data) else 'not update'}] {self.get_blog_title()}")
     
     def leetcode_description(self, data):
         new_blog_file = data["file-lines"]
@@ -203,7 +203,7 @@ class CodeforcesAPEOption(DefaultOption):
         self.categories = ["codeforces", "practice"]
         self.description = self.cfape_description(data)
 
-        logging.info(f"{'existed' if self.get_old_blog_date(data) else 'create ! ! !'} {'update ! ! !' if self.is_diff(data) else 'not update'} {self.get_blog_title()}")
+        logging.info(f"[{'existed' if self.get_old_blog_date(data) else 'create ! ! !'}] [{'update ! ! !' if self.is_diff(data) else 'not update'}] {self.get_blog_title()}")
 
     def get_blog_title(self):
         return self.data["file-lines"][0][2:-1]
@@ -241,7 +241,7 @@ class CodeforcesContestOption(DefaultOption):
         self.categories = ["codeforces", "contest"]
         self.description = self.cfcontest_description(data)
 
-        logging.info(f"{'existed' if self.get_old_blog_date(data) else 'create ! ! !'} {'update ! ! !' if self.is_diff(data) else 'not update'} {self.get_blog_title()}")
+        logging.info(f"[{'existed' if self.get_old_blog_date(data) else 'create ! ! !'}] [{'update ! ! !' if self.is_diff(data) else 'not update'}] {self.get_blog_title()}")
 
     def get_blog_title(self):
         return self.data["file-lines"][0][2:-1]
@@ -270,7 +270,7 @@ class AtcoderContestOption(DefaultOption):
         self.categories = "atcoder"
         self.description = self.atcontest_description(data)
 
-        logging.info(f"{'existed' if self.get_old_blog_date(data) else 'create ! ! !'} {'update ! ! !' if self.is_diff(data) else 'not update'} {self.get_blog_title()}")
+        logging.info(f"[{'existed' if self.get_old_blog_date(data) else 'create ! ! !'}] [{'update ! ! !' if self.is_diff(data) else 'not update'}] {self.get_blog_title()}")
 
     def get_blog_title(self):
         return self.data["file-lines"][0][2:-1]
