@@ -1,10 +1,10 @@
 #! /usr/bin/bash
 
-# you need set environment variable ws="/root/cpcode" as workspace dir
+# you need set environment variable cpcode_ws="/home/xxx/cpcode" as workspace dir
 
-if [ -z "${ws}" ]
+if [ -z "${cpcode_ws}" ]
 then
-        echo you need set environment variable ws
+        echo you need set environment variable cpcode_ws
         exit 1
 fi
 
@@ -14,8 +14,8 @@ then
         exit 2
 fi
 
-program="${ws}/a.out"
-input="${ws}/in.txt"
+program="${cpcode_ws}/a.out"
+input="${cpcode_ws}/in.txt"
 
 if [ ! -e $input ] 
 then
