@@ -1,6 +1,7 @@
 import os
 from lxml import etree
-import requests
+# import requests
+from curl_cffi import requests
 import cloudscraper
 # 转化文档中html标签
 
@@ -41,11 +42,11 @@ def get_contest_info(id):
     url = 'https://codeforces.com/contest/'+id+'/problems'
     head = {
         'Referer': f'https://codeforces.com/contest/{id}',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
     }
-    # response = requests.get(url, headers=head)
-    scraper = cloudscraper.create_scraper()
-    response = scraper.get(url)
+    response = requests.get(url, headers=head)
+    # scraper = cloudscraper.create_scraper()
+    # response = scraper.get(url)
     html = response.text
     # print(html)
     html_element = etree.HTML(html)

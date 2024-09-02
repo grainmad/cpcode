@@ -10,11 +10,11 @@ then
 fi
 
 
-py=`which python3`
+py=`which python`
 
 # echo $py
 
-echo ${py:=`which python3`} > /dev/null
+echo ${py:=`which python`} > /dev/null
 
 # echo $py
 
