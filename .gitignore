@@ -10,3 +10,4 @@ a.out
 *.cpp.exc
 *.cpp.txt
 .env
+__pycache__/
