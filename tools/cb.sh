@@ -6,7 +6,8 @@
 #   cd cf/contest/2003
 #   cb A / cb run-A / cb test-A     # build / run (stdin passthrough) / judge samples
 #   cb A B C -j 8                   # several targets, flags pass through
-#   cb stress gen brute A 1000 10   # build the trio, then stress: iters, tl
+#   cb stress A                     # one-name duel (uses A_gen/A_brute)
+#   cb stress A_gen A_brute A 1000 10   # explicit trio: iters, tl
 #
 # Name resolution (per argument): exact full name in target-map.tsv ->
 # cwd prefix (cf/contest/2003 + A -> cf.contest.2003.A) -> unique suffix
@@ -87,18 +88,32 @@ _cb_bin() {
 }
 
 _cb_stress() {
-  [ $# -ge 3 ] || { echo "usage: cb stress <gen> <brute> <sol> [iters=1000] [tl_sec=10]" >&2; return 1; }
   _cb_setup || return 1
-  local g=$1 b=$2 s=$3; shift 3
-  local rg rb rs
-  rg=$(_cb_resolve "$g") || return 1
-  rb=$(_cb_resolve "$b") || return 1
-  rs=$(_cb_resolve "$s") || return 1
-  cmake --build "$_cb_build" --target "${rg%%$'\t'*}" "${rb%%$'\t'*}" "${rs%%$'\t'*}" || return 1
+  local g b s
+  # single-name form: cb stress A [iters] [tl]  ->  A_gen + A_brute + A
+  if [ $# -lt 3 ] || [ -z "$(printf '%s' "$2" | tr -d '0-9')" ]; then
+    local name=$1; shift
+    [ -n "$name" ] || { echo "usage: cb stress <sol> [iters] [tl]  |  cb stress <gen> <brute> <sol> [iters] [tl]" >&2; return 1; }
+    local rs
+    rs=$(_cb_resolve "$name") || return 1
+    local st=${rs%%$'\t'*}
+    local rg rb
+    rg=$(_cb_lookup "${st}_gen") || { echo "cb: no '${name}_gen' target; scaffold via: cb new $name --stress" >&2; return 1; }
+    rb=$(_cb_lookup "${st}_brute") || { echo "cb: no '${name}_brute' target; scaffold via: cb new $name --stress" >&2; return 1; }
+    g=$rg b=$rb s=$rs
+  else
+    g=$1 b=$2 s=$3; shift 3
+    local rg rb rs
+    rg=$(_cb_resolve "$g") || return 1
+    rb=$(_cb_resolve "$b") || return 1
+    rs=$(_cb_resolve "$s") || return 1
+    g=$rg b=$rb s=$rs
+  fi
+  cmake --build "$_cb_build" --target "${g%%$'\t'*}" "${b%%$'\t'*}" "${s%%$'\t'*}" || return 1
   cmake -P "$_cb_root/cmake/stress.cmake" \
-    "$(_cb_bin "${rg#*$'\t'}")" \
-    "$(_cb_bin "${rb#*$'\t'}")" \
-    "$(_cb_bin "${rs#*$'\t'}")" "$@"
+    "$(_cb_bin "${g#*$'\t'}")" \
+    "$(_cb_bin "${b#*$'\t'}")" \
+    "$(_cb_bin "${s#*$'\t'}")" "$@"
 }
 
 _cb_help() {
@@ -110,8 +125,9 @@ usage:
   cb <dir> | cb .                 build every cpp under a directory, recursively
   cb run-<target>                 run, stdin passthrough
   cb test-<target>                build + judge samples (AC/WA/TLE/RE)
+  cb stress <sol> [iters] [tl]    duel <sol>_gen + <sol>_brute + <sol>
   cb stress <gen> <brute> <sol> [iters] [tl]
-                                  build the trio, then randomized duel
+                                  explicit trio
   cb new [--stress] <name>        scaffold <name>.cpp from template/sol.cpp
                                   (--stress adds <name>_gen.cpp/_brute.cpp)
   cb cfg [cmake args...]          reconfigure the repo-root build tree
@@ -124,7 +140,8 @@ examples (inside cf/contest/2003):
   cb 2003             build the whole contest (directory aggregate)
   cb .                everything under the cwd, subdirs included
   cb new W --stress   scaffold W.cpp + W_gen.cpp + W_brute.cpp
-  cb stress gen brute A 1000 10
+  cb stress A           one-name duel (uses A_gen/A_brute)
+  cb stress A_gen A_brute A 1000 10
 
 name resolution (per argument):
   full target name -> cwd prefix (cf/contest + 2003.A) -> unique suffix

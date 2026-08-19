@@ -22,7 +22,9 @@ cb run-A          # 运行（stdin 直通，可手敲输入或 < in.txt）
 cb test-A         # 编译 + 判样例（AC/WA/TLE/RE）
 cb A D2 -j 8      # 多个目标 + 透传 flags
 cb 2003           # 整场比赛一次全编（目录聚合）
-cb stress gen brute A 1000 10   # 对拍：解析+编译三件套+开打
+cb stress A            # 对拍：自动用 A_gen/A_brute（cb new A --stress 的命名约定）
+cb stress A 500 3      # 同上，指定轮数/超时
+cb stress gen brute A 1000 10   # 也可以显式给三件套
 ```
 
 短名想写到哪一层都行：题目目录里 `cb A`，`cf/contest` 里 `cb 2003.A`，
