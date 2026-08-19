@@ -56,7 +56,7 @@ cb stress gen brute A 1000 10   # 也可以显式给三件套
 
 | 前提 | 说明 |
 |---|---|
-| 在 git 仓库内 | 定位仓库根全靠 `git rev-parse` |
+| 在 cpcode 仓库内 | 按 `cmake/add_problem.cmake` 识别；误入其他 git 仓库会干净拒绝，零副作用 |
 | cmake ≥ 3.20 | cb 转发的就是 cmake |
 | C++ 编译器 | g++ / clang++ 均可，Mac 无 `bits/stdc++.h` 由仓库 shim 兜底 |
 | bash 或 zsh | cb.sh 用了数组语法，POSIX `sh`/`dash` 不行 |

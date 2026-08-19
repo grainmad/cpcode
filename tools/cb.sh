@@ -22,7 +22,12 @@
 # script works in any clone and on any machine.
 
 _cb_setup() {
-  _cb_root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "cb: not inside a git repo" >&2; return 1; }
+  _cb_root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "cb: not inside a git repo" >&2; return 2; }
+  # refuse foreign repos: cb would otherwise cmake-configure them by accident
+  if [ ! -f "$_cb_root/cmake/add_problem.cmake" ] || [ ! -f "$_cb_root/CMakeLists.txt" ]; then
+    echo "cb: '$_cb_root' is not a cpcode checkout — refusing to touch it" >&2
+    return 2
+  fi
   _cb_build=""
   local b
   for b in "${CP_BUILD_DIR:-$_cb_root/build}" "$_cb_root/build-ninja"; do
@@ -38,6 +43,10 @@ _cb_setup() {
 _cb_cfg() {
   local root b
   root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "cb: not inside a git repo" >&2; return 1; }
+  if [ ! -f "$root/cmake/add_problem.cmake" ]; then
+    echo "cb: '$root' is not a cpcode checkout — refusing to touch it" >&2
+    return 1
+  fi
   if [ -n "${_cb_build:-}" ]; then b=$_cb_build
   elif [ -n "${CP_BUILD_DIR:-}" ]; then b=$CP_BUILD_DIR
   elif [ -d "$root/build-ninja" ] && [ ! -d "$root/build" ]; then b=$root/build-ninja
@@ -158,7 +167,9 @@ cleanup (plain cmake, no cb needed):
   cmake -E rm -rf build             # full reset
 
 build tree: $CP_BUILD_DIR, else build/, else build-ninja/
-prereq: git repo, cmake >= 3.20, C++ compiler, bash/zsh, sourced cb.sh
+prereq: inside a cpcode checkout (detected via cmake/add_problem.cmake;
+        foreign git repos are refused without side effects), cmake >= 3.20,
+        C++ compiler, bash/zsh, sourced cb.sh
 EOF
 }
 
@@ -209,6 +220,7 @@ _cb_new() {
   [ -n "$name" ] || { echo "usage: cb new [--stress] <name>   (e.g. cb new A, cb new 1228D)" >&2; return 1; }
   local root
   root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "cb: not inside a git repo" >&2; return 1; }
+  [ -f "$root/cmake/add_problem.cmake" ] || { echo "cb: '$root' is not a cpcode checkout — refusing to touch it" >&2; return 1; }
   local tpl="${CP_TEMPLATE:-$root/template/sol.cpp}"
   [ -f "$tpl" ] || { echo "cb: template not found: $tpl" >&2; return 1; }
 
@@ -244,7 +256,12 @@ cb() {
     new)    shift; _cb_new "$@"; return ;;
     -h|--help|help|"") _cb_help; return ;;
   esac
-  _cb_setup || { _cb_cfg >/dev/null 2>&1 && _cb_setup; } || { echo "cb: no build tree, run: cb cfg" >&2; return 1; }
+  _cb_setup
+  case $? in
+    0) ;;
+    2) return 1 ;;                                    # wrong repo: no bootstrap
+    *) _cb_cfg >/dev/null 2>&1 && _cb_setup || { echo "cb: no build tree, run: cb cfg" >&2; return 1; } ;;
+  esac
   local targets=() flags=() x t
   for x in "$@"; do
     case "$x" in
