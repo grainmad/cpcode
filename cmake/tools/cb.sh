@@ -88,11 +88,43 @@ _cb_lookup() {
   fi
   if [ -z "$hit" ]; then
     echo "cb: '$x' not found (cwd prefix '${prefix:-<repo root>}', map: $_cb_map)" >&2
+    _cb_suggest "$base"
   else
     echo "cb: '$base' is ambiguous, candidates:" >&2
     printf '%s\n' "$hit" | while IFS=$'\t' read -r t s; do echo "  $t   <- $s" >&2; done | head -8
   fi
   return 1
+}
+
+# _cb_suggest <name> — "did you mean" via edit distance <= 2 against stems.
+_cb_suggest() {
+  local q=$1
+  awk -F'\t' -v q="$q" '
+    function lev(a, b,   la, lb, i, j, prev, cur, cost, t) {
+      la = length(a); lb = length(b)
+      if (la == 0) return lb; if (lb == 0) return la
+      for (j = 0; j <= lb; j++) prev[j] = j
+      for (i = 1; i <= la; i++) {
+        cur[0] = i
+        for (j = 1; j <= lb; j++) {
+          cost = substr(a, i, 1) != substr(b, j, 1)
+          t = prev[j-1] + cost
+          if (prev[j] + 1 < t) t = prev[j] + 1
+          if (cur[j-1] + 1 < t) t = cur[j-1] + 1
+          cur[j] = t
+        }
+        for (j = 0; j <= lb; j++) prev[j] = cur[j]
+      }
+      return prev[lb]
+    }
+    {
+      s = $1; sub(/\.cpp$/, "", s); ns = split(s, seg, "/"); stem = seg[ns]
+      if (stem == "" || seen[stem]++) next
+      d = lev(q, stem)
+      if (d <= 2 && d < length(q) && d < length(stem)) print d "\t" stem "\t" $2
+    }' "$_cb_map" | sort -t$'\t' -k1,1n | head -3 | while IFS=$'\t' read -r d stem tgt; do
+      echo "  did you mean: $stem   ($tgt)" >&2
+    done
 }
 
 # _cb_bin <source-path> -> binary path inside the build tree
