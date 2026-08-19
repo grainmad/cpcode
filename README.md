@@ -6,16 +6,16 @@ Competitive Programming Code
 
 ## 快速上手（cb，日常推荐）
 
-`cb` 是一个 shell 函数（`source tools/cb.sh`），在题目目录里**只写短名**：
+`cb` 是一个 shell 函数（`source cmake/tools/cb.sh`），在题目目录里**只写短名**：
 它自动定位仓库、把短名翻译成完整 target、调用标准 cmake。装一次到处用。
 
 ```bash
 # ① 安装（一次性，之后每个新 shell 都可用）
-echo 'source '"$(pwd)"'/tools/cb.sh' >> ~/.zshrc && exec zsh
+echo 'source '"$(pwd)"'/cmake/tools/cb.sh' >> ~/.zshrc && exec zsh
 
 # ② 刷题（新建 cpp 不需要任何前置步骤，首条命令自动建构建树）
 cd cf/contest/2003
-cb new W          # 从模板生成 W.cpp（模板：template/sol.cpp，可用 CP_TEMPLATE 换）
+cb new W          # 从模板生成 W.cpp（模板：cmake/tools/sol.cpp，可用 CP_TEMPLATE 换）
 cb new W --stress # 顺带生成 W_gen.cpp / W_brute.cpp（按题命名，比赛目录多题不冲突）
 cb A              # 编译
 cb run-A          # 运行（stdin 直通，可手敲输入或 < in.txt）
@@ -41,7 +41,7 @@ cb stress gen brute A 1000 10   # 也可以显式给三件套
 | `cb A D2 -j 8` | 同上多个 target | 多目标，flags 透传 |
 | `cb 2003` | `cmake --build build -t cf.contest.2003` | 目录聚合：整场全编 |
 | `cb stress A [1000] [10]` | 自动发现 `A_gen`/`A_brute` 并对拍 | 单名模式；也可显式 `cb stress gen brute A` |
-| `cb new W [--stress]` | 复制 `template/sol.cpp` → `W.cpp` | 建新题模板；`--stress` 附带 `W_gen/W_brute` 骨架 |
+| `cb new W [--stress]` | 复制 `cmake/tools/sol.cpp` → `W.cpp` | 建新题模板；`--stress` 附带 `W_gen/W_brute` 骨架 |
 | `cb cfg [-G Ninja ...]` | `cmake -S 仓库根 -B build` | 重配置；参数透传 |
 
 ### cb 的自动化行为
@@ -94,7 +94,7 @@ cmake -E rm -rf build              # 连构建系统一起删（全重置）
 cmake -B build-dbg -DCMAKE_BUILD_TYPE=Debug
 cmake --build build-dbg -t cf.contest.2003.A
 
-# 不想 source cb.sh 的最小替代
+# 不想 source cmake/tools/cb.sh 的最小替代
 alias cb='cmake --build build -t'
 alias ct='ctest --test-dir build -R'
 ```
@@ -111,7 +111,7 @@ cmake -P cmake/stress.cmake tmp.stress.gen tmp.stress.brute tmp.stress.sol 1000 
 #                                                       iters┘    ┘单次超时秒数
 ```
 
-gen 骨架：`template/stress/gen.cpp`（复制到题目目录，只改数据生成段）。
+gen 骨架：`cmake/tools/gen.cpp`（`cb new X --stress` 自动带上，只改数据生成段）。
 
 失配自动停：输入和两份输出保留在 `build/stress/fail_<n>/`，`last_input.txt`
 是最近一轮的数据。判定口径与 judge 一致（忽略行尾空白/文末空行）。

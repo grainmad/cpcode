@@ -3,7 +3,7 @@
 # `cmake --build -t <full.name>` keeps working without it.
 #
 # Usage:
-#   source tools/cb.sh
+#   source cmake/tools/cb.sh
 #   cd cf/contest/2003
 #   cb A / cb run-A / cb test-A     # build / run (stdin passthrough) / judge samples
 #   cb A B C -j 8                   # several targets, flags pass through
@@ -144,7 +144,7 @@ usage:
   cb stress <sol> [iters] [tl]    duel <sol>_gen + <sol>_brute + <sol>
   cb stress <gen> <brute> <sol> [iters] [tl]
                                   explicit trio
-  cb new [--stress] <name>        scaffold <name>.cpp from template/sol.cpp
+  cb new [--stress] <name>        scaffold <name>.cpp from cmake/tools/sol.cpp
                                   (--stress adds <name>_gen.cpp/_brute.cpp)
   cb cfg [cmake args...]          reconfigure the repo-root build tree
   cb help | -h | --help           this help
@@ -221,7 +221,7 @@ _cb_new() {
   local root
   root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "cb: not inside a git repo" >&2; return 1; }
   [ -f "$root/cmake/add_problem.cmake" ] || { echo "cb: '$root' is not a cpcode checkout — refusing to touch it" >&2; return 1; }
-  local tpl="${CP_TEMPLATE:-$root/template/sol.cpp}"
+  local tpl="${CP_TEMPLATE:-$root/cmake/tools/sol.cpp}"
   [ -f "$tpl" ] || { echo "cb: template not found: $tpl" >&2; return 1; }
 
   case $name in
@@ -235,9 +235,9 @@ _cb_new() {
   echo "created: $name.cpp   (template: $tpl)"
   if [ "$stress" = 1 ]; then
     local sk
-    for sk in gen:stress/gen.cpp brute:stress/brute.cpp; do
+    for sk in gen:tools/gen.cpp brute:tools/brute.cpp; do
       local base="$name"_${sk%%:*}
-      local src=$root/template/${sk#*:}
+      local src=$root/cmake/${sk#*:}
       if [ -e "$base.cpp" ]; then
         echo "exists:  $base.cpp (kept)"
       elif [ -f "$src" ]; then
