@@ -16,12 +16,21 @@ int rnd(int l, int r) { return uniform_int_distribution<>(l, r)(rng); }
 // 常用积木（按需取用/扩展）：
 //   string rstr(int n, char lo = 'a', char hi = 'z')
 //   vector<int> rvec(int n, int lo, int hi)            // 含重复元素
-//   树：对 i in [2,n] 连边 rnd(1, i-1)-i               // 随机树
-//   图：randShuffle 后按密度连边，注意自环/重边是否合法
+//   vector<int> rperm(int n)                           // 1..n 的随机排列
+//   shuf(v)                                            // 原地打乱任意容器
+//   树：对 i in [2,n] 连边 rnd(1, i-1)-i，边表可再 shuf() 打乱边序
+//   图：按密度连边后 shuf()，注意自环/重边是否合法
 string rstr(int n, char lo = 'a', char hi = 'z') {
     string s;
     while (n--) s += char(rnd(lo, hi));
     return s;
+}
+template <class T> void shuf(T& c) { shuffle(begin(c), end(c), rng); }
+vector<int> rperm(int n) {
+    vector<int> p(n);
+    iota(p.begin(), p.end(), 1);
+    shuf(p);
+    return p;
 }
 
 int main(int argc, char** argv) {
