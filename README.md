@@ -40,7 +40,7 @@ cb stress gen brute A 1000 10   # 也可以显式给三件套
 | `cb test-A` | `cmake --build build -t test-cf.contest.2003.A` | 编译+判样例 |
 | `cb A D2 -j 8` | 同上多个 target | 多目标，flags 透传 |
 | `cb 2003` | `cmake --build build -t cf.contest.2003` | 目录聚合：整场全编 |
-| `cb stress gen brute A 1000 10` | 解析+编译+`cmake -P stress.cmake` | 对拍，轮数/超时可省 |
+| `cb stress A [1000] [10]` | 自动发现 `A_gen`/`A_brute` 并对拍 | 单名模式；也可显式 `cb stress gen brute A` |
 | `cb new W [--stress]` | 复制 `template/sol.cpp` → `W.cpp` | 建新题模板；`--stress` 附带 `W_gen/W_brute` 骨架 |
 | `cb cfg [-G Ninja ...]` | `cmake -S 仓库根 -B build` | 重配置；参数透传 |
 

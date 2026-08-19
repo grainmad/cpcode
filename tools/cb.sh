@@ -1,17 +1,23 @@
-# cb — short-name front for the cpcode CMake workflow. Optional convenience;
-# pure `cmake --build -t <full.name>` keeps working without it.
+# cb — short-name front for the cpcode CMake workflow ("cmake build", kept
+# two keys on purpose). Optional convenience; pure
+# `cmake --build -t <full.name>` keeps working without it.
 #
 # Usage:
 #   source tools/cb.sh
 #   cd cf/contest/2003
 #   cb A / cb run-A / cb test-A     # build / run (stdin passthrough) / judge samples
 #   cb A B C -j 8                   # several targets, flags pass through
-#   cb stress A                     # one-name duel (uses A_gen/A_brute)
+#   cb 2003 / cb .                  # directory aggregate / subtree, recursively
+#   cb new A [--stress]             # scaffold A.cpp (+ A_gen/A_brute skeletons)
+#   cb stress A [iters] [tl]        # one-name duel (uses A_gen/A_brute)
 #   cb stress A_gen A_brute A 1000 10   # explicit trio: iters, tl
+#   cb cfg [-G Ninja ...]           # reconfigure the repo-root build tree
+#   cb help | cb --help             # full reference
 #
 # Name resolution (per argument): exact full name in target-map.tsv ->
 # cwd prefix (cf/contest/2003 + A -> cf.contest.2003.A) -> unique suffix
 # match repo-wide; ambiguous bare names are rejected with candidates listed.
+# A miss reconfigures once and retries, so freshly created cpps just work.
 # Everything is located relative to `git rev-parse --show-toplevel`, so the
 # script works in any clone and on any machine.
 
@@ -119,11 +125,12 @@ _cb_stress() {
 _cb_help() {
   cat <<'EOF'
 cb - short-name front for the cpcode CMake workflow
+    (name = "cmake build"; two keys on purpose)
 
 usage:
   cb <target>... [flags]          build targets (short names ok)
   cb <dir> | cb .                 build every cpp under a directory, recursively
-  cb run-<target>                 run, stdin passthrough
+  cb run-<target>                 run, stdin passthrough (interactive / < in.txt)
   cb test-<target>                build + judge samples (AC/WA/TLE/RE)
   cb stress <sol> [iters] [tl]    duel <sol>_gen + <sol>_brute + <sol>
   cb stress <gen> <brute> <sol> [iters] [tl]
@@ -133,19 +140,22 @@ usage:
   cb cfg [cmake args...]          reconfigure the repo-root build tree
   cb help | -h | --help           this help
 
-examples (inside cf/contest/2003):
-  cb A                = cmake --build build -t cf.contest.2003.A
-  cb run-A            run it, interactive stdin
-  cb A D2 -j 8        several targets, flags pass through
-  cb 2003             build the whole contest (directory aggregate)
-  cb .                everything under the cwd, subdirs included
-  cb new W --stress   scaffold W.cpp + W_gen.cpp + W_brute.cpp
-  cb stress A           one-name duel (uses A_gen/A_brute)
-  cb stress A_gen A_brute A 1000 10
+a whole problem, from scratch:
+  cb new A --stress       scaffold A.cpp + A_gen.cpp + A_brute.cpp
+  ... edit the three files ...
+  cb run-A                try sample input by hand
+  cb test-A               judge samples/ (A_1.in + A_1.out pairs)
+  cb stress A 1000        randomized duel against the brute force
 
 name resolution (per argument):
   full target name -> cwd prefix (cf/contest + 2003.A) -> unique suffix
-  repo-wide; ambiguous names list candidates
+  repo-wide; ambiguous names list candidates.
+  A miss reconfigures once and retries: new cpps need no ceremony.
+  cb also bootstraps a missing build tree on first use.
+
+cleanup (plain cmake, no cb needed):
+  cmake --build build -t clean      # remove build products
+  cmake -E rm -rf build             # full reset
 
 build tree: $CP_BUILD_DIR, else build/, else build-ninja/
 prereq: git repo, cmake >= 3.20, C++ compiler, bash/zsh, sourced cb.sh
