@@ -9,7 +9,7 @@ int ans[MAXN];
 struct Node {
 	int val;
 	int idx;
-	bool operator<(Node& o) {
+	bool operator<(const Node& o) const {
 		return val < o.val;
 	}
 };

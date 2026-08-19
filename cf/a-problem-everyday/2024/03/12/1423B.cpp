@@ -24,7 +24,7 @@ template<class t,class u> ostream& operator<<(ostream& os,const map<t,u>& mp){
 struct Rode {
     int u, v, d;
     Rode(int u, int v, int d):u(u),v(v),d(d) {}
-    bool operator<(const Rode& o) {
+    bool operator<(const Rode& o) const {
         return d > o.d;
     }
 };

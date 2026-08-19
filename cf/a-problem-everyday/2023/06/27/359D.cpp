@@ -18,7 +18,7 @@ void ST(const vector<int>& a) {
     for (int j = 1; (1 << j) <= n; j++) {             // 区间大小
         for (int i = 0; i + (1 << j) - 1 < n; i++) {  // 区间下限
             st[i][j] = min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
-            st_g[i][j] = __gcd(st_g[i][j - 1], st_g[i + (1 << (j - 1))][j - 1]);
+            st_g[i][j] = std::gcd(st_g[i][j - 1], st_g[i + (1 << (j - 1))][j - 1]);
         }
     }
 }
@@ -28,7 +28,7 @@ bool ask(int l, int r) {
     while ((1 << (k + 1)) <= r - l + 1)
         k++;
     return min(st[l][k], st[r - (1 << k) + 1][k]) ==
-           __gcd(st_g[l][k], st_g[r - (1 << k) + 1][k]);
+           std::gcd(st_g[l][k], st_g[r - (1 << k) + 1][k]);
 }
 
 void sol() {

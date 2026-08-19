@@ -7,7 +7,7 @@ using namespace std;
 struct Node {
 	ll time;
 	int id;
-	bool operator<(Node& o) {
+	bool operator<(const Node& o) const {
 		return time > o.time;
 	}
 }build[MAXN];

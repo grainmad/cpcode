@@ -10,7 +10,7 @@ void sol() {
 	cin >> a >> b >> c >> d;
 	ll m = a*b;
 	for (ll x=a+1; x<=c; x++) {
-		ll y = m/__gcd(m, x);
+		ll y = m/std::gcd(m, x);
 		// if (y<=b) y = (b/y+1)*y;
 		y = d/y*y;
 		if (b<y && y<=d) {

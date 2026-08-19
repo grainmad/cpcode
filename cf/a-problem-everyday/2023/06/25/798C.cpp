@@ -13,7 +13,7 @@ void sol() {
     vector<ll> a(n);
     ll g = 0;
     for (auto& i : a)
-        cin >> i, g = __gcd(g, i);
+        cin >> i, g = std::gcd(g, i);
     cout << "YES\n";
     if (g > 1) {
         cout << "0\n";

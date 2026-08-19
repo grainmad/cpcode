@@ -10,7 +10,7 @@ int cnt[N], v[N], ans[N];
 int cur = 0;
 struct Node {
     int l, r, id;
-    bool operator<(Node& o) {
+    bool operator<(const Node& o) const {
         return l / bsz == o.l / bsz ? r < o.r : l / bsz < o.l / bsz;
     }
 } a[N];

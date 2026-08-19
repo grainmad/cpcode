@@ -5,7 +5,7 @@ using namespace std;
 struct Node {
 	int num;
 	int w;
-	bool operator<(Node& o) {
+	bool operator<(const Node& o) const {
 		return w > o.w;
 	}
 };

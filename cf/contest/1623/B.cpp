@@ -4,7 +4,7 @@ using namespace std;
 
 struct Range {
 	int l, r;
-	bool operator<(Range& o) {
+	bool operator<(const Range& o) const {
 		return r-l > o.r-o.l;
 	}
 } ranges[1005];

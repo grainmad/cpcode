@@ -3,6 +3,12 @@
 *.out
 in.txt
 out.txt
+# samples that ship with the repo (judge data under any samples/ dir)
+!**/samples/*.in
+!**/samples/*.out
+# cmake build trees
+build/
+build-*/
 .vscode/
 ape-setting.json
 tmp/
