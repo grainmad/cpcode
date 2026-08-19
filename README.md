@@ -16,7 +16,7 @@ echo 'source '"$(pwd)"'/tools/cb.sh' >> ~/.zshrc && exec zsh
 # ② 刷题（新建 cpp 不需要任何前置步骤，首条命令自动建构建树）
 cd cf/contest/2003
 cb new W          # 从模板生成 W.cpp（模板：template/sol.cpp，可用 CP_TEMPLATE 换）
-cb new W --stress # 顺带生成 gen.cpp / brute.cpp 对拍骨架（已有文件不覆盖）
+cb new W --stress # 顺带生成 W_gen.cpp / W_brute.cpp（按题命名，比赛目录多题不冲突）
 cb A              # 编译
 cb run-A          # 运行（stdin 直通，可手敲输入或 < in.txt）
 cb test-A         # 编译 + 判样例（AC/WA/TLE/RE）
@@ -39,7 +39,7 @@ cb stress gen brute A 1000 10   # 对拍：解析+编译三件套+开打
 | `cb A D2 -j 8` | 同上多个 target | 多目标，flags 透传 |
 | `cb 2003` | `cmake --build build -t cf.contest.2003` | 目录聚合：整场全编 |
 | `cb stress gen brute A 1000 10` | 解析+编译+`cmake -P stress.cmake` | 对拍，轮数/超时可省 |
-| `cb new W [--stress]` | 复制 `template/sol.cpp` → `W.cpp` | 建新题模板；`--stress` 附带 gen/brute 骨架 |
+| `cb new W [--stress]` | 复制 `template/sol.cpp` → `W.cpp` | 建新题模板；`--stress` 附带 `W_gen/W_brute` 骨架 |
 | `cb cfg [-G Ninja ...]` | `cmake -S 仓库根 -B build` | 重配置；参数透传 |
 
 ### cb 的自动化行为

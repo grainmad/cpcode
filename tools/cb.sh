@@ -113,7 +113,7 @@ usage:
   cb stress <gen> <brute> <sol> [iters] [tl]
                                   build the trio, then randomized duel
   cb new [--stress] <name>        scaffold <name>.cpp from template/sol.cpp
-                                  (--stress adds gen.cpp + brute.cpp)
+                                  (--stress adds <name>_gen.cpp/_brute.cpp)
   cb cfg [cmake args...]          reconfigure the repo-root build tree
   cb help | -h | --help           this help
 
@@ -123,7 +123,7 @@ examples (inside cf/contest/2003):
   cb A D2 -j 8        several targets, flags pass through
   cb 2003             build the whole contest (directory aggregate)
   cb .                everything under the cwd, subdirs included
-  cb new W --stress   scaffold W.cpp + gen.cpp + brute.cpp
+  cb new W --stress   scaffold W.cpp + W_gen.cpp + W_brute.cpp
   cb stress gen brute A 1000 10
 
 name resolution (per argument):
@@ -197,7 +197,8 @@ _cb_new() {
   if [ "$stress" = 1 ]; then
     local sk
     for sk in gen:stress/gen.cpp brute:stress/brute.cpp; do
-      local base=${sk%%:*} src=$root/template/${sk#*:}
+      local base="$name"_${sk%%:*}
+      local src=$root/template/${sk#*:}
       if [ -e "$base.cpp" ]; then
         echo "exists:  $base.cpp (kept)"
       elif [ -f "$src" ]; then
@@ -206,7 +207,7 @@ _cb_new() {
       fi
     done
   fi
-  echo "next: cb $name | cb run-$name | cb test-$name${stress:+ | cb stress gen brute $name}"
+  echo "next: cb $name | cb run-$name | cb test-$name${stress:+ | cb stress ${name}_gen ${name}_brute $name}"
 }
 
 cb() {
