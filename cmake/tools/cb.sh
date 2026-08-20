@@ -11,6 +11,7 @@
 #   cb new A [--stress]             # scaffold A.cpp (+ A_gen/A_brute skeletons)
 #   cb stress A [iters] [tl]        # one-name duel (uses A_gen/A_brute)
 #   cb stress A_gen A_brute A 1000 10   # explicit trio: iters, tl
+#   cb bridge <A> <B>               # cross-pipe two programs (interactive)
 #   cb cfg [-G Ninja ...]           # reconfigure the repo-root build tree
 #   cb help | cb --help             # full reference
 #
@@ -163,6 +164,93 @@ _cb_stress() {
     "$(_cb_bin "${s#*$'\t'}")" "$@"
 }
 
+# _cb_bridge_bin <arg> -> executable path for one bridge side: an executable
+# file is used as-is, a '/'-path that is not executable is an error, anything
+# else is a cb short name (bootstrap + resolve + build, return its binary).
+# The result is always verified to be an executable FILE: a directory name
+# ('tmp') also passes [ -x ], builds fine as an aggregate and would then fail
+# to exec inside the bridge while the peer blocks on the fifo forever.
+_cb_bridge_bin() {
+  local a=$1 rs bin
+  if [ -x "$a" ] && [ ! -d "$a" ]; then printf '%s\n' "$a"; return 0; fi
+  case $a in
+    */*) echo "cb: '$a' is not an executable" >&2; return 1 ;;
+  esac
+  _cb_setup
+  case $? in
+    0) ;;
+    2) return 1 ;;                                    # wrong repo: no bootstrap
+    *) _cb_cfg >/dev/null 2>&1 && _cb_setup || { echo "cb: no build tree, run: cb cfg" >&2; return 1; } ;;
+  esac
+  rs=$(_cb_resolve "$a") || return 1
+  if [ "$(awk -F'\t' -v t="${rs%%$'\t'*}" '$2==t{print $3; exit}' "$_cb_map")" = dir ]; then
+    echo "cb: '$a' is a directory aggregate, not an executable" >&2
+    return 1
+  fi
+  # stdout is silenced: the caller captures our stdout as the binary path
+  cmake --build "$_cb_build" --target "${rs%%$'\t'*}" >/dev/null || return 1
+  bin=$(_cb_bin "${rs#*$'\t'}")
+  if [ -d "$bin" ] || [ ! -x "$bin" ]; then           # aggregate/custom target: no program
+    echo "cb: built '$a' but '$bin' is not an executable file" >&2
+    return 1
+  fi
+  printf '%s\n' "$bin"
+}
+
+# _cb_bridge <A> <B> — cross-connect two programs through fifos: A is the
+# interactor (questioner), B the solution (responder); A's stdout feeds B's
+# stdin and vice versa. Every line is echoed to stderr tagged [name] and
+# appended to ./interaction.log. The plumbing runs in a subshell so its traps
+# and options never leak into the interactive shell that sourced cb.sh.
+_cb_bridge() {
+  [ $# -eq 2 ] || { echo "usage: cb bridge <interactor> <solution>   A = questioner/interactor, B = solution/responder" >&2; return 1; }
+  local a b
+  a=$(_cb_bridge_bin "$1") || return 1
+  b=$(_cb_bridge_bin "$2") || return 1
+  local an bn log dir pa pb
+  an=$(basename "$a"); bn=$(basename "$b")
+  log=$PWD/interaction.log
+
+  (
+    # Ctrl+C alone cannot stop the pipelines: background children of a
+    # non-interactive shell inherit SIGINT/SIGQUIT set to SIG_IGN (POSIX) and
+    # the ignore survives exec, so the programs, tees and seds would live on
+    # as orphans writing to the deleted fifos. So: `set -m` (subshell-only)
+    # puts each pipeline into its own process group while launching, the
+    # leaders' ids are recorded, monitor mode goes off again (it would print
+    # "[1]- Done" job notices), and the trap TERMs those groups on INT/TERM/
+    # EXIT — TERM is never inherited as SIG_IGN — escalating to KILL after a
+    # grace period so the stop always goes through.
+    dir=$(mktemp -d) || { echo "cb: mktemp failed" >&2; exit 1; }
+    trap '
+      if [ -n "${pa:-}" ]; then
+        kill -TERM -- -"$pga" -"$pgb" 2>/dev/null     # the two job groups
+        kill -TERM "$pa" "$pb" 2>/dev/null            # fallback: bare pids
+        sleep 0.2
+        kill -KILL -- -"$pga" -"$pgb" 2>/dev/null
+      fi
+      exec 3>&- 4>&- 2>/dev/null
+      rm -rf "$dir"' EXIT INT TERM
+    mkfifo "$dir/ab" "$dir/ba"
+    exec 3<> "$dir/ab"                                # A -> B
+    exec 4<> "$dir/ba"                                # B -> A
+    : > "$log"
+    echo "cb bridge: A = $an (interactor), B = $bn (solution); log: $log" >&2
+    echo "cb bridge: Ctrl+C stops both sides" >&2
+    set -m                                            # groups exist only while forking
+    "$a" <&4 | tee >(tee -a "$log" | sed -u "s/^/[$an] /" >&2) >&3 &
+    pa=$!
+    "$b" <&3 | tee >(tee -a "$log" | sed -u "s/^/[$bn] /" >&2) >&4 &
+    pb=$!
+    read -r pga pgb <<< "$(jobs -p | tr '\n' ' ')"    # job leaders = group ids
+    set +m
+    wait "$pa" "$pb"
+    rc=$?
+    pa= pb=                                           # reaped: nothing to kill
+    exit "$rc"
+  )
+}
+
 _cb_help() {
   cat <<'EOF'
 cb - short-name front for the cpcode CMake workflow
@@ -176,6 +264,7 @@ usage:
   cb stress <sol> [iters] [tl]    duel <sol>_gen + <sol>_brute + <sol>
   cb stress <gen> <brute> <sol> [iters] [tl]
                                   explicit trio
+  cb bridge <A> <B>               pipe two programs via fifos (interactive)
   cb new [--stress] <name>        scaffold <name>.cpp from cmake/tools/sol.cpp
                                   (--stress adds <name>_gen.cpp/_brute.cpp)
   cb cfg [cmake args...]          reconfigure the repo-root build tree
@@ -284,6 +373,7 @@ _cb_new() {
 cb() {
   case "$1" in
     stress) shift; _cb_stress "$@"; return ;;
+    bridge) shift; _cb_bridge "$@"; return ;;
     cfg)    shift; _cb_cfg "$@"; return ;;
     new)    shift; _cb_new "$@"; return ;;
     -h|--help|help|"") _cb_help; return ;;

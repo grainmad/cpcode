@@ -1,0 +1,11 @@
+# script/ 下各脚本的 Python 依赖
+# 安装（用户级，无需 sudo）：
+#   uv pip install --python "$(command -v python3)" --target "$(python3 -m site --user-site)" -r script/requirements.txt
+# 或传统方式：
+#   pip install --user -r script/requirements.txt
+
+requests        # update_data.py / gen_ape.py / hexo_deployer.py: HTTP 请求
+lxml            # gen_ape.py: 解析洛谷题面 HTML
+GitPython       # hexo_deployer.py: git 操作
+markdown        # hexo_deployer.py: 题面 markdown 转 html
+python-dotenv   # hexo_deployer.py: 读取 .env 配置

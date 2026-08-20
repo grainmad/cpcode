@@ -10,10 +10,13 @@ out.txt
 build/
 build-*/
 .vscode/
-ape-setting.json
+ape_setting.json
 tmp/
 a.out
 *.cpp.exc
 *.cpp.txt
 .env
 __pycache__/
+script/**/*.log
+# cb bridge 的运行产物（写在运行时的当前目录；fifos 在私有 mktemp 目录，不留痕）
+interaction.log

@@ -131,7 +131,12 @@ cf/contest/2003/samples/A_1.out
 
 ## 其他
 
-- 交互题双程序桥接：`bridge.sh`（保持原用法）
+工具脚本已统一收纳在 `script/`（Python 命名 snake_case，依赖见
+`script/requirements.txt`，各脚本 `--help` 有完整用法）。
+
+- 交互题双程序桥接：`cb bridge <A> <B>`（A=交互库、B=选手程序，参数给 cb 短名
+  自动编译或直接给可执行文件路径；终端按程序名带标签实时回显，完整交互日志
+  写入当前目录 `interaction.log`，Ctrl+C 结束）
 - 全仓库回归：`cmake --build build -t all-problems -j 8`（普通构建不会
   误触全量，裸 `cmake --build build` 是 no-op）
 - 瘦身构建树（只编一场比赛）：`cmake -B build-fast -DCP_SCOPE=cf/contest/2003`
