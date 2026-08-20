@@ -9,6 +9,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+template<class t,class u> ostream& operator<<(ostream& os,const pair<t,u>& p) {
+    return os<<'['<<p.first<<", "<<p.second<<']';
+}
+template<class t> ostream& operator<<(ostream& os,const vector<t>& v) {
+    os<<'['; int s = 1;
+    for(auto e:v) { if (s) s = 0; else os << ", "; os << e; }
+    return os<<']';
+}
+template<class t> ostream& operator<<(ostream& os,const set<t>& v) {
+    os<<'['; int s = 1;
+    for(auto e:v) { if (s) s = 0; else os << ", "; os << e; }
+    return os<<']';
+}
+template<class t,class u> ostream& operator<<(ostream& os,const map<t,u>& mp){
+    os<<'{'; int s = 1;
+    for(auto [x,y]:mp) { if (s) s = 0; else os << ", "; os<<x<<": "<<y; }
+    return os<<'}';
+}
+
 mt19937 rng;
 
 int rnd(int l, int r) { return uniform_int_distribution<>(l, r)(rng); }
