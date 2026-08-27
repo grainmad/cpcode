@@ -1,35 +1,17 @@
-# cp_add_problem(<src>) — turn one .cpp into build/run/judge targets.
+# cp_add_problem(<src>) — turn one .cpp into build/judge targets.
 #
 # Targets (all EXCLUDE_FROM_ALL: bare `cmake --build build` is a no-op):
 #   <name>        executable; OBJECT library instead when the file has no main()
-#   run-<name>    run the executable, stdin inherited (make recipe / ninja console pool),
-#                 working directory = the source directory (freopen-friendly)
-#   test-<name>   build + run all discovered samples through ctest
-#                 (only created when at least one sample is found)
-# Tests:
-#   judge.<name>.<case>    one sample, judged by cmake/judge.cmake (AC/WA/TLE/RE)
-#
-# <name> = repo-relative path with '/'->'.', '.cpp' stripped, bytes outside
-# [A-Za-z0-9_.+-] -> '_' (space and CJK filenames), collisions get '.2', '.3', ...
-# The authoritative path<->target mapping is dumped to build/target-map.tsv
-# (CMake is the single source of truth for the mangling — never re-derive it elsewhere).
-
-# cp_add_problem(<src>) — turn one .cpp into build/run/judge targets.
-#
-# Targets (all EXCLUDE_FROM_ALL: bare `cmake --build build` is a no-op):
-#   <name>        executable; OBJECT library instead when the file has no main()
-#   run-<name>    run the executable, stdin inherited (make recipe / ninja console pool),
-#                 working directory = the source directory (freopen-friendly)
-#   test-<name>   build + run all discovered samples through ctest
-#                 (only created when at least one sample is found)
 # Directory aggregate (created by cp_add_dir_targets, called from CMakeLists):
 #   <dir>         one target per directory that directly contains .cpp files,
 #                 e.g. tmp.stress builds gen/brute/sol, cf.contest.2003 builds A..D2
-# Tests:
+# Tests (run/judged via `cb run`/`cb test`, or raw ctest):
 #   judge.<name>.<case>    one sample, judged by cmake/judge.cmake (AC/WA/TLE/RE)
 #
 # <name> = repo-relative path with '/'->'.', '.cpp' stripped, bytes outside
 # [A-Za-z0-9_.+-] -> '_' (space and CJK filenames), collisions get '.2', '.3', ...
+# (CMake forbids '/' in target names, so dots are the cmake-side encoding;
+#  cb translates slash names <-> dotted targets at its boundary.)
 # The authoritative path<->target mapping is dumped to build/target-map.tsv
 # (CMake is the single source of truth for the mangling — never re-derive it elsewhere).
 
@@ -84,14 +66,6 @@ function(cp_add_problem src)
     set_property(GLOBAL APPEND PROPERTY cp_dirs ${dirname})
   endif()
 
-  # --- interactive/redirected run: stdin is inherited from `cmake --build` ---
-  add_custom_target(run-${name}
-    COMMAND ${CMAKE_COMMAND} -E echo "run: $<TARGET_FILE:${name}> (cwd: ${rdir})"
-    COMMAND $<TARGET_FILE:${name}>
-    DEPENDS ${name}
-    WORKING_DIRECTORY "${dir}"
-    USES_TERMINAL VERBATIM)
-
   # --- sample discovery: {stem}.in, {stem}_*.in, {stem}-*.in next to the source
   #    or under samples/ (the committed convention); legacy in.txt only when the
   #    directory holds exactly one .cpp (single-problem directories) ---
@@ -112,7 +86,6 @@ function(cp_add_problem src)
     endforeach()
   endif()
 
-  set(_tests 0)
   foreach(case IN LISTS _cases)
     string(REGEX REPLACE "\\.in$" ".out" want "${case}")
     if(NOT EXISTS "${want}")
@@ -124,19 +97,7 @@ function(cp_add_problem src)
       COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/cmake/judge.cmake
               $<TARGET_FILE:${name}> "${case}" "${want}" 10)
     set_tests_properties(judge.${name}.${cname} PROPERTIES TIMEOUT 60)
-    math(EXPR _tests "${_tests} + 1")
   endforeach()
-
-  # --- one-command test: builds the exe, then runs only this problem's cases ---
-  if(_tests GREATER 0)
-    string(REPLACE "." "[.]" rx "${name}")
-    string(REPLACE "+" "[+]" rx "${rx}")
-    add_custom_target(test-${name}
-      COMMAND ${CMAKE_CTEST_COMMAND} --test-dir "${CMAKE_BINARY_DIR}"
-              -R "^judge[.]${rx}[.]" --output-on-failure
-      DEPENDS ${name}
-      USES_TERMINAL VERBATIM)
-  endif()
 endfunction()
 
 function(cp_write_target_manifest)

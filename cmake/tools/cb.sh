@@ -5,7 +5,7 @@
 # Usage:
 #   source cmake/tools/cb.sh
 #   cd cf/contest/2003
-#   cb A / cb run-A / cb test-A     # build / run (stdin passthrough) / judge samples
+#   cb A / cb run A / cb test A     # build / run (stdin+args passthrough) / judge samples
 #   cb A B C -j 8                   # several targets, flags pass through
 #   cb 2003 / cb .                  # directory aggregate / subtree, recursively
 #   cb new A [--stress]             # scaffold A.cpp (+ A_gen/A_brute skeletons)
@@ -15,8 +15,12 @@
 #   cb cfg [-G Ninja ...]           # reconfigure the repo-root build tree
 #   cb help | cb --help             # full reference
 #
-# Name resolution (per argument): exact full name in target-map.tsv ->
-# cwd prefix (cf/contest/2003 + A -> cf.contest.2003.A) -> unique suffix
+# Names are slash paths everywhere cb shows them (cf/contest/2003/A); CMake
+# forbids '/' in target names, so the underlying targets stay dotted
+# (cf.contest.2003.A) and cb translates at the boundary — raw cmake/ctest
+# needs the dotted spelling.
+# Name resolution (per argument): exact name (slash or dotted) in
+# target-map.tsv -> cwd prefix (cf/contest/2003 + A) -> unique suffix
 # match repo-wide; ambiguous bare names are rejected with candidates listed.
 # A miss reconfigures once and retries, so freshly created cpps just work.
 # Everything is located relative to `git rev-parse --show-toplevel`, so the
@@ -24,6 +28,9 @@
 
 _cb_setup() {
   _cb_root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "cb: not inside a git repo" >&2; return 2; }
+  # physical path: `pwd` (logical) can differ through symlinks (/tmp ->
+  # /private/tmp on macOS), which would break all PWD-vs-root math below
+  _cb_root=$(cd "$_cb_root" && pwd -P) || return 2
   # refuse foreign repos: cb would otherwise cmake-configure them by accident
   if [ ! -f "$_cb_root/cmake/add_problem.cmake" ] || [ ! -f "$_cb_root/CMakeLists.txt" ]; then
     echo "cb: '$_cb_root' is not a cpcode checkout — refusing to touch it" >&2
@@ -66,33 +73,56 @@ _cb_resolve() {
   _cb_lookup "$1"
 }
 
-# _cb_lookup <name> <allow-dir?> -> prints "target<TAB>source" on stdout
+# _cb_pretty <source-col> — the slash name users see: the map's source path
+# with '.cpp' stripped (directory rows carry a trailing '/'). Derived from
+# the source column, NOT by dot->slash substitution — stems may contain
+# dots themselves (collision suffixes '.2', 'A.b.cpp', ...).
+_cb_pretty() {
+  local s=${1%/}
+  printf '%s' "${s%.cpp}"
+}
+
+# _cb_lookup <name> -> prints "target<TAB>source" on stdout. Names are slash
+# paths (cf/contest/2003/A); legacy dotted names still match exactly.
+# Resolution: exact -> cwd prefix -> unique suffix, the suffix pass matched
+# against both the dotted target and the pretty source path.
 _cb_lookup() {
-  local x=$1 base verb="" hit rel prefix
-  base=$x
-  case $base in
-    run-*) verb="run-"; base=${base#run-} ;;
-    test-*) verb="test-"; base=${base#test-} ;;
-  esac
-  hit=$(awk -F'\t' -v n="$x" '$2==n{print $2"\t"$1; exit}' "$_cb_map")
+  local x=$1 hit rel
+  # exact: as typed (dotted legacy), then with '/' -> '.'
+  hit=$(awk -F'\t' -v n="$x" -v d="${x//\//\.}" '$2==n||$2==d{print $2"\t"$1; exit}' "$_cb_map")
   [ -n "$hit" ] && { printf '%s\n' "$hit"; return 0; }
-  rel=${PWD#"$_cb_root"}; rel=${rel#/}; rel=${rel%/}
-  [ -n "$rel" ] && prefix=${rel//\//.}
-  # steps below resolve the exe name; re-attach the run-/test- verb on output
-  if [ -n "${prefix:-}" ]; then
-    hit=$(awk -F'\t' -v n="$prefix.$base" '$2==n{print $2"\t"$1; exit}' "$_cb_map")
-    [ -n "$hit" ] && { printf '%s\t%s\n' "$verb${hit%%$'\t'*}" "${hit#*$'\t'}"; return 0; }
+  # cwd prefix: the path from the repo root IS the prefix (physical pwd —
+  # _cb_root is physical, a logical PWD would mismatch through symlinks)
+  local pw; pw=$(pwd -P)
+  rel=${pw#"$_cb_root"}; rel=${rel#/}; rel=${rel%/}
+  if [ -n "$rel" ]; then
+    local pre="${rel}/${x#./}"
+    hit=$(awk -F'\t' -v n="${pre//\//\.}" '$2==n{print $2"\t"$1; exit}' "$_cb_map")
+    [ -n "$hit" ] && { printf '%s\n' "$hit"; return 0; }
   fi
-  hit=$(awk -F'\t' -v b="$base" 'BEGIN{gsub(/\./,"\\.",b); r="\\."b"$"} $2~r{print $2"\t"$1}' "$_cb_map")
+  # unique suffix, both spellings at once; dedup keyed by target
+  hit=$(awk -F'\t' -v b="$x" '
+    BEGIN {
+      te = b; gsub(/[\\.^$*+?()\[\]{}|]/, "\\\\&", te); gsub(/\//, "\\.", te)
+      pe = b; gsub(/[\\.^$*+?()\[\]{}|]/, "\\\\&", pe)
+    }
+    {
+      p = $1; sub(/\.cpp$/, "", p); sub(/\/$/, "", p)
+      if ($2 ~ "(^|\\.)" te "$" || p ~ "(^|/)" pe "$") {
+        if (!($2 in seen)) { seen[$2] = 1; print $2 "\t" $1 }
+      }
+    }' "$_cb_map")
   if [ "$(printf '%s' "$hit" | grep -c .)" -eq 1 ] && [ -n "$hit" ]; then
-    printf '%s\t%s\n' "$verb${hit%%$'\t'*}" "${hit#*$'\t'}"; return 0
+    printf '%s\n' "$hit"; return 0
   fi
   if [ -z "$hit" ]; then
-    echo "cb: '$x' not found (cwd prefix '${prefix:-<repo root>}', map: $_cb_map)" >&2
-    _cb_suggest "$base"
+    echo "cb: '$x' not found (cwd prefix '${rel:-<repo root>}', map: $_cb_map)" >&2
+    _cb_suggest "${x##*/}"
   else
-    echo "cb: '$base' is ambiguous, candidates:" >&2
-    printf '%s\n' "$hit" | while IFS=$'\t' read -r t s; do echo "  $t   <- $s" >&2; done | head -8
+    echo "cb: '$x' is ambiguous, candidates:" >&2
+    printf '%s\n' "$hit" | while IFS=$'\t' read -r t s; do
+      echo "  $(_cb_pretty "$s")   ($t)" >&2
+    done | head -8
   fi
   return 1
 }
@@ -122,7 +152,7 @@ _cb_suggest() {
       s = $1; sub(/\.cpp$/, "", s); ns = split(s, seg, "/"); stem = seg[ns]
       if (stem == "" || seen[stem]++) next
       d = lev(q, stem)
-      if (d <= 2 && d < length(q) && d < length(stem)) print d "\t" stem "\t" $2
+      if (d <= 2 && d < length(q) && d < length(stem)) print d "\t" stem "\t" s
     }' "$_cb_map" | sort -t$'\t' -k1,1n | head -3 | while IFS=$'\t' read -r d stem tgt; do
       echo "  did you mean: $stem   ($tgt)" >&2
     done
@@ -133,6 +163,69 @@ _cb_bin() {
   local src=$1 d n
   d=$(dirname "$src"); n=$(basename "$src" .cpp)
   printf '%s/bin/%s/%s\n' "$_cb_build" "$d" "$n"
+}
+
+# _cb_bootstrap — _cb_setup, configuring a missing build tree on first use.
+# Leaves _cb_build/_cb_map set on success.
+_cb_bootstrap() {
+  _cb_setup
+  case $? in
+    0) ;;
+    2) return 1 ;;                                    # wrong repo: no bootstrap
+    *) _cb_cfg >/dev/null 2>&1 && _cb_setup || { echo "cb: no build tree, run: cb cfg" >&2; return 1; } ;;
+  esac
+}
+
+# _cb_kind <target> -> exe|object|dir from the map (empty when missing)
+_cb_kind() {
+  awk -F'\t' -v t="$1" '$2==t{print $3; exit}' "$_cb_map"
+}
+
+# _cb_run <name> [args...] — build, then exec the binary directly: stdin
+# passthrough, extra args go to the program, cwd = the source directory
+# (freopen-friendly — the semantics the old run-<t> cmake target had).
+_cb_run() {
+  local name=$1
+  [ -n "$name" ] || { echo "usage: cb run <target> [program-args...]" >&2; return 1; }
+  _cb_bootstrap || return 1
+  local rs tgt src kind bin
+  rs=$(_cb_resolve "$name") || return 1
+  tgt=${rs%%$'\t'*}; src=${rs#*$'\t'}
+  kind=$(_cb_kind "$tgt")
+  if [ "$kind" = dir ]; then
+    echo "cb: '$(_cb_pretty "$src")' is a directory aggregate, not an executable" >&2; return 1
+  fi
+  if [ "$kind" = object ]; then
+    echo "cb: '$(_cb_pretty "$src")' has no main() — compile-only, nothing to run" >&2; return 1
+  fi
+  cmake --build "$_cb_build" --target "$tgt" >&2 || return 1   # progress -> stderr, program owns stdout
+  bin=$(_cb_bin "$src")
+  if [ ! -x "$bin" ]; then
+    echo "cb: built '$name' but '$bin' is not an executable" >&2; return 1
+  fi
+  shift
+  (cd "$_cb_root/$(dirname "$src")" && exec "$bin" "$@")
+}
+
+# _cb_test <name> — build, then judge all discovered samples via ctest
+# (a directory aggregate works too: judges every problem it builds).
+_cb_test() {
+  local name=$1
+  [ -n "$name" ] || { echo "usage: cb test <target>" >&2; return 1; }
+  _cb_bootstrap || return 1
+  local rs tgt rx n
+  rs=$(_cb_resolve "$name") || return 1
+  tgt=${rs%%$'\t'*}
+  cmake --build "$_cb_build" --target "$tgt" >&2 || return 1   # progress -> stderr, ctest owns stdout
+  rx=${tgt//./[.]}
+  rx=${rx//+/[+]}
+  # ctest -N lists cases indented ("  Test #1: ..."), so no line anchor here
+  n=$(ctest --test-dir "$_cb_build" -N -R "^judge[.]${rx}[.]" 2>/dev/null | grep -c 'Test #' || true)
+  if [ "${n:-0}" -eq 0 ]; then
+    echo "cb: no samples for '$name' ({stem}.in + .out pairs next to the source, or under samples/)" >&2
+    return 1
+  fi
+  ctest --test-dir "$_cb_build" -R "^judge[.]${rx}[.]" --output-on-failure
 }
 
 _cb_stress() {
@@ -259,8 +352,8 @@ cb - short-name front for the cpcode CMake workflow
 usage:
   cb <target>... [flags]          build targets (short names ok)
   cb <dir> | cb .                 build every cpp under a directory, recursively
-  cb run-<target>                 run, stdin passthrough (interactive / < in.txt)
-  cb test-<target>                build + judge samples (AC/WA/TLE/RE)
+  cb run <target> [args...]       build, then run: stdin passthrough, args -> program
+  cb test <target>                build + judge samples (AC/WA/TLE/RE); dirs ok too
   cb stress <sol> [iters] [tl]    duel <sol>_gen + <sol>_brute + <sol>
   cb stress <gen> <brute> <sol> [iters] [tl]
                                   explicit trio
@@ -273,13 +366,16 @@ usage:
 a whole problem, from scratch:
   cb new A --stress       scaffold A.cpp + A_gen.cpp + A_brute.cpp
   ... edit the three files ...
-  cb run-A                try sample input by hand
-  cb test-A               judge samples/ (A_1.in + A_1.out pairs)
+  cb run A                try sample input by hand
+  cb test A               judge samples/ (A_1.in + A_1.out pairs)
   cb stress A 1000        randomized duel against the brute force
 
-name resolution (per argument):
-  full target name -> cwd prefix (cf/contest + 2003.A) -> unique suffix
-  repo-wide; ambiguous names list candidates.
+names are slash paths (cf/contest/2003/A, 25/2145D or just 2145D):
+  resolution: full name -> cwd prefix (cf/contest/2003 + A) -> unique
+  suffix repo-wide; ambiguous names list candidates.
+  cb shows slash names everywhere; the underlying cmake targets stay dotted
+  (cf.contest.2003.A — CMake forbids '/' in target names), so raw
+  cmake/ctest needs the dotted spelling. Legacy `cb run-A` still works.
   A miss reconfigures once and retries: new cpps need no ceremony.
   cb also bootstraps a missing build tree on first use.
 
@@ -299,7 +395,7 @@ EOF
 _cb_subtree() {
   local d=$1 abs sub list
   [ -z "$d" ] && d=.
-  abs=$(cd "$d" 2>/dev/null && pwd) || { echo "cb: cannot enter '$d'" >&2; return 1; }
+  abs=$(cd -P "$d" 2>/dev/null && pwd) || { echo "cb: cannot enter '$d'" >&2; return 1; }
   if [ "$abs" = "$_cb_root" ]; then
     sub=""
   elif [ "${abs#"$_cb_root"/}" != "$abs" ]; then
@@ -367,39 +463,50 @@ _cb_new() {
       fi
     done
   fi
-  echo "next: cb $name | cb run-$name | cb test-$name${stress:+ | cb stress ${name}_gen ${name}_brute $name}"
+  echo "next: cb $name | cb run $name | cb test $name${stress:+ | cb stress ${name}_gen ${name}_brute $name}"
 }
 
 cb() {
-  case "$1" in
+  case "${1:-}" in
+    run)    shift; _cb_run "$@"; return ;;
+    test)   shift; _cb_test "$@"; return ;;
     stress) shift; _cb_stress "$@"; return ;;
     bridge) shift; _cb_bridge "$@"; return ;;
     cfg)    shift; _cb_cfg "$@"; return ;;
     new)    shift; _cb_new "$@"; return ;;
     -h|--help|help|"") _cb_help; return ;;
+    # legacy verb prefixes: `cb run-A` == `cb run A`. Rewritten unconditionally:
+    # a source file literally named run-<x>.cpp is a pathological edge.
+    run-*)  local _legacy=${1#run-};  shift; _cb_run "$_legacy" "$@"; return ;;
+    test-*) local _legacy=${1#test-}; shift; _cb_test "$_legacy" "$@"; return ;;
   esac
-  _cb_setup
-  case $? in
-    0) ;;
-    2) return 1 ;;                                    # wrong repo: no bootstrap
-    *) _cb_cfg >/dev/null 2>&1 && _cb_setup || { echo "cb: no build tree, run: cb cfg" >&2; return 1; } ;;
-  esac
+  _cb_bootstrap || return 1
   local targets=() flags=() x t
-  for x in "$@"; do
-    case "$x" in
-      -*) flags+=("$x"); continue ;;
+  while [ $# -gt 0 ]; do
+    x=$1
+    case $x in
+      -*)
+        flags+=("$x")
+        # `-j 8`: the bare number is a value, not a target name
+        if [ "$x" = "-j" ] && [ $# -gt 1 ] && printf '%s' "$2" | grep -q '^[0-9][0-9]*$'; then
+          flags+=("$2"); shift
+        fi
+        ;;
+      *)
+        local y=${x%/}
+        y=${y#./}
+        if [ -z "$y" ] || [ -d "$y" ]; then
+          local _out
+          _out=$(_cb_subtree "$y") || return 1
+          while IFS= read -r t; do targets+=("$t"); done <<< "$_out"
+        else
+          local row
+          row=$(_cb_resolve "$x") || return 1
+          targets+=("${row%%$'\t'*}")
+        fi
+        ;;
     esac
-    local y=${x%/}
-    y=${y#./}
-    if [ -z "$y" ] || [ -d "$y" ]; then
-      local _out
-      _out=$(_cb_subtree "$y") || return 1
-      while IFS= read -r t; do targets+=("$t"); done <<< "$_out"
-      continue
-    fi
-    local row
-    row=$(_cb_resolve "$x") || return 1
-    targets+=("${row%%$'\t'*}")
+    shift
   done
   [ ${#targets[@]} -gt 0 ] || { echo "cb: no target given" >&2; return 1; }
   cmake --build "$_cb_build" --target "${targets[@]}" ${flags:+"${flags[@]}"}

@@ -18,8 +18,8 @@ cd cf/contest/2003
 cb new W          # 从模板生成 W.cpp（模板：cmake/tools/sol.cpp，可用 CP_TEMPLATE 换）
 cb new W --stress # 顺带生成 W_gen.cpp / W_brute.cpp（按题命名，比赛目录多题不冲突）
 cb A              # 编译
-cb run-A          # 运行（stdin 直通，可手敲输入或 < in.txt）
-cb test-A         # 编译 + 判样例（AC/WA/TLE/RE）
+cb run A          # 运行（stdin 直通，可手敲输入或 < in.txt；额外参数透传给程序）
+cb test A         # 编译 + 判样例（AC/WA/TLE/RE）
 cb A D2 -j 8      # 多个目标 + 透传 flags
 cb 2003           # 整场比赛一次全编（目录聚合）
 cb stress A            # 对拍：自动用 A_gen/A_brute（cb new A --stress 的命名约定）
@@ -27,17 +27,19 @@ cb stress A 500 3      # 同上，指定轮数/超时
 cb stress gen brute A 1000 10   # 也可以显式给三件套
 ```
 
-短名想写到哪一层都行：题目目录里 `cb A`，`cf/contest` 里 `cb 2003.A`，
-仓库根 `cb 2003.A` / `cb 2003`；解析顺序 = 完整名 → cwd 前缀 → 全仓唯一
-后缀；歧义时报候选清单（如根目录裸 `cb A`，补一层路径即可）。
+短名想写到哪一层都行：题目目录里 `cb A`，`cf/contest` 里 `cb 2003/A`，
+仓库根 `cb contest/2003/A` / `cb 2003`。名字统一是路径斜杠写法（cb 的报错、
+候选清单里显示的也是斜杠名；老的点分写法 `2003.A` 仍然可用）。解析顺序 =
+完整名 → cwd 前缀 → 全仓唯一后缀；歧义时报候选清单（如根目录裸 `cb A`，
+补一层路径即可）。
 
 ### 用法总表（在 `cf/contest/2003/` 内）
 
 | 命令 | 等价于 | 说明 |
 |---|---|---|
 | `cb A` | `cmake --build build -t cf.contest.2003.A` | 编译（增量） |
-| `cb run-A` | `cmake --build build -t run-cf.contest.2003.A` | 运行，stdin 直通 |
-| `cb test-A` | `cmake --build build -t test-cf.contest.2003.A` | 编译+判样例 |
+| `cb run A` | 构建 + 直接执行 `build/bin/cf/contest/2003/A`（cwd=源目录） | 运行，stdin 直通、参数透传 |
+| `cb test A` | 构建 + `ctest -R 'judge[.]cf[.]contest[.]2003[.]A'` | 编译+判样例 |
 | `cb A D2 -j 8` | 同上多个 target | 多目标，flags 透传 |
 | `cb 2003` | `cmake --build build -t cf.contest.2003` | 目录聚合：整场全编 |
 | `cb stress A [1000] [10]` | 自动发现 `A_gen`/`A_brute` 并对拍 | 单名模式；也可显式 `cb stress gen brute A` |
@@ -68,7 +70,8 @@ cb stress gen brute A 1000 10   # 也可以显式给三件套
 ## 纯 cmake 命令（cb 的底层；脚本/CI 用）
 
 cb 只是转发层，底下全是标准命令，任何地方可直接使用（`-t` 只认全名：
-相对路径的 `/` 换成 `.`，完整对照表见 `build/target-map.tsv`）：
+相对路径的 `/` 换成 `.`——CMake 的 target 名不允许 `/`，点分是 cmake 侧
+编码，cb 在边界自动翻译；完整对照表见 `build/target-map.tsv`）：
 
 ```bash
 # 初始化（新增/删除 .cpp 后需要重跑；Ninja 树自动触发，Make 树需手动，
@@ -79,11 +82,12 @@ cmake -B build
 cmake --build build -t cf.contest.2003.A
 cmake --build build -t cf.contest.2003
 
-# 运行（stdin 直通终端：可交互手敲，也可以 < in.txt 重定向）
-cmake --build build -t run-cf.contest.2003.A
+# 运行：先构建，再直接执行产物（stdin 直通，可交互手敲或 < in.txt；
+# `cb run A` 就是这两步）
+cmake --build build -t cf.contest.2003.A
+./build/bin/cf/contest/2003/A
 
-# 测样例（构建 + 判该题全部样例；也可以直接用 ctest 按正则过滤）
-cmake --build build -t test-cf.contest.2003.A
+# 测样例（`cb test A` = 构建 + 此命令）
 ctest --test-dir build -R 'judge[.]cf[.]contest[.]2003'
 
 # 清理
