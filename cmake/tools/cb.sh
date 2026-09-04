@@ -11,7 +11,7 @@
 #   cb new A [--stress]             # scaffold A.cpp (+ A_gen/A_brute skeletons)
 #   cb stress A [iters] [tl]        # one-name duel (uses A_gen/A_brute)
 #   cb stress A_gen A_brute A 1000 10   # explicit trio: iters, tl
-#   cb bridge <A> <B>               # cross-pipe two programs (interactive)
+#   cb bridge <A> <B>               # cross-connect two programs via a broker (interactive)
 #   cb cfg [-G Ninja ...]           # reconfigure the repo-root build tree
 #   cb help | cb --help             # full reference
 #
@@ -290,58 +290,23 @@ _cb_bridge_bin() {
   printf '%s\n' "$bin"
 }
 
-# _cb_bridge <A> <B> — cross-connect two programs through fifos: A is the
-# interactor (questioner), B the solution (responder); A's stdout feeds B's
-# stdin and vice versa. Every line is echoed to stderr tagged [name] and
-# appended to ./interaction.log. The plumbing runs in a subshell so its traps
-# and options never leak into the interactive shell that sourced cb.sh.
+# _cb_bridge <A> <B> — cross-connect two programs through a single broker
+# process (cmake/tools/cb_bridge.py): A is the interactor (questioner), B the
+# solution (responder); A's stdout feeds B's stdin and vice versa, both
+# programs' stderr is relayed as [name:err] lines. The broker is the only
+# writer of the console and interaction.log, so [A]/[B] lines appear in true
+# exchange order — the old fifo + tee + sed side-pipelines raced as separate
+# processes and could print out of order (and logged untagged lines). Each
+# program runs in its own process group: Ctrl+C hits the broker, which TERMs
+# then KILLs both groups. Needs python3 (stdlib only).
 _cb_bridge() {
   [ $# -eq 2 ] || { echo "usage: cb bridge <interactor> <solution>   A = questioner/interactor, B = solution/responder" >&2; return 1; }
-  local a b
-  a=$(_cb_bridge_bin "$1") || return 1
+  local py a b
+  py=$(command -v python3) || { echo "cb: bridge requires python3 on PATH (stdlib only)" >&2; return 1; }
+  a=$(_cb_bridge_bin "$1") || return 1     # resolves names, self-bootstraps a build tree
   b=$(_cb_bridge_bin "$2") || return 1
-  local an bn log dir pa pb
-  an=$(basename "$a"); bn=$(basename "$b")
-  log=$PWD/interaction.log
-
-  (
-    # Ctrl+C alone cannot stop the pipelines: background children of a
-    # non-interactive shell inherit SIGINT/SIGQUIT set to SIG_IGN (POSIX) and
-    # the ignore survives exec, so the programs, tees and seds would live on
-    # as orphans writing to the deleted fifos. So: `set -m` (subshell-only)
-    # puts each pipeline into its own process group while launching, the
-    # leaders' ids are recorded, monitor mode goes off again (it would print
-    # "[1]- Done" job notices), and the trap TERMs those groups on INT/TERM/
-    # EXIT — TERM is never inherited as SIG_IGN — escalating to KILL after a
-    # grace period so the stop always goes through.
-    dir=$(mktemp -d) || { echo "cb: mktemp failed" >&2; exit 1; }
-    trap '
-      if [ -n "${pa:-}" ]; then
-        kill -TERM -- -"$pga" -"$pgb" 2>/dev/null     # the two job groups
-        kill -TERM "$pa" "$pb" 2>/dev/null            # fallback: bare pids
-        sleep 0.2
-        kill -KILL -- -"$pga" -"$pgb" 2>/dev/null
-      fi
-      exec 3>&- 4>&- 2>/dev/null
-      rm -rf "$dir"' EXIT INT TERM
-    mkfifo "$dir/ab" "$dir/ba"
-    exec 3<> "$dir/ab"                                # A -> B
-    exec 4<> "$dir/ba"                                # B -> A
-    : > "$log"
-    echo "cb bridge: A = $an (interactor), B = $bn (solution); log: $log" >&2
-    echo "cb bridge: Ctrl+C stops both sides" >&2
-    set -m                                            # groups exist only while forking
-    "$a" <&4 | tee >(tee -a "$log" | sed -u "s/^/[$an] /" >&2) >&3 &
-    pa=$!
-    "$b" <&3 | tee >(tee -a "$log" | sed -u "s/^/[$bn] /" >&2) >&4 &
-    pb=$!
-    read -r pga pgb <<< "$(jobs -p | tr '\n' ' ')"    # job leaders = group ids
-    set +m
-    wait "$pa" "$pb"
-    rc=$?
-    pa= pb=                                           # reaped: nothing to kill
-    exit "$rc"
-  )
+  [ -n "${_cb_root:-}" ] || _cb_setup || { echo "cb: no build tree, run: cb cfg" >&2; return 1; }
+  "$py" "$_cb_root/cmake/tools/cb_bridge.py" "$a" "$b" "$PWD/interaction.log"
 }
 
 _cb_help() {
@@ -357,7 +322,7 @@ usage:
   cb stress <sol> [iters] [tl]    duel <sol>_gen + <sol>_brute + <sol>
   cb stress <gen> <brute> <sol> [iters] [tl]
                                   explicit trio
-  cb bridge <A> <B>               pipe two programs via fifos (interactive)
+  cb bridge <A> <B>               cross-connect two programs via a broker (interactive)
   cb new [--stress] <name>        scaffold <name>.cpp from cmake/tools/sol.cpp
                                   (--stress adds <name>_gen.cpp/_brute.cpp)
   cb cfg [cmake args...]          reconfigure the repo-root build tree

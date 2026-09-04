@@ -13,7 +13,7 @@
 #   test             AC/WA judged, no-samples error, dir aggregate
 #   new              scaffold, --stress skeletons, refuses overwrite
 #   stress           single-name auto trio + explicit trio
-#   bridge           fifo round-trip (asserts interaction.log content)
+#   bridge           broker round-trip (asserts interaction.log content)
 #   cfg / help
 #
 # The user's own build trees are never touched: CP_BUILD_DIR pins a tree
@@ -180,10 +180,12 @@ succeeds "stress: explicit trio (slash names)"  \
 # ---- bridge ---------------------------------------------------------------------------
 rm -f interaction.log
 bro=$(cb bridge asker answer 2>&1); brc=$?
-if grep -q 'PONG OK-PING' interaction.log 2>/dev/null; then
-  ok "bridge: fifo round-trip in interaction.log"
+ord=$(awk '/\[asker\] PING/{p=NR} /\[answer\] OK-PING/{o=NR} /\[asker\] PONG/{g=NR}
+           END{print (p&&o&&g&&p<o&&o<g) ? "ok":"bad"}' interaction.log 2>/dev/null)
+if [ "$brc" -eq 0 ] && [ "$ord" = "ok" ]; then
+  ok "bridge: broker round-trip, tagged and ordered"
 else
-  bad "bridge: round-trip missing (rc=$brc, out: $(printf '%s' "$bro" | head -2 | tr '\n' ' '))"
+  bad "bridge: round-trip missing (rc=$brc, order=$ord, out: $(printf '%s' "$bro" | head -2 | tr '\n' ' '))"
 fi
 
 # ---- cfg ---------------------------------------------------------------------------------
