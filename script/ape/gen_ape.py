@@ -268,7 +268,7 @@ def create_file(path, info):
         f.write("# ")
         f.write(info['题目'])
         f.write("\n\n")
-        f.write("Created by LXC on "+time.ctime())
+        f.write("Created by Thread6 on "+time.ctime())
         f.write("\n\n")
         f.write(info['链接'])
         f.write("\n\n")
